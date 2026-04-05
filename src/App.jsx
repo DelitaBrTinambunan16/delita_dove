@@ -1,12 +1,12 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
-import BiodataDiri from "./BiodataDiri";
+import UserForm from "./components/Pertemuan3/UserForm";
 
 function App() {
-  return <BiodataDiri />;
+  // Hapus import './App.css' agar tidak bentrok dengan Tailwind
+  return (
+    <div className="w-full m-0 p-0">
+      <UserForm />
+    </div>
+  );
 }
 
 export default App;

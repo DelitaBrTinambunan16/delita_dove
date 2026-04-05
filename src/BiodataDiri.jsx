@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 
 //6 Component untuk Biodata Diri
-
 // Layout Wrapper
 const Layout = ({ children }) => (
     <div className="layout">{children}</div>
@@ -40,7 +39,6 @@ const Section = ({ title, children }) => (
     </section>
 );
 
-
 // Experience Component (
 const experiences = [
     "Semester 2: Membuat Projek Sederhana dengan HTML, CSS, dan JavaScript",
@@ -54,7 +52,7 @@ const Experience = () => (
     </ul>
 );
 
-// Parent COMPONENT
+// MAIN COMPONENT
 function BiodataDiri() {
     return (
         <Layout>
@@ -71,8 +69,7 @@ function BiodataDiri() {
 
             <Section title="Tentang Saya">
                 <p>
-                    Saya mahasiswa Sistem Informasi semester 4 saya saat 
-                    ini sedang belajar React di matakuliah Pemrograman Framework Lanjutan.
+                    Saya mahasiswa Sistem Informasi semester 4 saya saat ini sedang belajar React di matakuliah Pemrograman Framework Lanjutan.
                 </p>
             </Section>
 
