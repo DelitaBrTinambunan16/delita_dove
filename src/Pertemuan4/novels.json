@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "title": "Laskar Pelangi",
+    "category": "Fiction",
+    "price": 85000,
+    "thumbnail": "https://picsum.photos/seed/laskar/400/300",
+    "creator": { "name": "Andrea Hirata", "rating": 4.9 },
+    "delivery": { "duration": "Instant (E-book)", "stock": 50 },
+    "contact": { "email": "bentang@pustaka.com" },
+    "tags": ["Inspirational", "Education"]
+  },
+  {
+    "id": 2,
+    "title": "Bumi",
+    "category": "Fantasy",
+    "price": 95000,
+    "thumbnail": "https://picsum.photos/seed/bumi/400/300",
+    "creator": { "name": "Tere Liye", "rating": 4.8 },
+    "delivery": { "duration": "3 days", "stock": 25 },
+    "contact": { "email": "gramedia@mail.com" },
+    "tags": ["Adventure", "Parallel World"]
+  },
+  {
+    "id": 3,
+    "title": "Cantik Itu Luka",
+    "category": "Sastra",
+    "price": 120000,
+    "thumbnail": "https://picsum.photos/seed/cantik/400/300",
+    "creator": { "name": "Eka Kurniawan", "rating": 4.9 },
+    "delivery": { "duration": "2 days", "stock": 15 },
+    "contact": { "email": "gramedia@mail.com" },
+    "tags": ["History", "Magical Realism"]
+  },
+  {
+    "id": 4,
+    "title": "Filosofi Kopi",
+    "category": "Short Story",
+    "price": 75000,
+    "thumbnail": "https://picsum.photos/seed/kopi/400/300",
+    "creator": { "name": "Dee Lestari", "rating": 4.7 },
+    "delivery": { "duration": "2 days", "stock": 30 },
+    "contact": { "email": "dee@truedee.com" },
+    "tags": ["Philosophy", "Life"]
+  },
+  {
+    "id": 5,
+    "title": "Dilan 1990",
+    "category": "Romance",
+    "price": 79000,
+    "thumbnail": "https://picsum.photos/seed/dilan/400/300",
+    "creator": { "name": "Pidi Baiq", "rating": 4.6 },
+    "delivery": { "duration": "3 days", "stock": 100 },
+    "contact": { "email": "pastelia@mail.com" },
+    "tags": ["Teen", "90s"]
+  },
+  {
+    "id": 6,
+    "title": "Pulang",
+    "category": "Historical Fiction",
+    "price": 110000,
+    "thumbnail": "https://picsum.photos/seed/pulang/400/300",
+    "creator": { "name": "Leila S. Chudori", "rating": 4.9 },
+    "delivery": { "duration": "4 days", "stock": 12 },
+    "contact": { "email": "kpg@mail.com" },
+    "tags": ["Politics", "History"]
+  },
+  {
+    "id": 7,
+    "title": "Gadis Kretek",
+    "category": "Sastra",
+    "price": 98000,
+    "thumbnail": "https://picsum.photos/seed/kretek/400/300",
+    "creator": { "name": "Ratih Kumala", "rating": 4.8 },
+    "delivery": { "duration": "3 days", "stock": 20 },
+    "contact": { "email": "gramedia@mail.com" },
+    "tags": ["Cigarette", "Family"]
+  },
+  {
+    "id": 8,
+    "title": "Hujan",
+    "category": "Sci-Fi",
+    "price": 90000,
+    "thumbnail": "https://picsum.photos/seed/hujan/400/300",
+    "creator": { "name": "Tere Liye", "rating": 4.7 },
+    "delivery": { "duration": "2 days", "stock": 40 },
+    "contact": { "email": "gramedia@mail.com" },
+    "tags": ["Future", "Technology"]
+  },
+  {
+    "id": 9,
+    "title": "Negeri 5 Menara",
+    "category": "Inspirational",
+    "price": 88000,
+    "thumbnail": "https://picsum.photos/seed/menara/400/300",
+    "creator": { "name": "A. Fuadi", "rating": 4.7 },
+    "delivery": { "duration": "3 days", "stock": 35 },
+    "contact": { "email": "fuadi@mail.com" },
+    "tags": ["Pesantren", "Dreams"]
+  },
+  {
+    "id": 10,
+    "title": "Perahu Kertas",
+    "category": "Romance",
+    "price": 95000,
+    "thumbnail": "https://picsum.photos/seed/perahu/400/300",
+    "creator": { "name": "Dee Lestari", "rating": 4.8 },
+    "delivery": { "duration": "2 days", "stock": 22 },
+    "contact": { "email": "dee@truedee.com" },
+    "tags": ["Dream", "Art"]
+  },
+  {
+    "id": 11,
+    "title": "Supernova: Ksatria, Puteri, dan Bintang Jatuh",
+    "category": "Sci-Fi",
+    "price": 115000,
+    "thumbnail": "https://picsum.photos/seed/supernova/400/300",
+    "creator": { "name": "Dee Lestari", "rating": 4.9 },
+    "delivery": { "duration": "2 days", "stock": 18 },
+    "contact": { "email": "dee@truedee.com" },
+    "tags": ["Science", "Romance"]
+  },
+  {
+    "id": 12,
+    "title": "Laut Bercerita",
+    "category": "Historical Fiction",
+    "price": 125000,
+    "thumbnail": "https://picsum.photos/seed/laut/400/300",
+    "creator": { "name": "Leila S. Chudori", "rating": 4.9 },
+    "delivery": { "duration": "3 days", "stock": 5 },
+    "contact": { "email": "kpg@mail.com" },
+    "tags": ["Activistic", "History"]
+  },
+  {
+    "id": 13,
+    "title": "Ayat-Ayat Cinta",
+    "category": "Religious Romance",
+    "price": 80000,
+    "thumbnail": "https://picsum.photos/seed/ayat/400/300",
+    "creator": { "name": "Habiburrahman El Shirazy", "rating": 4.7 },
+    "delivery": { "duration": "2 days", "stock": 45 },
+    "contact": { "email": "republika@mail.com" },
+    "tags": ["Egypt", "Religion"]
+  },
+  {
+    "id": 14,
+    "title": "5 cm",
+    "category": "Adventure",
+    "price": 85000,
+    "thumbnail": "https://picsum.photos/seed/5cm/400/300",
+    "creator": { "name": "Donny Dhirgantoro", "rating": 4.6 },
+    "delivery": { "duration": "3 days", "stock": 60 },
+    "contact": { "email": "grasindo@mail.com" },
+    "tags": ["Mountain", "Friendship"]
+  },
+  {
+    "id": 15,
+    "title": "Orang-Orang Biasa",
+    "category": "Comedy Noir",
+    "price": 89000,
+    "thumbnail": "https://picsum.photos/seed/biasa/400/300",
+    "creator": { "name": "Andrea Hirata", "rating": 4.7 },
+    "delivery": { "duration": "2 days", "stock": 30 },
+    "contact": { "email": "bentang@pustaka.com" },
+    "tags": ["Social", "Satire"]
+  },
+  {
+    "id": 16,
+    "title": "Garis Waktu",
+    "category": "Romance",
+    "price": 75000,
+    "thumbnail": "https://picsum.photos/seed/garis/400/300",
+    "creator": { "name": "Fiersa Besari", "rating": 4.5 },
+    "delivery": { "duration": "2 days", "stock": 80 },
+    "contact": { "email": "mediakita@mail.com" },
+    "tags": ["Poetry", "Love"]
+  },
+  {
+    "id": 17,
+    "title": "Dikta & Hukum",
+    "category": "Teen Fiction",
+    "price": 99000,
+    "thumbnail": "https://picsum.photos/seed/dikta/400/300",
+    "creator": { "name": "Dhian Farah", "rating": 4.8 },
+    "delivery": { "duration": "4 days", "stock": 100 },
+    "contact": { "email": "loveable@mail.com" },
+    "tags": ["Law", "Sad"]
+  },
+  {
+    "id": 18,
+    "title": "Saman",
+    "category": "Sastra",
+    "price": 70000,
+    "thumbnail": "https://picsum.photos/seed/saman/400/300",
+    "creator": { "name": "Ayu Utami", "rating": 4.8 },
+    "delivery": { "duration": "3 days", "stock": 15 },
+    "contact": { "email": "kpg@mail.com" },
+    "tags": ["Culture", "Freedom"]
+  },
+  {
+    "id": 19,
+    "title": "Selamat Tinggal",
+    "category": "Drama",
+    "price": 95000,
+    "thumbnail": "https://picsum.photos/seed/bye/400/300",
+    "creator": { "name": "Tere Liye", "rating": 4.7 },
+    "delivery": { "duration": "2 days", "stock": 40 },
+    "contact": { "email": "gramedia@mail.com" },
+    "tags": ["Life", "Idealism"]
+  },
+  {
+    "id": 20,
+    "title": "Ronggeng Dukuh Paruk",
+    "category": "Classic Sastra",
+    "price": 110000,
+    "thumbnail": "https://picsum.photos/seed/ronggeng/400/300",
+    "creator": { "name": "Ahmad Tohari", "rating": 4.9 },
+    "delivery": { "duration": "5 days", "stock": 10 },
+    "contact": { "email": "gramedia@mail.com" },
+    "tags": ["Tradition", "History"]
+  }
+]
