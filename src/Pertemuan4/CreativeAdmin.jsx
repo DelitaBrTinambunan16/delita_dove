@@ -5,22 +5,18 @@ export default function CreativeAdmin() {
     const [dataForm, setDataForm] = useState({ searchTerm: "", selectedCategory: "" });
     const handleChange = (e) => setDataForm({ ...dataForm, [e.target.name]: e.target.value });
 
-    //DEKLARASI LOGIC SEARCH & FILTER //
-    // Kita buat variabel antara agar proses pencarian lebih efisien 
+    // DEKLARASI LOGIC SEARCH & FILTER
     const _searchTerm = dataForm.searchTerm.toLowerCase();
 
     const filtered = data.filter((item) => {
-        // Logika Search Judul
         const matchesSearch = item.title.toLowerCase().includes(_searchTerm);
-        
-        // Logika Filter Kategori
         const matchesCategory = 
             dataForm.selectedCategory === "" || 
             item.category === dataForm.selectedCategory;
 
         return matchesSearch && matchesCategory;
     });
-    // Mendapatkan daftar kategori unik untuk dropdown
+
     const categories = [...new Set(data.map(d => d.category))];
 
     return (
@@ -62,7 +58,7 @@ export default function CreativeAdmin() {
                                         </div>
                                     </td>
                                     
-                                    //*  MATERI 2: RENDER DATA ARRAY (MAPPING TAGS) *//
+                                    {/* MATERI 2: RENDER DATA ARRAY (MAPPING TAGS) */}
                                     <td className="p-4">
                                         <div className="flex flex-wrap gap-1 w-32">
                                             {item.tags.map((tag, index) => (
@@ -77,7 +73,7 @@ export default function CreativeAdmin() {
                                         Rp {item.price.toLocaleString()}
                                     </td>
 
-                                    //*MATERI 3: IMPLEMENTASI NESTED DATA (DOT NOTATION) *//
+                                    {/* MATERI 3: IMPLEMENTASI NESTED DATA (DOT NOTATION) */}
                                     <td className="p-4 text-slate-500">
                                         {item.delivery.stock} unit
                                     </td>
