@@ -1,33 +1,52 @@
-import CreativeServiceList from "./Pertemuan4/CreativeServiceList.jsx";
-import CreativeAdmin from "./Pertemuan4/CreativeAdmin.jsx";
+import { Routes, Route } from "react-router-dom"
+import { Suspense, lazy } from "react"
 
-function App() {
-  return (
-    <div className="w-full m-0 p-0 bg-slate-50 min-h-screen font-sans">
-      <div className="py-10">
-        <h1 className="text-3xl font-black text-center text-slate-900 mb-2 tracking-tight">
-          DIGITAL BOOKSTORE PORTAL
-        </h1>
-        <div className="w-20 h-1 bg-indigo-600 mx-auto rounded-full mb-10"></div>
-        
-        {/* Guest View Section */}
-        <div className="mb-16">
-          <div className="bg-indigo-600 text-white px-6 py-2 w-fit mx-auto rounded-full text-sm font-bold shadow-lg mb-6">
-            PUBLIC PORTAL (GUEST VIEW)
-          </div>
-          <CreativeServiceList />
-        </div>
+import MainLayout from "./layouts/MainLayout"
+import AuthLayout from "./layouts/AuthLayout"
+import Loading from "./components/Loading"
 
-        {/* Admin View Section */}
-        <div className="mt-20">
-          <div className="bg-slate-800 text-white px-6 py-2 w-fit mx-auto rounded-full text-sm font-bold shadow-lg mb-6">
-            INVENTORY SYSTEM (ADMIN VIEW)
-          </div>
-          <CreativeAdmin />
-        </div>
-      </div>
-    </div>
-  );
+const Dashboard = lazy(() => import("./pages/Dashboard"))
+const Orders = lazy(() => import("./pages/Orders"))
+const Customers = lazy(() => import("./pages/Customers"))
+const Portfolio = lazy(() => import("./pages/Portfolio"))
+
+const Login = lazy(() => import("./pages/auth/Login"))
+const Register = lazy(() => import("./pages/auth/Register"))
+const Forgot = lazy(() => import("./pages/auth/Forgot"))
+
+const Error400 = lazy(() => import("./pages/Error400"))
+const Error401 = lazy(() => import("./pages/Error401"))
+const Error403 = lazy(() => import("./pages/Error403"))
+const NotFound = lazy(() => import("./pages/NotFound"))
+
+export default function App() {
+    return (
+        <Suspense fallback={<Loading />}>
+            <Routes>
+
+                {/* MAIN LAYOUT */}
+                <Route element={<MainLayout />}>
+                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/orders" element={<Orders />} />
+                    <Route path="/customers" element={<Customers />} />
+                    <Route path="/portfolio" element={<Portfolio />} />
+
+                </Route>
+
+                {/* AUTH LAYOUT */}
+                <Route element={<AuthLayout />}>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/forgot" element={<Forgot />} />
+                </Route>
+
+                {/* ERROR PAGES (FULL SCREEN) */}
+                <Route path="/error-400" element={<Error400 />} />
+                <Route path="/error-401" element={<Error401 />} />
+                <Route path="/error-403" element={<Error403 />} />
+                <Route path="*" element={<NotFound />} />
+
+            </Routes>
+        </Suspense>
+    )
 }
-
-export default App;
