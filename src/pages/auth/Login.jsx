@@ -1,120 +1,106 @@
 import { useState } from "react"
 import axios from "axios"
-import { useNavigate } from "react-router-dom"
-import { BsFillExclamationDiamondFill } from "react-icons/bs"
+import { useNavigate, Link } from "react-router-dom"
+import { FaRegEyeSlash } from "react-icons/fa"
 import { ImSpinner2 } from "react-icons/im"
-import { FaUser, FaLock } from "react-icons/fa"
+
+// Import gambar
+import lilyImg from "../../assets/img/lily.jpg" 
 
 export default function Login() {
-    const navigate = useNavigate() 
+    const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
-    const [dataForm, setDataForm] = useState({
-        email: "",
-        password: "",
-    })
+    const [dataForm, setDataForm] = useState({ email: "", password: "" })
 
-    const handleChange = (evt) => {
-        const { name, value } = evt.target
-        setDataForm({
-            ...dataForm,
-            [name]: value,
-        })
-    }
+    const handleChange = (e) => setDataForm({ ...dataForm, [e.target.name]: e.target.value })
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
         setLoading(true)
-        setError(false)
-
-        axios
-            .post("https://dummyjson.com/user/login", {
+        setError("")
+        try {
+            const res = await axios.post("https://dummyjson.com/user/login", {
                 username: dataForm.email,
                 password: dataForm.password,
             })
-            .then((response) => {
-                if (response.status !== 200) {
-                    setError(response.data.message);
-                    return; 
-                }
-                navigate("/");
-            })
-            .catch((err) => {
-                if (err.response) {
-                    setError(err.response.data.message || "An error occurred");
-                } else {
-                    setError(err.message || "An unknown error occurred");
-                }
-            })
-            .finally(() => {
-                setLoading(false); 
-            });
+            if (res.status === 200) navigate("/")
+        } catch (err) {
+            setError("Email atau Password salah!")
+        } finally { setLoading(false) }
     }
 
-    const errorInfo = error ? (
-        <div className="bg-red-50 mb-6 p-4 text-sm font-medium text-red-600 rounded-xl flex items-center border border-red-100">
-            <BsFillExclamationDiamondFill className="text-red-500 mr-3 text-xl flex-shrink-0" />
-            {error}
-        </div>
-    ) : null
-
-    const loadingInfo = loading ? (
-        <div className="bg-pink-50 mb-6 p-4 text-sm font-medium text-pink-700 rounded-xl flex items-center border border-pink-100">
-            <ImSpinner2 className="mr-3 text-xl animate-spin text-[#fa2b56]" />
-            Sedang menyiapkan dashboard...
-        </div>
-    ) : null
-
     return (
-        <div>
-            <h2 className="text-2xl font-serif text-gray-800 mb-2 text-center font-bold">
-                Welcome Back
-            </h2>
-            <p className="text-gray-500 text-sm text-center mb-8">
-                Login to your admin account
-            </p>
+     
+        <div className="w-full max-w-[360px] mx-auto flex flex-col shadow-[0_15px_40px_rgba(0,0,0,0.08)] rounded-[35px] overflow-hidden bg-white border border-gray-50">
+      
+            <div className="h-36 w-full bg-gray-50 flex items-center justify-center overflow-hidden">
+                <img 
+                    src={lilyImg} 
+                    className="w-full h-full object-cover" 
+                    alt="Lily Decoration"
+                    onError={(e) => { e.target.style.display = 'none' }} 
+                />
+            </div>
 
-            {errorInfo}
-            {loadingInfo}
+            {/* Form Login */}
+            <div className="px-8 pb-8 pt-6">
+                <div className="mb-6 text-center">
+                    <h2 className="text-xl font-bold text-gray-900 tracking-tight">Log in</h2>
+                    <p className="text-[#C5A358] text-[9px] font-bold mt-1 tracking-[0.2em] uppercase">Wedding Organizer</p>
+                </div>
 
-            <form onSubmit={handleSubmit} className="w-full">
-                <div className="mb-5">
-                    <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <FaUser className="h-5 w-5 text-gray-400" />
-                        </div>
-                        <input
-                            type="text"
+                {error && (
+                    <div className="mb-4 p-2 bg-red-50 border border-red-100 rounded-lg text-red-600 text-[10px] font-bold text-center">
+                        {error}
+                    </div>
+                )}
+
+                <form onSubmit={handleSubmit} className="space-y-5">
+                    {/* Input Email (component*/}
+                    <div className="relative border-b border-gray-100 focus-within:border-[#C5A358] transition-all">
+                        <label className="text-[9px] uppercase tracking-widest text-gray-400 font-bold block">Email Address</label>
+                        <input 
                             name="email"
+                            type="text"
+                            autoComplete="off"
                             onChange={handleChange}
-                            className="w-full pl-11 pr-4 py-3.5 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:border-[#fa2b56] focus:ring-2 focus:ring-[#fa2b56]/20 transition-all placeholder-gray-400 text-gray-700 font-medium"
-                            placeholder="Email Address (emilys)"
+                            placeholder="emilys"
+                            className="w-full py-1.5 bg-transparent focus:outline-none text-xs text-gray-700 placeholder-gray-200"
                         />
                     </div>
-                </div>
-                <div className="mb-6">
-                    <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <FaLock className="h-5 w-5 text-gray-400" />
+
+                    {/* Input Password */}
+                    <div className="relative border-b border-gray-100 focus-within:border-[#C5A358] transition-all">
+                        <div className="flex justify-between items-center">
+                            <label className="text-[9px] uppercase tracking-widest text-gray-400 font-bold">Password</label>
+                            <Link to="/forgot" className="text-[9px] text-gray-400 hover:text-[#C5A358] font-bold">Forgot?</Link>
+                        </div>A
+                        <div className="relative flex items-center">
+                            <input 
+                                name="password"
+                                type="password"
+                                onChange={handleChange}
+                                placeholder="emilyspass"
+                                className="w-full py-1.5 bg-transparent focus:outline-none text-xs text-gray-700 placeholder-gray-200"
+                            />
+                            <FaRegEyeSlash className="text-gray-300 cursor-pointer text-xs" />
                         </div>
-                        <input
-                            type="password"
-                            name="password"
-                            onChange={handleChange}
-                            className="w-full pl-11 pr-4 py-3.5 bg-gray-50/50 border border-gray-200 rounded-xl focus:outline-none focus:border-[#fa2b56] focus:ring-2 focus:ring-[#fa2b56]/20 transition-all placeholder-gray-400 text-gray-700 font-medium"
-                            placeholder="Password (emilyspass)"
-                        />
                     </div>
-                </div>
-                <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full bg-gradient-to-r from-[#fa2b56] to-pink-500 hover:from-[#e01f46] hover:to-pink-600 text-white font-semibold py-3.5 px-4 rounded-xl transition-all duration-300 shadow-lg shadow-pink-200 disabled:opacity-70 disabled:cursor-not-allowed transform hover:-translate-y-0.5"
-                >
-                    {loading ? "Logging in..." : "Login"}
-                </button>
-            </form>
+
+                    {/* Tombol Login */}
+                    <button 
+                        disabled={loading}
+                        className="w-full bg-[#10B981] hover:bg-emerald-600 text-white py-3 rounded-xl font-bold text-xs shadow-lg shadow-emerald-100 transition-all flex items-center justify-center gap-2 mt-2"
+                    >
+                        {loading ? <ImSpinner2 className="animate-spin text-base" /> : "Log in"}
+                    </button>
+                </form>
+
+                <p className="text-center text-[10px] text-gray-400 mt-6 font-medium">
+                    New here? <Link to="/register" className="text-[#10B981] font-bold hover:underline">Create Account</Link>
+                </p>
+            </div>
         </div>
     )
 }

@@ -1,30 +1,54 @@
 @import "tailwindcss";
 
-@font-face{
-    font-family: 'Barlow';
-    src: url('./assets/fonts/Barlow-Regular.ttf');
-}
-@font-face{
-    font-family: 'Poppins';
-    src: url('./assets/fonts/Poppins-Regular.ttf');
+/* Fonts */
+@font-face {
+  font-family: 'Barlow';
+  src: url('./assets/fonts/Barlow-Regular.ttf');
 }
 
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins-Regular.ttf');
+}
+
+/* Custom variables & Tailwind 4 Configuration */
 @theme {
-    --font-barlow: 'Barlow', sans-serif;
-    --font-poppins: 'Poppins', sans-serif;
-    
-    --color-latar: #f3f4f6;
-    --color-teks: #374151;
-    --color-teks-samping: #6b7280;
-    --color-garis: #e5e7eb;
-    
-    /* Wedding Theme Colors */
-    --color-pink-utama: #f43f5e;
-    --color-pink-muda: #ffe4e6;
-    --color-biru: #3b82f6;
-    --color-kuning: #f59e0b;
+  --color-primary: #10B981;        
+  --color-primary-dark: #065F46;
+  --color-secondary: #C5A358;      /* Gold/Sand untuk Login */
+  --color-natural-bg: #F8F9FA;     /* Dashboard Light Gray */
+  
+  /* Semantic Colors */
+  --color-success: #22C55E;
+  --color-danger: #EF4444;
+  
+  /* Typography */
+  --font-poppins: "Poppins", sans-serif;
+  --font-barlow: "Barlow", sans-serif;
+  
+  /* Custom Radius */
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
 }
 
-body {
-    @apply font-barlow bg-[#f3f4f6];
+/* Base style */
+@layer base {
+  body {
+    @apply font-poppins bg-[--color-natural-bg] text-gray-900 antialiased;
+  }
+  
+  h1, h2, h3 {
+    @apply font-bold tracking-tight;
+  }
+}
+
+/* Component Utility */
+@layer components {
+  .card-dashboard {
+    @apply bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] p-6;
+  }
+  
+  .input-login {
+    @apply w-full border-b border-gray-300 py-2 outline-none focus:border-[--color-secondary] transition-colors bg-transparent;
+  }
 }

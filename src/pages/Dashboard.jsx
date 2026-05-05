@@ -1,109 +1,144 @@
-import { FaRegCalendarAlt, FaRegCommentDots, FaRegImage, FaChartLine } from "react-icons/fa";
-import PageHeader from "../components/PageHeader";
+import { FaSearch, FaBell, FaEnvelope, FaEllipsisH, FaArrowUp, FaCaretDown } from "react-icons/fa";
 import orders from "../data/orders";
 
 export default function Dashboard() {
-
-    const getPaket = (price) => {
-        if (price >= 4000000) return "Premium";
-        if (price >= 2500000) return "Deluxe";
-        return "Standard";
-    }
-
-    return (
-        <div id="dashboard-container" className="p-8">
-            <PageHeader title="Dashboard" />
-            
-            <div id="dashboard-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                {/* Orders Card */}
-                <div id="dashboard-orders" className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col">
-                    <div id="orders-icon" className="bg-blue-500 text-white text-xl rounded-lg w-12 h-12 flex items-center justify-center mb-4">
-                        <FaRegCalendarAlt />
-                    </div>
-                    <span id="orders-text" className="text-sm text-gray-500 mb-1">Total Pemesanan</span>
-                    <span id="orders-count" className="text-3xl font-medium text-gray-800 mb-2">47</span>
-                    <span className="text-xs text-gray-400">+12% dari bulan lalu</span>
-                </div>
-
-                {/* New Messages Card */}
-                <div id="dashboard-delivered" className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col">
-                    <div id="delivered-icon" className="bg-green-500 text-white text-xl rounded-lg w-12 h-12 flex items-center justify-center mb-4">
-                        <FaRegCommentDots />
-                    </div>
-                    <span id="delivered-text" className="text-sm text-gray-500 mb-1">Pesan Baru</span>
-                    <span id="delivered-count" className="text-3xl font-medium text-gray-800 mb-2">23</span>
-                    <span className="text-xs text-gray-400">8 belum dibaca</span>
-                </div>
-
-                {/* Portfolio Card */}
-                <div id="dashboard-canceled" className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col">
-                    <div id="canceled-icon" className="bg-purple-500 text-white text-xl rounded-lg w-12 h-12 flex items-center justify-center mb-4">
-                        <FaRegImage />
-                    </div>
-                    <span id="canceled-text" className="text-sm text-gray-500 mb-1">Portfolio Items</span>
-                    <span id="canceled-count" className="text-3xl font-medium text-gray-800 mb-2">156</span>
-                    <span className="text-xs text-gray-400">+5 minggu ini</span>
-                </div>
-
-                {/* Revenue Card */}
-                <div id="dashboard-revenue" className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col">
-                    <div id="revenue-icon" className="bg-[#fa2b56] text-white text-xl rounded-lg w-12 h-12 flex items-center justify-center mb-4">
-                        <FaChartLine />
-                    </div>
-                    <span id="revenue-text" className="text-sm text-gray-500 mb-1">Revenue Bulan Ini</span>
-                    <span id="revenue-amount" className="text-3xl font-medium text-gray-800 mb-2">Rp 285jt</span>
-                    <span className="text-xs text-gray-400">+18% dari bulan lalu</span>
-                </div>
-            </div>
-
-            {/* Table Section */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                <div className="p-6 border-b border-gray-100">
-                    <h2 className="font-semibold text-lg text-gray-800">Pemesanan Terbaru</h2>
-                </div>
-                <div className="overflow-x-auto">
-                    <table className="w-full text-sm text-left">
-                        <thead className="text-xs text-gray-400 uppercase tracking-wider border-b border-gray-50">
-                            <tr>
-                                <th className="px-6 py-4 font-semibold">ID</th>
-                                <th className="px-6 py-4 font-semibold">Pasangan</th>
-                                <th className="px-6 py-4 font-semibold">Tanggal</th>
-                                <th className="px-6 py-4 font-semibold">Venue</th>
-                                <th className="px-6 py-4 font-semibold">Paket</th>
-                                <th className="px-6 py-4 font-semibold">Telepon</th>
-                                <th className="px-6 py-4 font-semibold">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-50">
-                            {orders.slice(0, 5).map((item, index) => {
-                                const idNum = parseInt(item.orderId.replace(/\D/g, '')) || 1;
-                                const phoneRepeated = idNum.toString().repeat(4).substring(0, 4);
-                                const phoneFormatted = `+62 812-${phoneRepeated}-${phoneRepeated}`;
-                                const venue = item.totalPrice >= 4000000 ? "Garden Paradise" : (item.totalPrice >= 2500000 ? "Grand Ballroom" : "Cozy Intimate");
-
-                                return (
-                                <tr key={index} className="hover:bg-gray-50/50 transition-colors">
-                                    <td className="px-6 py-5 font-semibold text-gray-500">#{idNum}</td>
-                                    <td className="px-6 py-5 font-medium text-gray-800">{item.customerName}</td>
-                                    <td className="px-6 py-5 text-gray-500">{item.orderDate}</td>
-                                    <td className="px-6 py-5 text-gray-500">{venue}</td>
-                                    <td className="px-6 py-5 text-gray-500">{getPaket(item.totalPrice)}</td>
-                                    <td className="px-6 py-5 font-medium text-gray-500">{phoneFormatted}</td>
-                                    <td className="px-6 py-5">
-                                        <span className={`px-3 py-1.5 rounded-full text-xs font-medium ${
-                                            item.status === 'Completed' ? 'bg-green-100 text-green-600'
-                                            : item.status === 'Pending' ? 'bg-yellow-100 text-yellow-600'
-                                            : 'bg-red-100 text-red-600'
-                                        }`}>
-                                            {item.status === 'Completed' ? 'Confirmed' : item.status}
-                                        </span>
-                                    </td>
-                                </tr>
-                            )})}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+  return (
+    <div className="p-8 bg-[#F8F9FA] min-h-screen font-poppins text-gray-800">
+      
+      {/* 1. SALES OVERVIEW SECTION  */}
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-6">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-lg font-bold">Sales Overview</h2>
+          <FaEllipsisH className="text-gray-400 cursor-pointer" />
         </div>
-    );
+        {/* STATISTIC CARD ANATOMY */}
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Angka Utama */}
+          <div className="min-w-[200px]">
+            <p className="text-sm text-gray-400 font-medium">Total Sales</p>
+            <div className="flex items-center gap-3 mt-1">
+              <h1 className="text-3xl font-bold text-gray-900 font-barlow">Rp 285.000.000</h1>
+              <span className="text-emerald-500 text-xs font-bold flex items-center gap-1">
+                <FaArrowUp size={10} /> 5,3%
+              </span>
+            </div>
+            
+            <div className="mt-6 space-y-3">
+              <div className="flex items-center gap-2 text-xs font-medium text-gray-500">
+                <div className="w-3 h-3 bg-emerald-500 rounded-sm"></div> Sales
+              </div>
+              <div className="flex items-center gap-2 text-xs font-medium text-gray-500">
+                <div className="w-3 h-3 bg-emerald-200 rounded-sm"></div> Gross Margin
+              </div>
+              <div className="flex items-center gap-2 text-xs font-medium text-gray-500">
+                <div className="w-3 h-3 bg-lime-300 rounded-sm"></div> Net Profit
+              </div>
+            </div>
+          </div>
+
+          {/* Placeholder Grafik Batang */}
+          <div className="flex-1 h-48 flex items-end gap-2 px-4">
+             {/* Mockup Bars */}
+             {[40, 70, 45, 90, 65, 80, 30, 95, 50, 75, 60, 85].map((h, i) => (
+               <div key={i} className="flex-1 flex gap-1 items-end h-full">
+                 <div className="w-full bg-emerald-500 rounded-t-sm" style={{height: `${h}%`}}></div>
+                 <div className="w-full bg-lime-300 rounded-t-sm" style={{height: `${h*0.6}%`}}></div>
+               </div>
+             ))}
+          </div>
+        </div>
+      </div>
+
+      {/* 2. MIDDLE SECTION */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+        
+        {/* \ (Donut Chart) */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-lg font-bold">Sales by Category</h2>
+            <FaEllipsisH className="text-gray-400 cursor-pointer" />
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="space-y-4">
+               <div>
+                 <div className="flex items-center gap-2 text-xs font-bold text-gray-700">
+                   <div className="w-2 h-2 rounded-full bg-emerald-600"></div> Premium (40%)
+                 </div>
+                 <p className="text-[10px] text-gray-400 ml-4">2,365 Products</p>
+               </div>
+               <div>
+                 <div className="flex items-center gap-2 text-xs font-bold text-gray-700">
+                   <div className="w-2 h-2 rounded-full bg-emerald-400"></div> Deluxe (35%)
+                 </div>
+                 <p className="text-[10px] text-gray-400 ml-4">1,980 Products</p>
+               </div>
+               <div>
+                 <div className="flex items-center gap-2 text-xs font-bold text-gray-700">
+                   <div className="w-2 h-2 rounded-full bg-lime-300"></div> Standard (15%)
+                 </div>
+                 <p className="text-[10px] text-gray-400 ml-4">297 Products</p>
+               </div>
+            </div>
+            {/* Donut Placeholder */}
+            <div className="w-32 h-32 rounded-full border-[16px] border-emerald-500 border-l-lime-300 border-b-emerald-200 relative">
+               <div className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-gray-400">TOTAL</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Kolom Kanan: Total Orders by Platform (Line Chart) */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-lg font-bold">Orders by Platform</h2>
+            <FaEllipsisH className="text-gray-400 cursor-pointer" />
+          </div>
+          <div className="flex gap-4 mb-4">
+             <div className="text-xs font-bold">Tokopedia <span className="text-emerald-500 ml-1">↑ 6,9%</span></div>
+             <div className="text-xs font-bold">Shopee <span className="text-red-500 ml-1">↓ 6,9%</span></div>
+          </div>
+          {/* Line Chart Placeholder */}
+          <div className="w-full h-32 bg-[url('https://www.svgrepo.com/show/501196/line-chart.svg')] bg-center bg-no-repeat opacity-20"></div>
+        </div>
+
+      </div>
+
+      {/* 3. BOTTOM SECTION: VISITORS (DATA TERBARU) */}
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-lg font-bold">Recent Wedding Orders</h2>
+          <div className="flex items-center gap-2 text-sm text-gray-400 cursor-pointer">
+            Monthly <FaCaretDown />
+          </div>
+        </div>
+        
+        <table className="w-full text-left">
+          <thead>
+            <tr className="text-[11px] text-gray-400 uppercase tracking-widest border-b border-gray-50">
+              <th className="pb-4">Order ID</th>
+              <th className="pb-4">Customer</th>
+              <th className="pb-4">Status</th>
+              <th className="pb-4 text-right">Amount</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-50">
+            {orders.slice(0, 4).map((order, i) => (
+              <tr key={i} className="text-sm">
+                <td className="py-4 font-bold text-gray-400">#{order.orderId.replace(/\D/g, '')}</td>
+                <td className="py-4 font-bold text-gray-800">{order.customerName}</td>
+                <td className="py-4">
+                  <span className={`px-3 py-1 rounded-lg text-[10px] font-bold ${
+                    order.status === 'Completed' ? 'bg-emerald-50 text-emerald-600' : 'bg-orange-50 text-orange-600'
+                  }`}>
+                    {order.status.toUpperCase()}
+                  </span>
+                </td>
+                <td className="py-4 text-right font-bold font-barlow text-gray-700">Rp {order.totalPrice.toLocaleString()}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  );
 }

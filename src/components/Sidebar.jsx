@@ -1,62 +1,86 @@
 import { NavLink } from "react-router-dom"
-import { FaHeart, FaHome, FaCalendarAlt, FaCommentAlt, FaImage, FaCog, FaSignOutAlt } from "react-icons/fa"
+import { 
+  FaChartLine, FaBox, FaUsers, FaClipboardList, 
+  FaTruck, FaBullhorn, FaEnvelope, FaSignOutAlt, FaGem 
+} from "react-icons/fa"
 
 export default function Sidebar() {
-
+    // NavLink Style mengikuti SalesSight: Emerald text & bg soft saat aktif
     const menuClass = ({ isActive }) =>
-        `flex cursor-pointer items-center rounded-xl p-4 space-x-4 mb-2 transition-all duration-300
-        ${isActive ?
-            "text-white bg-[#fa2b56] font-semibold" :
-            "text-gray-600 hover:text-[#fa2b56] hover:bg-pink-50"
+        `flex items-center gap-4 px-4 py-3 rounded-xl mb-1 transition-all duration-300 font-semibold text-[13px] tracking-tight antialiased
+        ${isActive
+            ? "bg-emerald-50 text-[#10B981]" 
+            : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
         }`
 
     return (
-        <div id="sidebar" className="hidden md:flex min-h-screen w-72 flex-col bg-white border-r border-gray-100 px-6 py-8 z-20">
-            {/* Logo */}
-            <div id="sidebar-logo" className="flex items-center space-x-3 mb-10 pl-2">
-                <FaHeart className="w-6 h-6 text-[#fa2b56]" />
-                <span id="logo-title" className="font-serif text-xl font-bold text-gray-900">
-                    Admin Blush Moments Wedding
+        <div className="w-[260px] bg-white border-r border-gray-100 h-screen flex flex-col px-5 py-8 font-poppins">
+
+            {/* ADMIN BADGE  */}
+            <div className="mb-10 px-2">
+                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-gray-50 border border-gray-100 shadow-sm w-full">
+  
+                    {/* Teks Badge */}
+                    <div className="flex flex-col">
+                        <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-gray-400 leading-none">
+                            Admin
+                        </span>
+                        <span className="text-[12px] font-bold text-gray-800 leading-tight">
+                            Dashboard
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            {/* LOGO BRANDING */}
+            <div className="flex items-center gap-3 mb-10 px-4">
+                <span className="text-xl font-extrabold text-gray-900 tracking-tighter">
+                    Wedding<span className="text-[#10B981]">Day</span>
                 </span>
             </div>
 
-            {/* List Menu */}
-            <div id="sidebar-menu" className="flex-1">
-                <ul id="menu-list" className="space-y-1">
-                    <li>
-                        <NavLink to="/" className={menuClass}>
-                            <FaHome className="text-xl" />
-                            <div id="menu-1">Dashboard</div>
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/orders" className={menuClass}>
-                            <FaCalendarAlt className="text-xl" />
-                            <div id="menu-2">Pemesanan</div>
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/portfolio" className={menuClass}>
-                            <FaImage className="text-xl" />
-                            <div id="menu-4">Portfolio</div>
-                        </NavLink>
-                    </li>
-                    {/* <li>
-                        <NavLink to="/settings" className={menuClass}>
-                            <FaCog className="text-xl"/>
-                            <div id="menu-5">Pengaturan</div>
-                        </NavLink>
-                    </li> */}
-                </ul>
+            {/* MENU ' */}
+            <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+                <p className="text-[10px] font-bold text-gray-300 uppercase tracking-widest px-4 mb-4">Main Menu</p>
+                
+                <NavLink to="/" className={menuClass}>
+                    <FaChartLine size={18} /> Overview
+                </NavLink>
+
+                <NavLink to="/product" className={menuClass}>
+                    <FaBox size={18} /> Product
+                </NavLink>
+
+                <NavLink to="/customers" className={menuClass}>
+                    <FaUsers size={18} /> Customer
+                </NavLink>
+
+                <NavLink to="/orders" className={menuClass}>
+                    <FaClipboardList size={18} /> Order
+                </NavLink>
+
+                <NavLink to="/shipment" className={menuClass}>
+                    <FaTruck size={18} /> Shipment
+                </NavLink>
+
+                <NavLink to="/campaign" className={menuClass}>
+                    <FaBullhorn size={18} /> Campaign
+                </NavLink>
+
+                <NavLink to="/message" className={menuClass}>
+                    <FaEnvelope size={18} /> Message
+                </NavLink>
             </div>
 
-            {/* Footer */}
-            <div id="sidebar-footer" className="mt-auto">
-                <NavLink to="/login" className="flex cursor-pointer items-center rounded-xl p-4 space-x-4 text-gray-600 hover:text-[#fa2b56] hover:bg-pink-50 transition-all duration-300 font-semibold mb-4">
-                    <FaSignOutAlt className="text-xl" />
-                    <span>Logout</span>
+            {/* LOGOUT */}
+            <div className="pt-6 border-t border-gray-50">
+                <NavLink
+                    to="/login"
+                    className="flex items-center gap-4 px-4 py-3 rounded-xl text-gray-400 font-semibold text-[13px] hover:text-red-500 hover:bg-red-50 transition-all duration-300"
+                >
+                    <FaSignOutAlt size={18} /> Logout
                 </NavLink>
             </div>
         </div>
-    );
+    )
 }
