@@ -47,9 +47,9 @@ export default function Sidebar() {
                     <FaChartLine size={18} /> Overview
                 </NavLink>
 
-                <NavLink to="/product" className={menuClass}>
+                {/* <NavLink to="/product" className={menuClass}>
                     <FaBox size={18} /> Product
-                </NavLink>
+                </NavLink> */}
 
                 <NavLink to="/customers" className={menuClass}>
                     <FaUsers size={18} /> Customer
@@ -59,8 +59,8 @@ export default function Sidebar() {
                     <FaClipboardList size={18} /> Order
                 </NavLink>
 
-                <NavLink to="/shipment" className={menuClass}>
-                    <FaTruck size={18} /> Shipment
+                <NavLink to="/products" className={menuClass}>
+                    <FaBox size={18} /> Produk
                 </NavLink>
 
                 <NavLink to="/campaign" className={menuClass}>

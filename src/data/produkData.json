@@ -1,0 +1,272 @@
+[
+  {
+    "id": 1,
+    "title": "Laptop Asus VivoBook 14",
+    "code": "PRD001",
+    "category": "Laptop",
+    "brand": "Asus",
+    "price": 8500000,
+    "stock": 12
+  },
+  {
+    "id": 2,
+    "title": "Mouse Logitech M220",
+    "code": "PRD002",
+    "category": "Accessories",
+    "brand": "Logitech",
+    "price": 185000,
+    "stock": 45
+  },
+  {
+    "id": 3,
+    "title": "Keyboard Mechanical K617",
+    "code": "PRD003",
+    "category": "Accessories",
+    "brand": "Redragon",
+    "price": 550000,
+    "stock": 20
+  },
+  {
+    "id": 4,
+    "title": "Monitor Samsung 24 Inch",
+    "code": "PRD004",
+    "category": "Monitor",
+    "brand": "Samsung",
+    "price": 2200000,
+    "stock": 10
+  },
+  {
+    "id": 5,
+    "title": "Headset HyperX Cloud",
+    "code": "PRD005",
+    "category": "Audio",
+    "brand": "HyperX",
+    "price": 950000,
+    "stock": 18
+  },
+  {
+    "id": 6,
+    "title": "SSD Kingston 512GB",
+    "code": "PRD006",
+    "category": "Storage",
+    "brand": "Kingston",
+    "price": 720000,
+    "stock": 25
+  },
+  {
+    "id": 7,
+    "title": "Flashdisk Sandisk 64GB",
+    "code": "PRD007",
+    "category": "Storage",
+    "brand": "Sandisk",
+    "price": 85000,
+    "stock": 60
+  },
+  {
+    "id": 8,
+    "title": "Printer Epson L3210",
+    "code": "PRD008",
+    "category": "Printer",
+    "brand": "Epson",
+    "price": 2450000,
+    "stock": 8
+  },
+  {
+    "id": 9,
+    "title": "Router TP-Link Archer C6",
+    "code": "PRD009",
+    "category": "Networking",
+    "brand": "TP-Link",
+    "price": 480000,
+    "stock": 16
+  },
+  {
+    "id": 10,
+    "title": "Webcam Logitech C270",
+    "code": "PRD010",
+    "category": "Camera",
+    "brand": "Logitech",
+    "price": 350000,
+    "stock": 22
+  },
+  {
+    "id": 11,
+    "title": "Smartphone Samsung A15",
+    "code": "PRD011",
+    "category": "Smartphone",
+    "brand": "Samsung",
+    "price": 3200000,
+    "stock": 14
+  },
+  {
+    "id": 12,
+    "title": "Tablet Xiaomi Pad 6",
+    "code": "PRD012",
+    "category": "Tablet",
+    "brand": "Xiaomi",
+    "price": 5100000,
+    "stock": 9
+  },
+  {
+    "id": 13,
+    "title": "Power Bank Anker 10000mAh",
+    "code": "PRD013",
+    "category": "Accessories",
+    "brand": "Anker",
+    "price": 399000,
+    "stock": 30
+  },
+  {
+    "id": 14,
+    "title": "Speaker JBL Go 3",
+    "code": "PRD014",
+    "category": "Audio",
+    "brand": "JBL",
+    "price": 650000,
+    "stock": 17
+  },
+  {
+    "id": 15,
+    "title": "Smartwatch Redmi Watch 5",
+    "code": "PRD015",
+    "category": "Wearable",
+    "brand": "Xiaomi",
+    "price": 799000,
+    "stock": 11
+  },
+  {
+    "id": 16,
+    "title": "Camera Canon EOS 1500D",
+    "code": "PRD016",
+    "category": "Camera",
+    "brand": "Canon",
+    "price": 7800000,
+    "stock": 6
+  },
+  {
+    "id": 17,
+    "title": "Tripod Digital 3110",
+    "code": "PRD017",
+    "category": "Accessories",
+    "brand": "Yunteng",
+    "price": 125000,
+    "stock": 40
+  },
+  {
+    "id": 18,
+    "title": "Gaming Chair Fantech",
+    "code": "PRD018",
+    "category": "Furniture",
+    "brand": "Fantech",
+    "price": 1850000,
+    "stock": 7
+  },
+  {
+    "id": 19,
+    "title": "Microphone Fifine K669",
+    "code": "PRD019",
+    "category": "Audio",
+    "brand": "Fifine",
+    "price": 420000,
+    "stock": 19
+  },
+  {
+    "id": 20,
+    "title": "CPU Intel Core i5 Gen 13",
+    "code": "PRD020",
+    "category": "Processor",
+    "brand": "Intel",
+    "price": 3850000,
+    "stock": 13
+  },
+  {
+    "id": 21,
+    "title": "Motherboard MSI B760M",
+    "code": "PRD021",
+    "category": "Computer Parts",
+    "brand": "MSI",
+    "price": 2450000,
+    "stock": 9
+  },
+  {
+    "id": 22,
+    "title": "RAM Corsair 16GB DDR4",
+    "code": "PRD022",
+    "category": "Memory",
+    "brand": "Corsair",
+    "price": 980000,
+    "stock": 21
+  },
+  {
+    "id": 23,
+    "title": "VGA RTX 4060",
+    "code": "PRD023",
+    "category": "Computer Parts",
+    "brand": "NVIDIA",
+    "price": 6200000,
+    "stock": 5
+  },
+  {
+    "id": 24,
+    "title": "Cooling Pad Laptop",
+    "code": "PRD024",
+    "category": "Accessories",
+    "brand": "Cooler Master",
+    "price": 275000,
+    "stock": 28
+  },
+  {
+    "id": 25,
+    "title": "HDMI Cable 2 Meter",
+    "code": "PRD025",
+    "category": "Cable",
+    "brand": "Vention",
+    "price": 55000,
+    "stock": 70
+  },
+  {
+    "id": 26,
+    "title": "UPS APC 650VA",
+    "code": "PRD026",
+    "category": "Power",
+    "brand": "APC",
+    "price": 950000,
+    "stock": 8
+  },
+  {
+    "id": 27,
+    "title": "External HDD Seagate 1TB",
+    "code": "PRD027",
+    "category": "Storage",
+    "brand": "Seagate",
+    "price": 870000,
+    "stock": 15
+  },
+  {
+    "id": 28,
+    "title": "Smart TV LG 43 Inch",
+    "code": "PRD028",
+    "category": "Television",
+    "brand": "LG",
+    "price": 4500000,
+    "stock": 6
+  },
+  {
+    "id": 29,
+    "title": "Projector Epson X05",
+    "code": "PRD029",
+    "category": "Projector",
+    "brand": "Epson",
+    "price": 5200000,
+    "stock": 4
+  },
+  {
+    "id": 30,
+    "title": "Gaming Mousepad XXL",
+    "code": "PRD030",
+    "category": "Accessories",
+    "brand": "Rexus",
+    "price": 95000,
+    "stock": 50
+  }
+]
