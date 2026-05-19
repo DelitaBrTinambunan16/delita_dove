@@ -75,7 +75,7 @@ export default function UserForm() {
             name="nama"
             value={formData.nama}
             onChange={handleChange}
-            error={errors.nama}/>
+            error={errors.nama} />
 
           <InputField
             label="Email"
@@ -83,7 +83,7 @@ export default function UserForm() {
             type="email"
             value={formData.email}
             onChange={handleChange}
-            error={errors.email}/>
+            error={errors.email} />
 
           <InputField
             label="Nilai Rata-rata (0 - 100)"
@@ -99,7 +99,7 @@ export default function UserForm() {
             value={formData.jurusan}
             onChange={handleChange}
             options={["Informatika", "Sistem Informasi", "Manajemen"]}
-            error={errors.jurusan}/>
+            error={errors.jurusan} />
 
           <SelectField
             label="Jenjang Pendidikan"
@@ -113,7 +113,7 @@ export default function UserForm() {
           {isFormValid && (
             <button className="w-full mt-4 bg-pink-400 hover:bg-pink-500 hover:scale-105 transition text-white p-2 rounded-lg shadow-md">
               Submit
-</button>
+            </button>
           )}
         </form>
 
