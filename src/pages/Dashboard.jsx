@@ -1,479 +1,213 @@
-import { FaArrowUp, FaCaretDown, FaUsers, FaBox, FaClipboardList, FaChartLine } from "react-icons/fa";
-
+import { useMemo } from "react";
 import {
+  PieChart,
+  Pie,
+  Cell,
   BarChart,
   Bar,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  LineChart,
-  Line,
-  PieChart,
-  Pie,
-  Cell,
 } from "recharts";
+import ordersData from "../data/orders.json";
+import customersData from "../data/customers.json";
+import dashboardData from "../data/dashboardData.json";
+import { formatRupiah } from "../utils/format";
+import DashboardIntroBar from "../components/DashboardIntroBar";
+import DashboardHero from "../components/DashboardHero";
+import DashboardMetrics from "../components/DashboardMetrics";
+import DashboardChartCard from "../components/DashboardChartCard";
+import DashboardRecentOrders from "../components/DashboardRecentOrders";
 
-import orders from "../data/orders";
-import customers from "../data/customers";
-import produkData from "../data/produkData.json";
-
-import Card from "../components/Card";
-import StatsSection from "../components/StatsSection";
-import ChartLegend from "../components/ChartLegend";
-
-import {
-  monthlyData,
-  categoryPie,
-  platformData,
-} from "../data/dashboardData";
-
-// ── FORMATTER LOKAL ──
-
-const fmtRupiahLokal = (value) => {
-  if (!value) return "Rp 0";
-
-  return new Intl.NumberFormat("id-ID", {
-    style: "currency",
-    currency: "IDR",
-    minimumFractionDigits: 0,
-  }).format(value);
-};
-
-const fmtShortLokal = (value) => {
-  if (!value) return "0";
-
-  if (value >= 1e6) {
-    return (value / 1e6).toFixed(1).replace(/\.0$/, "") + "M";
-  }
-
-  if (value >= 1e3) {
-    return (value / 1e3).toFixed(1).replace(/\.0$/, "") + "K";
-  }
-
-  return value.toString();
-};
-
-const statusStyle = {
-  Completed:
-    "bg-emerald-50 text-emerald-600 border border-emerald-100",
-
-  Pending:
-    "bg-amber-50 text-amber-600 border border-amber-100",
-
-  Cancelled:
-    "bg-rose-50 text-rose-600 border border-rose-100",
-};
-
-// ── MAIN COMPONENT ──
+const { monthlyData } = dashboardData;
 
 export default function Dashboard() {
-  const completed = orders.filter((o) => o.status === "Completed");
+  const totalCustomers = customersData.length;
+  const totalOrders = ordersData.length;
+  const pendingOrders = ordersData.filter((order) => order.status === "Pending").length;
+  const completedRevenue = ordersData
+    .filter((order) => order.status === "Completed")
+    .reduce((sum, order) => sum + order.totalPrice, 0);
 
-  const totalRev = completed.reduce(
-    (s, o) => s + o.totalPrice,
-    0
-  );
+  const recentOrders = [...ordersData]
+    .sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate))
+    .slice(0, 4);
 
-  const pending = orders.filter(
-    (o) => o.status === "Pending"
-  ).length;
+  // 1. Calculate Membership Segmentation (Pie Chart)
+  const membershipPieData = useMemo(() => {
+    const counts = customersData.reduce((acc, customer) => {
+      const loyalty = customer.loyalty || "Bronze";
+      acc[loyalty] = (acc[loyalty] || 0) + 1;
+      return acc;
+    }, {});
 
-  const recentOrders = orders.slice(0, 3);
+    const colorMap = {
+      Platinum: "#8B5CF6",
+      Gold: "#C5A358",
+      Silver: "#94A3B8",
+      Bronze: "#EA580C",
+    };
 
-  const STATS = [
-    {
-      label: "Total Revenue",
-      value: fmtShortLokal(totalRev),
-      sub: `${completed.length} completed`,
-      change: "+5.3%",
-      up: true,
-      icon: <FaChartLine size={16} />,
-      bg: "bg-emerald-50",
-      color: "text-emerald-600",
-    },
+    return [
+      { name: "Bronze", value: counts["Bronze"] || 0, color: colorMap.Bronze },
+      { name: "Silver", value: counts["Silver"] || 0, color: colorMap.Silver },
+      { name: "Gold", value: counts["Gold"] || 0, color: colorMap.Gold },
+      { name: "Platinum", value: counts["Platinum"] || 0, color: colorMap.Platinum },
+    ];
+  }, []);
 
-    {
-      label: "Total Orders",
-      value: orders.length,
-      sub: `${pending} pending`,
-      change: "+3.1%",
-      up: true,
-      icon: <FaClipboardList size={16} />,
-      bg: "bg-sky-50",
-      color: "text-sky-500",
-    },
+  // 2. Calculate Customer Source (Bar Chart)
+  const sourceBarData = useMemo(() => {
+    const counts = customersData.reduce((acc, customer) => {
+      const source = customer.source || "Referral";
+      acc[source] = (acc[source] || 0) + 1;
+      return acc;
+    }, {});
 
-    {
-      label: "Total Customers",
-      value: customers.length,
-      sub: "Gold, Silver, Bronze",
-      change: "+8.2%",
-      up: true,
-      icon: <FaUsers size={16} />,
-      bg: "bg-amber-50",
-      color: "text-amber-500",
-    },
+    const colorMap = {
+      Instagram: "#10B981",
+      TikTok: "#34D399",
+      Google: "#C5A358",
+      Referral: "#065F46",
+    };
 
-    {
-      label: "Total Products",
-      value: produkData.length,
-      sub: "10 kategori",
-      change: "-1.0%",
-      up: false,
-      icon: <FaBox size={16} />,
-      bg: "bg-purple-50",
-      color: "text-purple-500",
-    },
-  ];
+    const preferredOrder = ["Instagram", "TikTok", "Google", "Referral"];
+    const entries = Object.entries(counts).map(([name, count]) => ({
+      name,
+      count,
+      fill: colorMap[name] || "#94A3B8",
+    }));
 
-  const CHART_LEGEND_ITEMS = [
-    { label: "Sales", color: "#10B981" },
-    { label: "Gross Margin", color: "#34D399" },
-    { label: "Net Profit", color: "#A7F3D0" },
-  ];
+    const ordered = preferredOrder
+      .map((name) => entries.find((entry) => entry.name === name))
+      .filter(Boolean);
+
+    return [
+      ...ordered,
+      ...entries.filter((entry) => !preferredOrder.includes(entry.name)),
+    ];
+  }, []);
 
   return (
-    <div className="space-y-1">
+    <div className="space-y-6 pb-12 text-gray-900 font-poppins bg-natural-bg min-h-screen w-full px-6 pt-4">
+      <DashboardIntroBar />
 
-      {/* ── STAT CARDS ── */}
-      <StatsSection stats={STATS} />
+      {/* Hero & Metrics */}
+      <section className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <DashboardHero pendingOrders={pendingOrders} />
+        <DashboardMetrics
+          totalCustomers={totalCustomers}
+          totalOrders={totalOrders}
+          completedRevenue={formatRupiah(completedRevenue)}
+          pendingOrders={pendingOrders}
+        />
+      </section>
 
-      {/* ── SALES OVERVIEW ── */}
-      <Card title="Sales Overview">
+      {/* Main Charts & Recent Orders */}
+      <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <DashboardChartCard data={monthlyData} />
+        <DashboardRecentOrders recentOrders={recentOrders} />
+      </section>
 
-        <div className="flex flex-col sm:flex-row sm:items-end gap-3 mb-4">
-
+<section className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        {/* Pie Chart: Membership Level */}
+        <div className="lg:col-span-5 bg-white p-6 rounded-2xl border border-gray-100 shadow-[0_12px_40px_rgba(0,0,0,0.015)] flex flex-col justify-between h-96">
           <div>
-            <p className="text-xs text-gray-400 font-medium">
-              Total Sales
-            </p>
-
-            <div className="flex items-baseline gap-2 mt-0.5">
-
-              <h1 className="text-2xl font-extrabold text-gray-900">
-                {fmtRupiahLokal(totalRev)}
-              </h1>
-
-              <span className="text-emerald-500 text-xs font-bold flex items-center gap-0.5">
-                <FaArrowUp size={9} /> 5,3%
-              </span>
-
-            </div>
+            <h3 className="text-sm font-bold text-gray-900">Segmentasi Level Membership</h3>
+            <p className="text-[11px] text-gray-400 font-light mt-0.5">Proporsi pembagian loyalitas pelanggan</p>
           </div>
 
-          <ChartLegend items={CHART_LEGEND_ITEMS} />
-
-        </div>
-
-        <ResponsiveContainer width="100%" height={120}>
-
-          <BarChart data={monthlyData} barSize={7} barGap={2}>
-
-            <CartesianGrid
-              strokeDasharray="3 3"
-              stroke="#F3F4F6"
-              vertical={false}
-            />
-
-            <XAxis
-              dataKey="month"
-              tick={{ fontSize: 10, fill: "#9CA3AF" }}
-              axisLine={false}
-              tickLine={false}
-            />
-
-            <YAxis
-              tickFormatter={(v) => fmtShortLokal(v)}
-              tick={{ fontSize: 10, fill: "#9CA3AF" }}
-              axisLine={false}
-              tickLine={false}
-              width={40}
-            />
-
-            <Tooltip />
-
-            <Bar
-              dataKey="sales"
-              fill="#10B981"
-              radius={[4, 4, 0, 0]}
-              name="Sales"
-            />
-
-            <Bar
-              dataKey="gross"
-              fill="#34D399"
-              radius={[4, 4, 0, 0]}
-              name="Gross Margin"
-            />
-
-            <Bar
-              dataKey="profit"
-              fill="#A7F3D0"
-              radius={[4, 4, 0, 0]}
-              name="Net Profit"
-            />
-
-          </BarChart>
-
-        </ResponsiveContainer>
-
-      </Card>
-
-      {/* ── MIDDLE ROW ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-
-        {/* Donut Chart */}
-        <Card title="Sales by Category">
-
-          <div className="flex items-center justify-between gap-4">
-
-            <div className="space-y-3">
-
-              {categoryPie.map((c, i) => (
-                <div key={i} className="flex items-center gap-2">
-
-                  <span
-                    className="w-2.5 h-2.5 rounded-full flex-shrink-0"
-                    style={{ background: c.color }}
+          <div className="flex-1 flex flex-col md:flex-row items-center justify-center gap-6 my-2">
+            <div className="w-40 h-40 flex-shrink-0">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: "#065F46",
+                      border: "none",
+                      borderRadius: "12px",
+                      color: "#FFF",
+                      fontSize: "11px",
+                    }}
                   />
-
-                  <span className="text-xs font-semibold text-gray-600">
-                    {c.name} ({c.value}%)
-                  </span>
-
-                </div>
-              ))}
-
+                  <Pie
+                    data={membershipPieData}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={50}
+                    outerRadius={65}
+                    paddingAngle={4}
+                    dataKey="value"
+                  >
+                    {membershipPieData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                </PieChart>
+              </ResponsiveContainer>
             </div>
 
-            <PieChart width={80} height={80}>
-
-              <Pie
-                data={categoryPie}
-                cx={40}
-                cy={40}
-                innerRadius={28}
-                outerRadius={36}
-                paddingAngle={3}
-                dataKey="value"
-              >
-
-                {categoryPie.map((entry, index) => (
-                  <Cell key={index} fill={entry.color} />
-                ))}
-
-              </Pie>
-
-              <Tooltip />
-
-            </PieChart>
-
-          </div>
-
-        </Card>
-
-        {/* Line Chart */}
-        <Card title="Orders by Platform">
-
-          <div className="flex flex-wrap gap-4 mb-4">
-
-            {[
-              {
-                label: "Website",
-                val: "8.983",
-                up: true,
-                color: "#10B981",
-              },
-
-              {
-                label: "WhatsApp",
-                val: "18.112",
-                up: false,
-                color: "#34D399",
-              },
-
-              {
-                label: "Referral",
-                val: "3.645",
-                up: true,
-                color: "#6EE7B7",
-              },
-            ].map((b) => (
-              <div
-                key={b.label}
-                className="flex items-center gap-1.5"
-              >
-
-                <span
-                  className="w-2 h-2 rounded-full"
-                  style={{ background: b.color }}
-                />
-
-                <span className="text-[10px] font-bold text-gray-500">
-                  {b.label}
-                </span>
-
-                <span className="text-[10px] font-extrabold text-gray-700">
-                  {b.val}
-                </span>
-
-                <span
-                  className={`text-[9px] font-bold ${
-                    b.up
-                      ? "text-emerald-500"
-                      : "text-red-400"
-                  }`}
-                >
-                  {b.up ? "↑" : "↓"} 6,9%
-                </span>
-
-              </div>
-            ))}
-
-          </div>
-
-          <ResponsiveContainer width="100%" height={90}>
-
-            <LineChart data={platformData}>
-
-              <CartesianGrid
-                strokeDasharray="3 3"
-                stroke="#F3F4F6"
-                vertical={false}
-              />
-
-              <XAxis
-                dataKey="day"
-                tick={{ fontSize: 10, fill: "#9CA3AF" }}
-                axisLine={false}
-                tickLine={false}
-              />
-
-              <YAxis
-                tick={{ fontSize: 10, fill: "#9CA3AF" }}
-                axisLine={false}
-                tickLine={false}
-              />
-
-              <Tooltip />
-
-              <Line
-                type="monotone"
-                dataKey="website"
-                stroke="#10B981"
-                strokeWidth={2.5}
-                dot={false}
-                name="Website"
-              />
-
-              <Line
-                type="monotone"
-                dataKey="whatsapp"
-                stroke="#34D399"
-                strokeWidth={2.5}
-                dot={false}
-                name="WhatsApp"
-              />
-
-              <Line
-                type="monotone"
-                dataKey="referral"
-                stroke="#6EE7B7"
-                strokeWidth={2.5}
-                dot={{ r: 4, fill: "#6EE7B7" }}
-                name="Referral"
-              />
-
-            </LineChart>
-
-          </ResponsiveContainer>
-
-        </Card>
-
-      </div>
-
-      {/* ── RECENT ORDERS ── */}
-      <Card
-        title="Recent Wedding Orders"
-        action={
-          <div className="flex items-center gap-1.5 text-xs text-gray-400 cursor-pointer hover:text-gray-600 transition font-semibold">
-            Monthly <FaCaretDown size={11} />
-          </div>
-        }
-      >
-
-        <div className="overflow-x-auto">
-
-          <table className="w-full text-left">
-
-            <thead>
-              <tr className="border-b border-gray-50">
-
-                {[
-                  "Order ID",
-                  "Customer",
-                  "Date",
-                  "Status",
-                  "Amount",
-                ].map((h) => (
-                  <th
-                    key={h}
-                    className="pb-1 text-[10px] font-bold uppercase tracking-widest text-gray-400"
-                  >
-                    {h}
-                  </th>
-                ))}
-
-              </tr>
-            </thead>
-
-            <tbody className="divide-y divide-gray-50">
-
-              {recentOrders.map((o, i) => (
-                <tr
-                  key={i}
-                  className="hover:bg-gray-50/50 transition"
-                >
-
-                  <td className="py-2 text-xs font-bold text-gray-400">
-                    #{o.orderId.replace(/\D/g, "")}
-                  </td>
-
-                  <td className="py-2 text-xs font-bold text-gray-800">
-                    {o.customerName}
-                  </td>
-
-                  <td className="py-2 text-xs text-gray-400">
-                    {o.orderDate}
-                  </td>
-
-                  <td className="py-2">
-
-                    <span
-                      className={`px-2.5 py-1 rounded-lg text-[10px] font-bold ${statusStyle[o.status]}`}
-                    >
-                      {o.status.toUpperCase()}
+            <div className="flex-1 space-y-2 text-xs w-full">
+              {membershipPieData.map((entry) => {
+                const percentage = ((entry.value / totalCustomers) * 100).toFixed(1);
+                return (
+                  <div key={entry.name} className="flex justify-between items-center bg-gray-50/50 p-2 rounded-xl border border-gray-100/50">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: entry.color }}></span>
+                      <span className="font-semibold text-gray-700">{entry.name}</span>
+                    </div>
+                    <span className="text-gray-500 font-medium">
+                      {entry.value} ({percentage}%)
                     </span>
-
-                  </td>
-
-                  <td className="py-2 text-xs font-bold text-gray-700">
-                    {fmtRupiahLokal(o.totalPrice)}
-                  </td>
-
-                </tr>
-              ))}
-
-            </tbody>
-
-          </table>
-
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
 
-      </Card>
+        {/* Bar Chart: Customer Acquisition Source */}
+        <div className="lg:col-span-7 bg-white p-6 rounded-2xl border border-gray-100 shadow-[0_12px_40px_rgba(0,0,0,0.015)] flex flex-col justify-between h-96">
+          <div>
+            <h3 className="text-sm font-bold text-gray-900">Sumber Customer</h3>
+            <p className="text-[11px] text-gray-400 font-light mt-0.5">Saluran pemasaran asal mula customer didapat</p>
+          </div>
 
+          <div className="flex-1 w-full h-52 mt-4">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={sourceBarData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
+                <XAxis
+                  dataKey="name"
+                  tickLine={false}
+                  axisLine={false}
+                  tick={{ fill: "#94A3B8", fontSize: 11, fontWeight: "bold" }}
+                />
+                <YAxis
+                  tickLine={false}
+                  axisLine={false}
+                  tick={{ fill: "#94A3B8", fontSize: 10 }}
+                />
+                <Tooltip
+                  cursor={{ fill: "rgba(16, 185, 129, 0.02)" }}
+                  contentStyle={{
+                    backgroundColor: "#065F46",
+                    border: "none",
+                    borderRadius: "12px",
+                    color: "#FFF",
+                    fontSize: "11px",
+                  }}
+                />
+                <Bar dataKey="count" radius={[8, 8, 0, 0]} maxBarSize={45}>
+                  {sourceBarData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.fill} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

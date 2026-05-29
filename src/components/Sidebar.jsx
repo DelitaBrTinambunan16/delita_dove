@@ -1,82 +1,90 @@
-import { NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom";
 import {
-  FaChartLine, FaBox, FaUsers, FaClipboardList,
-  FaBullhorn, FaEnvelope, FaSignOutAlt
-} from "react-icons/fa"
+  FaChartLine,
+  FaBox,
+  FaUsers,
+  FaClipboardList,
+  FaBullhorn,
+  FaEnvelope,
+  FaGem,
+  FaSignOutAlt,
+} from "react-icons/fa";
 
 export default function Sidebar() {
-
+  // Efek hover & klik aktif memanfaatkan variabel dari @theme kamu
   const menuClass = ({ isActive }) =>
-    `flex items-center gap-4 px-4 py-3 rounded-xl mb-1 transition-all duration-300 font-semibold text-[13px] tracking-tight
-    ${isActive
-      ? "bg-emerald-50 text-[#10B981]"
-      : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
-    }`
+    `flex items-center gap-3 px-3 py-2.5 rounded-xl mb-2 text-[13px] font-medium tracking-wide
+    transition-all duration-150 ease-in-out active:scale-[0.97] active:bg-white/10
+    ${isActive 
+      ? "bg-white/10 text-secondary font-semibold border-l-4 border-secondary pl-2.5 shadow-sm" 
+      : "text-emerald-100/70 hover:bg-white/5 hover:text-white"
+    }`;
 
   return (
-    <div className="w-[220px] min-h-screen bg-white border-r border-gray-100 flex flex-col px-4 py-6 flex-shrink-0">
+    <aside className="w-64 min-h-screen bg-primary-dark flex flex-col px-4 py-6 font-poppins shadow-xl select-none text-white">
 
-      {/* ADMIN BADGE */}
-      <div className="mb-6 px-1">
-        <div className="inline-flex items-center gap-3 px-3 py-2 rounded-2xl bg-gray-50 border border-gray-100 shadow-sm w-full">
-          <div className="flex flex-col">
-            <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-gray-400 leading-none">
-              Admin
-            </span>
-            <span className="text-[12px] font-bold text-gray-800 leading-tight">
-              Dashboard
-            </span>
+      {/* ── BRAND SECTION ── */}
+      <div className="mb-6 px-2">
+        <div className="flex items-center gap-3 py-3 border-b border-white/10">
+          <div className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 backdrop-blur-md shadow-inner">
+            <FaGem className="h-4 w-4 text-secondary" />
+          </div>
+          <div>
+            <p className="text-[9px] uppercase tracking-widest text-emerald-300/60 font-bold font-barlow">SayYes</p>
+            <h1 className="text-lg font-black tracking-tight text-white -mt-0.5">WeddingDay</h1>
           </div>
         </div>
       </div>
 
-      {/* LOGO */}
-      <div className="flex items-center gap-3 mb-6 px-3">
-        <span className="text-lg font-extrabold text-gray-900 tracking-tighter">
-          Wedding<span className="text-[#10B981]">Day</span>
-        </span>
-      </div>
+      {/* ── ADMIN CARD ── */}
+      {/* <div className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl p-3 mb-6">
+        <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-white font-bold font-barlow text-sm shadow-md">
+          AD
+        </div>
+        <div>
+          <h2 className="text-xs font-bold text-white tracking-wide">Admin Dashboard</h2>
+          <p className="text-[10px] text-emerald-300/60 font-light">SayYes WeddingDay System</p>
+        </div>
+      </div> */}
 
-      {/* MENU */}
-      <div className="flex-1 overflow-y-auto">
-        <p className="text-[10px] font-bold text-gray-300 uppercase tracking-widest px-4 mb-4">
-          Main Menu
-        </p>
+      {/* ── MAIN MENU SECTIONS ── */}
+      <div className="flex-1 space-y-1">
+        <p className="px-3 mb-3 text-[10px] font-bold uppercase tracking-widest text-emerald-400/60 font-barlow">Menu Utama</p>
 
         <NavLink to="/" end className={menuClass}>
-          <FaChartLine size={18} /> Overview
+          <FaChartLine size={15} /> <span>Beranda</span>
         </NavLink>
 
         <NavLink to="/customers" className={menuClass}>
-          <FaUsers size={18} /> Customer
+          <FaUsers size={15} /> <span>Data Customer</span>
         </NavLink>
 
         <NavLink to="/orders" className={menuClass}>
-          <FaClipboardList size={18} /> Order
+          <FaClipboardList size={15} /> <span>Pemesanan</span>
         </NavLink>
 
         <NavLink to="/products" className={menuClass}>
-          <FaBox size={18} /> Produk
+          <FaBox size={15} /> <span>Produk</span>
         </NavLink>
 
         <NavLink to="/campaign" className={menuClass}>
-          <FaBullhorn size={18} /> Campaign
+          <FaBullhorn size={15} /> <span>Campaign</span>
         </NavLink>
 
         <NavLink to="/message" className={menuClass}>
-          <FaEnvelope size={18} /> Message
+          <FaEnvelope size={15} /> <span>Message</span>
         </NavLink>
       </div>
 
-      {/* LOGOUT */}
-      <div className="pt-6 border-t border-gray-100">
-        <NavLink
-          to="/login"
-          className="flex items-center gap-4 px-4 py-3 rounded-xl text-gray-400 font-semibold text-[13px] hover:text-red-500 hover:bg-red-50 transition-all duration-300"
+      {/* ── FOOTER UTILITY ── */}
+      <div className="pt-4 border-t border-white/10">
+        <NavLink 
+          to="/login" 
+          className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-emerald-200/60 font-medium text-[13px] transition-all duration-150 active:scale-[0.97] hover:bg-red-500/20 hover:text-danger tracking-wide"
         >
-          <FaSignOutAlt size={18} /> Logout
+          <FaSignOutAlt size={15} /> <span>Keluar</span>
         </NavLink>
       </div>
-    </div>
-  )
+    </aside>
+  );
 }

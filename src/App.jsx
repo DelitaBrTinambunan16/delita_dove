@@ -9,8 +9,10 @@ import Loading from "./components/Loading";
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Orders = lazy(() => import("./pages/Orders"));
 const Customers = lazy(() => import("./pages/Customers"));
- const Produk = lazy(() => import("./pages/Produk"));
+const Produk = lazy(() => import("./pages/Produk"));
 const Portfolio = lazy(() => import("./pages/Portfolio"));
+const Campaign = lazy(() => import("./pages/Campaign"));
+const Message = lazy(() => import("./pages/Message"));
 
 const Login = lazy(() => import("./pages/auth/Login"));
 const Register = lazy(() => import("./pages/auth/Register"));
@@ -33,6 +35,8 @@ export default function App() {
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/products" element={<Produk />} />
           <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path="/campaign" element={<Campaign />} />
+          <Route path="/message" element={<Message />} />
         </Route>
 
         {/* AUTH LAYOUT */}

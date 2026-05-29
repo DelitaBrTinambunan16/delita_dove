@@ -18,7 +18,7 @@ export default function Portfolio() {
               className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-md bg-white"
             />
             <div className="text-center sm:text-left flex-1">
-              <h1 className="text-2xl font-bold text-gray-900 font-serif">Delita Br Tinambunan</h1>
+              <h1 className="text-2xl font-bold text-gray-900 font-barlow">Delita Br Tinambunan</h1>
               <p className="text-[#fa2b56] font-medium">Mahasiswi Sistem Informasi</p>
             </div>
             <div className="flex space-x-3">

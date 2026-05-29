@@ -1,0 +1,6402 @@
+[
+  {
+    "messageId": "MSG0001",
+    "customerId": "CUST753",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-10-29T05:27:35.721Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0002",
+    "customerId": "CUST459",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-05-14T03:13:07.991Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0003",
+    "customerId": "CUST300",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-07-07T02:49:03.677Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0004",
+    "customerId": "CUST473",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-04-04T15:47:25.787Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0005",
+    "customerId": "CUST149",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-06-08T16:02:24.627Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0006",
+    "customerId": "CUST021",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-08-08T10:56:10.723Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0007",
+    "customerId": "CUST764",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-04-18T16:11:03.476Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0008",
+    "customerId": "CUST590",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-09-14T15:32:55.363Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0009",
+    "customerId": "CUST324",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-10-29T06:01:29.141Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0010",
+    "customerId": "CUST278",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-04-01T09:52:57.557Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0011",
+    "customerId": "CUST251",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-11-02T14:36:43.670Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0012",
+    "customerId": "CUST017",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-10-29T16:55:08.307Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0013",
+    "customerId": "CUST494",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-12-10T05:05:51.990Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0014",
+    "customerId": "CUST721",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-09-07T18:09:00.983Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0015",
+    "customerId": "CUST231",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-02-02T14:00:43.087Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0016",
+    "customerId": "CUST407",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-06-29T08:26:15.576Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0017",
+    "customerId": "CUST177",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-08-11T03:21:47.787Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0018",
+    "customerId": "CUST472",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-01-05T20:27:45.343Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0019",
+    "customerId": "CUST529",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-03-26T11:57:02.528Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0020",
+    "customerId": "CUST011",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-01-01T10:57:22.510Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0021",
+    "customerId": "CUST056",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-02-25T21:14:13.068Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0022",
+    "customerId": "CUST360",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-04-21T20:29:18.298Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0023",
+    "customerId": "CUST385",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-01-11T17:40:25.224Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0024",
+    "customerId": "CUST351",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-02-22T15:38:34.931Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0025",
+    "customerId": "CUST796",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-10-13T22:13:28.519Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0026",
+    "customerId": "CUST448",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-10-15T14:36:37.877Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0027",
+    "customerId": "CUST086",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-05-15T09:31:42.231Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0028",
+    "customerId": "CUST254",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-03-19T02:46:54.746Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0029",
+    "customerId": "CUST029",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-09-24T21:45:21.214Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0030",
+    "customerId": "CUST531",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-06-02T03:32:19.632Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0031",
+    "customerId": "CUST712",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-08-31T01:35:55.276Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0032",
+    "customerId": "CUST272",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-05-22T08:38:31.130Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0033",
+    "customerId": "CUST289",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-02-20T18:16:49.048Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0034",
+    "customerId": "CUST175",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-09-11T03:00:26.151Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0035",
+    "customerId": "CUST561",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-07-28T18:07:56.679Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0036",
+    "customerId": "CUST780",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-05-03T16:53:01.876Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0037",
+    "customerId": "CUST231",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-07-20T08:29:25.345Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0038",
+    "customerId": "CUST268",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-05-12T11:27:27.209Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0039",
+    "customerId": "CUST694",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-05-18T08:10:27.919Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0040",
+    "customerId": "CUST193",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-06-27T23:14:18.997Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0041",
+    "customerId": "CUST178",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-06-03T16:05:53.352Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0042",
+    "customerId": "CUST362",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-08-22T02:31:22.685Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0043",
+    "customerId": "CUST456",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-09-20T14:01:16.042Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0044",
+    "customerId": "CUST256",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-08-29T15:16:47.395Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0045",
+    "customerId": "CUST267",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-01-13T02:59:03.465Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0046",
+    "customerId": "CUST458",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-12-08T17:48:58.124Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0047",
+    "customerId": "CUST459",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-03-06T09:33:02.695Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0048",
+    "customerId": "CUST187",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-10-28T23:51:31.427Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0049",
+    "customerId": "CUST036",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-05-19T16:33:46.413Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0050",
+    "customerId": "CUST586",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-09-13T04:20:20.366Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0051",
+    "customerId": "CUST340",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-06-11T11:01:20.362Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0052",
+    "customerId": "CUST797",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-08-05T20:00:36.067Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0053",
+    "customerId": "CUST768",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-03-13T22:44:02.443Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0054",
+    "customerId": "CUST193",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-12-06T11:31:58.932Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0055",
+    "customerId": "CUST497",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-12-07T07:31:14.447Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0056",
+    "customerId": "CUST102",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-07-23T09:56:25.263Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0057",
+    "customerId": "CUST602",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-04-11T10:32:47.140Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0058",
+    "customerId": "CUST184",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-05-22T11:33:55.012Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0059",
+    "customerId": "CUST679",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-08-19T20:40:40.861Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0060",
+    "customerId": "CUST575",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-02-28T23:12:19.690Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0061",
+    "customerId": "CUST627",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-12-14T08:29:39.684Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0062",
+    "customerId": "CUST240",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-09-05T15:24:29.731Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0063",
+    "customerId": "CUST694",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-05-11T17:07:44.293Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0064",
+    "customerId": "CUST322",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-02-11T23:20:28.600Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0065",
+    "customerId": "CUST411",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-02-10T08:03:44.040Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0066",
+    "customerId": "CUST105",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-08-11T01:07:55.190Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0067",
+    "customerId": "CUST479",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-11-06T13:37:02.582Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0068",
+    "customerId": "CUST519",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-09-13T08:57:39.726Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0069",
+    "customerId": "CUST022",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-02-09T02:46:04.116Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0070",
+    "customerId": "CUST573",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-08-31T11:03:29.598Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0071",
+    "customerId": "CUST699",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-06-01T18:28:24.340Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0072",
+    "customerId": "CUST342",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-05-05T20:34:12.191Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0073",
+    "customerId": "CUST569",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-04-07T13:58:44.954Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0074",
+    "customerId": "CUST606",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-04-03T05:57:29.056Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0075",
+    "customerId": "CUST607",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-01-24T20:48:14.703Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0076",
+    "customerId": "CUST390",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-02-16T11:17:37.769Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0077",
+    "customerId": "CUST469",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-04-24T05:22:05.822Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0078",
+    "customerId": "CUST643",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-04-27T16:12:06.760Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0079",
+    "customerId": "CUST230",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-08-24T23:14:49.776Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0080",
+    "customerId": "CUST205",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-02-12T18:17:02.452Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0081",
+    "customerId": "CUST627",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-04-27T16:02:55.453Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0082",
+    "customerId": "CUST047",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-06-17T02:22:22.085Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0083",
+    "customerId": "CUST745",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-09-10T08:55:44.325Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0084",
+    "customerId": "CUST158",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-02-13T20:34:00.136Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0085",
+    "customerId": "CUST331",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-11-29T07:27:05.282Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0086",
+    "customerId": "CUST643",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-03-12T18:27:05.188Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0087",
+    "customerId": "CUST459",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-02-28T06:53:00.650Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0088",
+    "customerId": "CUST350",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-10-04T03:24:12.926Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0089",
+    "customerId": "CUST787",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-01-05T12:17:28.841Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0090",
+    "customerId": "CUST159",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-08-26T01:06:53.049Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0091",
+    "customerId": "CUST031",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-07-20T16:27:27.690Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0092",
+    "customerId": "CUST152",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-09-07T10:37:11.221Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0093",
+    "customerId": "CUST341",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-08-31T23:20:57.521Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0094",
+    "customerId": "CUST396",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-09-20T08:40:42.813Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0095",
+    "customerId": "CUST154",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-10-21T04:10:50.244Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0096",
+    "customerId": "CUST006",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-03-09T00:30:41.816Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0097",
+    "customerId": "CUST210",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-02-19T18:18:18.593Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0098",
+    "customerId": "CUST562",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-04-12T17:47:56.999Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0099",
+    "customerId": "CUST474",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-08-31T16:35:56.959Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0100",
+    "customerId": "CUST171",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-01-18T13:49:44.246Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0101",
+    "customerId": "CUST565",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-04-27T03:57:15.888Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0102",
+    "customerId": "CUST269",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-09-05T00:04:46.501Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0103",
+    "customerId": "CUST708",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-05-17T21:33:13.680Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0104",
+    "customerId": "CUST088",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-01-08T11:16:17.493Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0105",
+    "customerId": "CUST159",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-02-16T22:22:02.963Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0106",
+    "customerId": "CUST752",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-08-02T21:51:08.576Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0107",
+    "customerId": "CUST674",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-08-27T04:25:24.870Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0108",
+    "customerId": "CUST636",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-03-26T14:40:31.465Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0109",
+    "customerId": "CUST070",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-04-07T14:03:11.542Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0110",
+    "customerId": "CUST051",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-06-10T20:25:51.892Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0111",
+    "customerId": "CUST148",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-08-11T21:19:35.823Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0112",
+    "customerId": "CUST744",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-04-02T07:08:27.755Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0113",
+    "customerId": "CUST800",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-08-22T03:08:38.574Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0114",
+    "customerId": "CUST607",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-04-28T00:51:31.890Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0115",
+    "customerId": "CUST403",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-11-17T01:35:05.451Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0116",
+    "customerId": "CUST344",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-03-31T00:27:12.167Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0117",
+    "customerId": "CUST455",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-11-05T19:18:46.904Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0118",
+    "customerId": "CUST084",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-03-11T19:19:35.007Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0119",
+    "customerId": "CUST459",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-03-06T21:32:36.851Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0120",
+    "customerId": "CUST025",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-02-27T00:22:58.017Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0121",
+    "customerId": "CUST706",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-10-09T07:59:37.846Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0122",
+    "customerId": "CUST793",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-11-08T04:06:01.482Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0123",
+    "customerId": "CUST243",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-10-25T13:34:44.790Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0124",
+    "customerId": "CUST589",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-01-13T00:43:10.598Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0125",
+    "customerId": "CUST669",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-02-02T19:49:17.280Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0126",
+    "customerId": "CUST483",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-10-17T06:16:16.344Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0127",
+    "customerId": "CUST049",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-10-25T22:09:59.825Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0128",
+    "customerId": "CUST550",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-07-15T19:19:13.213Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0129",
+    "customerId": "CUST110",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-12-17T15:33:34.770Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0130",
+    "customerId": "CUST314",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-12-31T07:56:23.033Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0131",
+    "customerId": "CUST099",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-02-05T10:31:13.534Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0132",
+    "customerId": "CUST225",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-02-05T17:18:24.687Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0133",
+    "customerId": "CUST087",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-08-25T01:22:39.192Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0134",
+    "customerId": "CUST326",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-07-12T18:34:59.140Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0135",
+    "customerId": "CUST730",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-10-30T01:15:53.477Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0136",
+    "customerId": "CUST545",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-01-10T18:55:12.979Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0137",
+    "customerId": "CUST151",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-05-23T18:27:20.407Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0138",
+    "customerId": "CUST782",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-01-17T17:16:24.676Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0139",
+    "customerId": "CUST351",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-07-04T21:34:30.584Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0140",
+    "customerId": "CUST383",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-07-15T05:41:22.172Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0141",
+    "customerId": "CUST342",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-04-12T19:41:07.318Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0142",
+    "customerId": "CUST456",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-06-26T20:34:05.414Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0143",
+    "customerId": "CUST686",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-03-25T08:52:53.322Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0144",
+    "customerId": "CUST254",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-12-24T03:53:10.297Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0145",
+    "customerId": "CUST228",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-11-16T01:56:20.970Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0146",
+    "customerId": "CUST236",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-11-27T19:04:55.564Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0147",
+    "customerId": "CUST792",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-05-11T18:00:19.337Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0148",
+    "customerId": "CUST606",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-05-18T04:47:14.725Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0149",
+    "customerId": "CUST007",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-04-29T04:59:02.740Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0150",
+    "customerId": "CUST503",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-11-13T18:46:05.942Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0151",
+    "customerId": "CUST706",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-09-05T05:21:33.642Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0152",
+    "customerId": "CUST658",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-07-05T01:15:48.833Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0153",
+    "customerId": "CUST446",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-08-22T17:35:03.443Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0154",
+    "customerId": "CUST626",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-12-09T23:57:28.167Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0155",
+    "customerId": "CUST582",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-11-19T22:35:05.119Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0156",
+    "customerId": "CUST507",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-09-17T20:57:40.059Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0157",
+    "customerId": "CUST014",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-02-25T21:54:00.471Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0158",
+    "customerId": "CUST347",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-09-30T04:23:04.588Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0159",
+    "customerId": "CUST046",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-07-10T07:42:09.734Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0160",
+    "customerId": "CUST382",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-05-23T23:08:41.499Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0161",
+    "customerId": "CUST247",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-07-11T02:14:46.452Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0162",
+    "customerId": "CUST796",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-05-15T17:21:13.707Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0163",
+    "customerId": "CUST205",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-10-15T20:14:20.281Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0164",
+    "customerId": "CUST495",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-11-23T06:57:31.820Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0165",
+    "customerId": "CUST589",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-06-01T08:24:47.634Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0166",
+    "customerId": "CUST115",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-11-21T13:39:02.405Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0167",
+    "customerId": "CUST153",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-09-27T16:13:48.535Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0168",
+    "customerId": "CUST276",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-08-08T02:53:39.785Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0169",
+    "customerId": "CUST615",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-10-06T13:20:10.215Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0170",
+    "customerId": "CUST703",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-03-08T15:39:44.209Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0171",
+    "customerId": "CUST020",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-11-11T21:03:26.699Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0172",
+    "customerId": "CUST098",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-03-09T03:55:17.948Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0173",
+    "customerId": "CUST575",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-02-22T18:02:42.404Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0174",
+    "customerId": "CUST196",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-02-07T05:03:04.523Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0175",
+    "customerId": "CUST020",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-12-05T19:25:47.845Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0176",
+    "customerId": "CUST168",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-12-24T20:39:49.578Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0177",
+    "customerId": "CUST449",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-01-26T14:53:53.139Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0178",
+    "customerId": "CUST795",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-05-25T20:26:05.052Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0179",
+    "customerId": "CUST294",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-11-12T15:51:14.996Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0180",
+    "customerId": "CUST314",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-08-26T12:00:25.209Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0181",
+    "customerId": "CUST236",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-05-01T11:46:49.658Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0182",
+    "customerId": "CUST233",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-08-15T10:58:37.478Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0183",
+    "customerId": "CUST762",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-03-08T13:45:00.917Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0184",
+    "customerId": "CUST623",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-03-10T20:36:15.903Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0185",
+    "customerId": "CUST342",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-08-01T01:24:20.403Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0186",
+    "customerId": "CUST141",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-01-18T07:12:27.390Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0187",
+    "customerId": "CUST139",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-11-30T20:21:45.481Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0188",
+    "customerId": "CUST145",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-09-16T11:18:42.350Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0189",
+    "customerId": "CUST316",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-01-26T01:45:59.015Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0190",
+    "customerId": "CUST687",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-04-30T02:26:23.464Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0191",
+    "customerId": "CUST343",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-06-08T19:29:26.229Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0192",
+    "customerId": "CUST522",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-01-14T10:28:15.444Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0193",
+    "customerId": "CUST780",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-08-16T16:16:50.486Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0194",
+    "customerId": "CUST761",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-12-18T13:52:39.308Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0195",
+    "customerId": "CUST156",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-04-12T01:43:26.004Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0196",
+    "customerId": "CUST010",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-02-08T17:34:31.544Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0197",
+    "customerId": "CUST558",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-01-28T23:24:47.413Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0198",
+    "customerId": "CUST208",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-01-24T11:15:28.610Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0199",
+    "customerId": "CUST694",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-12-26T23:37:52.228Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0200",
+    "customerId": "CUST104",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-11-26T09:45:33.576Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0201",
+    "customerId": "CUST352",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-11-08T18:46:08.668Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0202",
+    "customerId": "CUST302",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-10-25T20:56:21.391Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0203",
+    "customerId": "CUST572",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-12-29T09:50:46.352Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0204",
+    "customerId": "CUST001",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-05-21T14:56:35.762Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0205",
+    "customerId": "CUST349",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-06-23T13:24:28.866Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0206",
+    "customerId": "CUST716",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-11-07T01:19:53.401Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0207",
+    "customerId": "CUST131",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-05-29T04:37:31.339Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0208",
+    "customerId": "CUST563",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-05-15T10:21:04.665Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0209",
+    "customerId": "CUST072",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-02-25T17:15:00.928Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0210",
+    "customerId": "CUST274",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-02-06T07:57:58.602Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0211",
+    "customerId": "CUST183",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-12-07T18:18:28.522Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0212",
+    "customerId": "CUST660",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-10-23T15:25:43.030Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0213",
+    "customerId": "CUST237",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-07-20T17:00:04.777Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0214",
+    "customerId": "CUST041",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-10-09T02:12:17.373Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0215",
+    "customerId": "CUST577",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-11-12T20:57:07.742Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0216",
+    "customerId": "CUST113",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-12-05T02:05:54.220Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0217",
+    "customerId": "CUST138",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-09-13T11:37:30.088Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0218",
+    "customerId": "CUST457",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-01-04T06:07:59.213Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0219",
+    "customerId": "CUST666",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-10-29T01:52:34.721Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0220",
+    "customerId": "CUST266",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-09-20T18:41:51.396Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0221",
+    "customerId": "CUST325",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-07-26T03:27:18.372Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0222",
+    "customerId": "CUST013",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-05-23T13:33:52.131Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0223",
+    "customerId": "CUST510",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-02-04T16:31:31.934Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0224",
+    "customerId": "CUST663",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-06-11T12:09:56.644Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0225",
+    "customerId": "CUST058",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-12-06T01:13:04.320Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0226",
+    "customerId": "CUST328",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-12-02T07:53:47.846Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0227",
+    "customerId": "CUST325",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-06-06T20:32:06.019Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0228",
+    "customerId": "CUST692",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-07-28T01:29:30.182Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0229",
+    "customerId": "CUST517",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-10-24T23:17:07.805Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0230",
+    "customerId": "CUST487",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-07-17T06:40:00.368Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0231",
+    "customerId": "CUST356",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-12-26T11:35:06.304Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0232",
+    "customerId": "CUST725",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-07-28T21:59:31.212Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0233",
+    "customerId": "CUST457",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-08-20T07:39:58.128Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0234",
+    "customerId": "CUST504",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-09-24T09:24:18.482Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0235",
+    "customerId": "CUST522",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-02-02T01:52:22.619Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0236",
+    "customerId": "CUST702",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-04-19T03:14:03.354Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0237",
+    "customerId": "CUST793",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-12-06T08:47:01.702Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0238",
+    "customerId": "CUST761",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-10-10T09:55:09.941Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0239",
+    "customerId": "CUST082",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-11-26T13:16:30.840Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0240",
+    "customerId": "CUST442",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-01-20T08:22:53.617Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0241",
+    "customerId": "CUST347",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-08-28T04:51:05.964Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0242",
+    "customerId": "CUST567",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-02-22T18:49:21.074Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0243",
+    "customerId": "CUST389",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-01-08T19:52:53.086Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0244",
+    "customerId": "CUST685",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-11-04T22:11:53.277Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0245",
+    "customerId": "CUST122",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-04-25T07:13:12.760Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0246",
+    "customerId": "CUST022",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-09-21T15:32:06.781Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0247",
+    "customerId": "CUST290",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-05-07T10:44:08.174Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0248",
+    "customerId": "CUST053",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-09-04T14:02:16.958Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0249",
+    "customerId": "CUST388",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-05-18T13:52:10.781Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0250",
+    "customerId": "CUST759",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-03-28T01:55:11.126Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0251",
+    "customerId": "CUST030",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-12-26T20:12:49.439Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0252",
+    "customerId": "CUST669",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-05-23T20:16:55.324Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0253",
+    "customerId": "CUST015",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-07-30T04:37:35.664Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0254",
+    "customerId": "CUST158",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-06-25T16:02:20.021Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0255",
+    "customerId": "CUST479",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-09-13T03:18:31.057Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0256",
+    "customerId": "CUST770",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-04-27T22:58:05.169Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0257",
+    "customerId": "CUST623",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-08-28T13:48:47.040Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0258",
+    "customerId": "CUST663",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-12-20T12:32:44.983Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0259",
+    "customerId": "CUST073",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-03-19T00:41:13.586Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0260",
+    "customerId": "CUST694",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-10-24T21:43:53.853Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0261",
+    "customerId": "CUST594",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-09-10T09:58:19.552Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0262",
+    "customerId": "CUST312",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-11-18T12:19:16.907Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0263",
+    "customerId": "CUST736",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-12-01T15:36:18.295Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0264",
+    "customerId": "CUST324",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-07-12T08:34:46.589Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0265",
+    "customerId": "CUST407",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-05-28T15:48:53.431Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0266",
+    "customerId": "CUST635",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-03-18T15:09:46.826Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0267",
+    "customerId": "CUST139",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-11-26T09:09:02.931Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0268",
+    "customerId": "CUST712",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-12-31T06:35:07.290Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0269",
+    "customerId": "CUST635",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-03-04T04:02:14.436Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0270",
+    "customerId": "CUST548",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-04-09T11:28:35.644Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0271",
+    "customerId": "CUST238",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-08-15T19:07:41.406Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0272",
+    "customerId": "CUST469",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-06-05T14:17:14.414Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0273",
+    "customerId": "CUST452",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-06-07T18:37:53.088Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0274",
+    "customerId": "CUST612",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-09-25T08:50:46.554Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0275",
+    "customerId": "CUST308",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-08-27T21:50:59.153Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0276",
+    "customerId": "CUST006",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-12-25T08:25:15.481Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0277",
+    "customerId": "CUST549",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-03-01T16:02:05.332Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0278",
+    "customerId": "CUST482",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-06-16T09:50:29.132Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0279",
+    "customerId": "CUST721",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-05-28T06:51:12.113Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0280",
+    "customerId": "CUST788",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-11-14T21:17:54.253Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0281",
+    "customerId": "CUST178",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-04-24T16:33:21.688Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0282",
+    "customerId": "CUST727",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-04-25T04:19:38.982Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0283",
+    "customerId": "CUST287",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-12-04T20:40:40.081Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0284",
+    "customerId": "CUST346",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-11-28T14:52:25.907Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0285",
+    "customerId": "CUST714",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-10-25T18:17:29.218Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0286",
+    "customerId": "CUST704",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-11-17T04:16:06.448Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0287",
+    "customerId": "CUST474",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-09-07T00:50:23.902Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0288",
+    "customerId": "CUST725",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-12-26T05:17:43.691Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0289",
+    "customerId": "CUST210",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-03-17T00:07:24.994Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0290",
+    "customerId": "CUST711",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-05-08T04:13:53.645Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0291",
+    "customerId": "CUST439",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-03-14T03:48:51.723Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0292",
+    "customerId": "CUST281",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-10-31T12:38:03.597Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0293",
+    "customerId": "CUST606",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-12-14T11:57:56.865Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0294",
+    "customerId": "CUST135",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-08-15T13:28:02.364Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0295",
+    "customerId": "CUST552",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-12-19T15:42:19.472Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0296",
+    "customerId": "CUST739",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-06-30T10:09:54.518Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0297",
+    "customerId": "CUST208",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-07-26T18:11:20.115Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0298",
+    "customerId": "CUST397",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-11-08T18:36:11.551Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0299",
+    "customerId": "CUST366",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-03-11T05:05:16.992Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0300",
+    "customerId": "CUST156",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-12-08T00:57:40.863Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0301",
+    "customerId": "CUST079",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-07-30T08:10:58.794Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0302",
+    "customerId": "CUST114",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-11-02T01:28:08.475Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0303",
+    "customerId": "CUST331",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-07-01T00:54:16.301Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0304",
+    "customerId": "CUST747",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-05-27T08:57:40.592Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0305",
+    "customerId": "CUST719",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-06-22T06:01:14.159Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0306",
+    "customerId": "CUST279",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-10-04T16:35:02.837Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0307",
+    "customerId": "CUST528",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-03-21T20:25:26.581Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0308",
+    "customerId": "CUST153",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-02-21T15:29:03.675Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0309",
+    "customerId": "CUST714",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-07-31T05:21:40.672Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0310",
+    "customerId": "CUST338",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-01-29T10:18:35.211Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0311",
+    "customerId": "CUST428",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-12-29T06:05:34.677Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0312",
+    "customerId": "CUST763",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-04-05T07:52:00.948Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0313",
+    "customerId": "CUST148",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-06-18T13:27:33.756Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0314",
+    "customerId": "CUST420",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-04-02T02:25:41.045Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0315",
+    "customerId": "CUST522",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-09-14T01:11:01.168Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0316",
+    "customerId": "CUST716",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-06-18T17:34:52.709Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0317",
+    "customerId": "CUST260",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-08-24T16:19:45.768Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0318",
+    "customerId": "CUST669",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-05-14T15:27:41.739Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0319",
+    "customerId": "CUST442",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-10-29T07:57:34.502Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0320",
+    "customerId": "CUST033",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-06-06T03:17:47.724Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0321",
+    "customerId": "CUST633",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-07-24T00:24:17.557Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0322",
+    "customerId": "CUST122",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-10-22T04:05:25.799Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0323",
+    "customerId": "CUST351",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-09-09T10:34:59.050Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0324",
+    "customerId": "CUST053",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-03-19T07:31:40.351Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0325",
+    "customerId": "CUST046",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-03-16T07:31:06.265Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0326",
+    "customerId": "CUST504",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-12-30T20:40:04.008Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0327",
+    "customerId": "CUST402",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-01-09T09:35:08.903Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0328",
+    "customerId": "CUST205",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-08-27T22:40:09.844Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0329",
+    "customerId": "CUST404",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-07-20T11:42:32.437Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0330",
+    "customerId": "CUST434",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-05-25T07:47:08.746Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0331",
+    "customerId": "CUST074",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-02-10T23:39:58.181Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0332",
+    "customerId": "CUST535",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-03-12T23:40:44.334Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0333",
+    "customerId": "CUST278",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-07-23T01:09:49.633Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0334",
+    "customerId": "CUST263",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-03-29T06:05:02.823Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0335",
+    "customerId": "CUST252",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-11-17T01:20:24.544Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0336",
+    "customerId": "CUST714",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-12-26T04:01:30.356Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0337",
+    "customerId": "CUST742",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-09-12T12:22:35.559Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0338",
+    "customerId": "CUST618",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-09-05T14:32:33.754Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0339",
+    "customerId": "CUST419",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-02-20T04:12:40.800Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0340",
+    "customerId": "CUST114",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-08-28T23:09:16.871Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0341",
+    "customerId": "CUST369",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-07-11T20:29:31.333Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0342",
+    "customerId": "CUST327",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-05-11T14:25:27.475Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0343",
+    "customerId": "CUST664",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-10-21T06:45:50.914Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0344",
+    "customerId": "CUST040",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-08-10T05:48:51.352Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0345",
+    "customerId": "CUST276",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-08-05T15:16:12.021Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0346",
+    "customerId": "CUST693",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-06-27T03:00:27.112Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0347",
+    "customerId": "CUST352",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-12-31T15:13:38.208Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0348",
+    "customerId": "CUST521",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-11-27T04:40:06.958Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0349",
+    "customerId": "CUST489",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-07-24T23:55:26.678Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0350",
+    "customerId": "CUST434",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-01-17T23:40:44.773Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0351",
+    "customerId": "CUST215",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-06-23T05:07:31.195Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0352",
+    "customerId": "CUST261",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-02-04T20:13:01.883Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0353",
+    "customerId": "CUST475",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-06-14T20:36:27.691Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0354",
+    "customerId": "CUST416",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-06-04T19:42:04.556Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0355",
+    "customerId": "CUST375",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-08-21T11:08:40.127Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0356",
+    "customerId": "CUST592",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-01-03T15:20:17.521Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0357",
+    "customerId": "CUST345",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-05-17T06:45:38.156Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0358",
+    "customerId": "CUST057",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-01-08T05:30:28.229Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0359",
+    "customerId": "CUST606",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-05-13T12:10:18.251Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0360",
+    "customerId": "CUST585",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-01-26T16:38:27.123Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0361",
+    "customerId": "CUST432",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-08-17T13:59:53.475Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0362",
+    "customerId": "CUST107",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-12-22T12:20:04.912Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0363",
+    "customerId": "CUST143",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-02-17T17:41:11.196Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0364",
+    "customerId": "CUST757",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-02-10T06:43:48.928Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0365",
+    "customerId": "CUST381",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-07-30T07:33:28.984Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0366",
+    "customerId": "CUST154",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-01-08T01:05:48.468Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0367",
+    "customerId": "CUST507",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-10-05T10:31:11.528Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0368",
+    "customerId": "CUST247",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-09-22T00:53:33.795Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0369",
+    "customerId": "CUST299",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-08-18T16:04:59.476Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0370",
+    "customerId": "CUST258",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-01-29T02:03:35.239Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0371",
+    "customerId": "CUST241",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-10-24T07:32:41.702Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0372",
+    "customerId": "CUST263",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-08-18T17:53:17.326Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0373",
+    "customerId": "CUST333",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-07-23T06:09:43.369Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0374",
+    "customerId": "CUST649",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-07-14T01:30:00.678Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0375",
+    "customerId": "CUST074",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-04-02T22:46:25.705Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0376",
+    "customerId": "CUST232",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-06-29T13:48:38.534Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0377",
+    "customerId": "CUST343",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-02-20T07:21:02.820Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0378",
+    "customerId": "CUST089",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-05-13T02:29:40.567Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0379",
+    "customerId": "CUST617",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-04-22T13:09:50.411Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0380",
+    "customerId": "CUST141",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-10-09T17:25:28.734Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0381",
+    "customerId": "CUST033",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-02-10T01:27:20.358Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0382",
+    "customerId": "CUST292",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-10-20T21:10:30.261Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0383",
+    "customerId": "CUST087",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-06-20T19:15:50.429Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0384",
+    "customerId": "CUST618",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-06-23T03:14:34.903Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0385",
+    "customerId": "CUST265",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-06-30T20:33:12.861Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0386",
+    "customerId": "CUST079",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-08-18T01:18:43.497Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0387",
+    "customerId": "CUST265",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-03-12T05:53:35.654Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0388",
+    "customerId": "CUST347",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-08-28T14:14:38.541Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0389",
+    "customerId": "CUST642",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-03-14T22:35:06.993Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0390",
+    "customerId": "CUST520",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-01-20T05:47:23.793Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0391",
+    "customerId": "CUST786",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-12-05T14:20:40.643Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0392",
+    "customerId": "CUST241",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-06-13T19:14:12.004Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0393",
+    "customerId": "CUST487",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-11-17T14:10:51.945Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0394",
+    "customerId": "CUST265",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-01-30T22:44:33.237Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0395",
+    "customerId": "CUST110",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-09-25T02:03:30.772Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0396",
+    "customerId": "CUST692",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-11-11T00:10:50.741Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0397",
+    "customerId": "CUST284",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-11-02T15:50:58.536Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0398",
+    "customerId": "CUST150",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-02-27T19:22:41.081Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0399",
+    "customerId": "CUST486",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-06-24T21:42:14.064Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0400",
+    "customerId": "CUST338",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-12-20T01:32:39.020Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0401",
+    "customerId": "CUST338",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-11-28T14:32:45.394Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0402",
+    "customerId": "CUST370",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-01-22T03:48:40.107Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0403",
+    "customerId": "CUST106",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-04-11T10:30:15.065Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0404",
+    "customerId": "CUST081",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-04-19T17:03:22.097Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0405",
+    "customerId": "CUST244",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-11-15T08:19:10.384Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0406",
+    "customerId": "CUST424",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-07-27T22:19:12.865Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0407",
+    "customerId": "CUST253",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-05-21T12:48:33.840Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0408",
+    "customerId": "CUST643",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-01-14T12:25:15.430Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0409",
+    "customerId": "CUST687",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-11-29T04:11:44.409Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0410",
+    "customerId": "CUST038",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-02-18T02:10:42.691Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0411",
+    "customerId": "CUST156",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-12-12T06:30:52.289Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0412",
+    "customerId": "CUST101",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-06-13T22:38:49.791Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0413",
+    "customerId": "CUST052",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-06-26T20:13:02.322Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0414",
+    "customerId": "CUST542",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-10-10T19:50:50.932Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0415",
+    "customerId": "CUST199",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-01-25T09:23:28.911Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0416",
+    "customerId": "CUST173",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-12-16T16:43:39.058Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0417",
+    "customerId": "CUST117",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-04-18T07:43:23.376Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0418",
+    "customerId": "CUST772",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-10-30T16:01:41.517Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0419",
+    "customerId": "CUST045",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-03-12T22:57:24.486Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0420",
+    "customerId": "CUST508",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-01-27T17:09:03.307Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0421",
+    "customerId": "CUST375",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-06-03T14:12:43.042Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0422",
+    "customerId": "CUST285",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-05-27T21:52:43.709Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0423",
+    "customerId": "CUST703",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-10-20T02:59:49.188Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0424",
+    "customerId": "CUST326",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-12-18T09:43:45.750Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0425",
+    "customerId": "CUST262",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-08-16T05:06:20.578Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0426",
+    "customerId": "CUST636",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-03-30T23:01:42.848Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0427",
+    "customerId": "CUST663",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-08-21T15:03:05.136Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0428",
+    "customerId": "CUST109",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-12-09T03:11:44.829Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0429",
+    "customerId": "CUST738",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-05-24T06:35:04.843Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0430",
+    "customerId": "CUST587",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-09-28T13:01:46.161Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0431",
+    "customerId": "CUST174",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-10-24T00:46:57.793Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0432",
+    "customerId": "CUST175",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-06-29T22:31:00.237Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0433",
+    "customerId": "CUST796",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-10-20T17:15:51.810Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0434",
+    "customerId": "CUST290",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-10-28T10:46:06.860Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0435",
+    "customerId": "CUST249",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-02-15T10:09:13.798Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0436",
+    "customerId": "CUST574",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-07-29T08:08:00.523Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0437",
+    "customerId": "CUST146",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-03-30T22:01:57.045Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0438",
+    "customerId": "CUST370",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-11-09T10:48:08.672Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0439",
+    "customerId": "CUST402",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-04-02T03:12:23.197Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0440",
+    "customerId": "CUST433",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-05-08T11:28:52.014Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0441",
+    "customerId": "CUST305",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-08-19T09:08:25.972Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0442",
+    "customerId": "CUST064",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-06-25T23:32:10.414Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0443",
+    "customerId": "CUST564",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-11-29T14:10:19.509Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0444",
+    "customerId": "CUST112",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-01-25T16:40:09.894Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0445",
+    "customerId": "CUST228",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-01-21T08:07:45.423Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0446",
+    "customerId": "CUST181",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-02-01T04:58:29.396Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0447",
+    "customerId": "CUST503",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-05-15T13:40:21.282Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0448",
+    "customerId": "CUST307",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-02-05T09:12:21.434Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0449",
+    "customerId": "CUST483",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-06-16T18:46:48.769Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0450",
+    "customerId": "CUST481",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-12-21T03:50:33.824Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0451",
+    "customerId": "CUST419",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-09-05T14:29:50.019Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0452",
+    "customerId": "CUST696",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-09-14T11:44:38.143Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0453",
+    "customerId": "CUST097",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-08-08T04:51:00.873Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0454",
+    "customerId": "CUST015",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-11-25T13:42:35.339Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0455",
+    "customerId": "CUST775",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-11-06T04:38:01.613Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0456",
+    "customerId": "CUST548",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-09-13T10:19:26.664Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0457",
+    "customerId": "CUST602",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-07-24T03:42:20.589Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0458",
+    "customerId": "CUST234",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-06-06T11:27:29.426Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0459",
+    "customerId": "CUST414",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-09-14T03:58:14.093Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0460",
+    "customerId": "CUST739",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-05-10T19:22:12.524Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0461",
+    "customerId": "CUST755",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-05-25T11:54:08.128Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0462",
+    "customerId": "CUST414",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-01-08T00:01:54.014Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0463",
+    "customerId": "CUST371",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-03-12T05:42:05.627Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0464",
+    "customerId": "CUST781",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-03-20T08:28:37.033Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0465",
+    "customerId": "CUST688",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-05-10T10:51:27.564Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0466",
+    "customerId": "CUST723",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-03-18T19:53:41.224Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0467",
+    "customerId": "CUST244",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-12-06T13:25:19.708Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0468",
+    "customerId": "CUST488",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-10-29T06:54:14.938Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0469",
+    "customerId": "CUST681",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-07-26T06:07:00.129Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0470",
+    "customerId": "CUST510",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-05-16T00:07:19.327Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0471",
+    "customerId": "CUST714",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-11-04T23:21:32.706Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0472",
+    "customerId": "CUST339",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-07-24T01:37:25.508Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0473",
+    "customerId": "CUST611",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-06-14T14:10:20.581Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0474",
+    "customerId": "CUST550",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-03-31T15:16:14.105Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0475",
+    "customerId": "CUST398",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-11-10T08:43:29.202Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0476",
+    "customerId": "CUST557",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-03-19T06:05:21.047Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0477",
+    "customerId": "CUST645",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-07-17T20:01:53.567Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0478",
+    "customerId": "CUST097",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-02-27T01:16:50.338Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0479",
+    "customerId": "CUST769",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-09-29T05:13:59.432Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0480",
+    "customerId": "CUST171",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-09-09T04:01:56.394Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0481",
+    "customerId": "CUST423",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-03-16T12:14:01.471Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0482",
+    "customerId": "CUST429",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-06-07T17:40:21.209Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0483",
+    "customerId": "CUST745",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-03-03T18:33:48.722Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0484",
+    "customerId": "CUST651",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-09-22T22:20:20.247Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0485",
+    "customerId": "CUST176",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-02-21T16:34:41.466Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0486",
+    "customerId": "CUST127",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-10-09T19:11:16.424Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0487",
+    "customerId": "CUST641",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-10-25T13:05:40.911Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0488",
+    "customerId": "CUST454",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-10-14T08:34:11.819Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0489",
+    "customerId": "CUST293",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-07-30T22:42:21.374Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0490",
+    "customerId": "CUST144",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-11-30T06:31:52.499Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0491",
+    "customerId": "CUST010",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-06-07T06:42:11.683Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0492",
+    "customerId": "CUST436",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-06-27T16:11:26.764Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0493",
+    "customerId": "CUST195",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-02-25T11:02:54.904Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0494",
+    "customerId": "CUST264",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-06-06T15:20:45.457Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0495",
+    "customerId": "CUST452",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-12-27T15:45:09.908Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0496",
+    "customerId": "CUST773",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-01-15T00:09:40.672Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0497",
+    "customerId": "CUST698",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-01-20T08:25:05.563Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0498",
+    "customerId": "CUST071",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-06-05T02:48:18.523Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0499",
+    "customerId": "CUST186",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-07-07T03:18:53.416Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0500",
+    "customerId": "CUST584",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-05-02T02:22:00.942Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0501",
+    "customerId": "CUST336",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-03-14T03:52:21.960Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0502",
+    "customerId": "CUST574",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-10-22T16:06:54.140Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0503",
+    "customerId": "CUST640",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-12-10T06:01:14.740Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0504",
+    "customerId": "CUST352",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-02-13T14:46:51.303Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0505",
+    "customerId": "CUST702",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-04-21T05:19:02.669Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0506",
+    "customerId": "CUST318",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-08-11T23:31:15.445Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0507",
+    "customerId": "CUST535",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-04-25T17:57:13.868Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0508",
+    "customerId": "CUST731",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-05-31T13:05:17.709Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0509",
+    "customerId": "CUST089",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-09-13T08:09:21.967Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0510",
+    "customerId": "CUST416",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-08-21T18:15:47.026Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0511",
+    "customerId": "CUST306",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-09-16T20:57:16.466Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0512",
+    "customerId": "CUST654",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-11-05T05:58:13.683Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0513",
+    "customerId": "CUST030",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-03-21T11:29:32.772Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0514",
+    "customerId": "CUST645",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-10-02T10:46:57.884Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0515",
+    "customerId": "CUST059",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-06-15T07:23:19.410Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0516",
+    "customerId": "CUST151",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-01-06T02:08:22.373Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0517",
+    "customerId": "CUST413",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-07-15T02:16:36.702Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0518",
+    "customerId": "CUST793",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-11-17T18:31:03.388Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0519",
+    "customerId": "CUST717",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-11-15T21:04:22.186Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0520",
+    "customerId": "CUST091",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-05-05T16:34:57.454Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0521",
+    "customerId": "CUST653",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-02-28T04:35:14.260Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0522",
+    "customerId": "CUST753",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-09-02T00:30:22.008Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0523",
+    "customerId": "CUST175",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-01-23T21:41:27.940Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0524",
+    "customerId": "CUST386",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-10-22T07:42:01.040Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0525",
+    "customerId": "CUST146",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-07-05T04:54:33.318Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0526",
+    "customerId": "CUST656",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-02-06T03:05:55.590Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0527",
+    "customerId": "CUST185",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-04-20T19:34:39.359Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0528",
+    "customerId": "CUST247",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-11-26T05:46:38.175Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0529",
+    "customerId": "CUST586",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-02-01T15:21:19.607Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0530",
+    "customerId": "CUST203",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-03-06T20:35:33.266Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0531",
+    "customerId": "CUST685",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-09-17T01:47:54.320Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0532",
+    "customerId": "CUST160",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-03-11T09:24:24.650Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0533",
+    "customerId": "CUST095",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-12-25T07:21:04.285Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0534",
+    "customerId": "CUST160",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-03-28T15:38:39.196Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0535",
+    "customerId": "CUST513",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-10-06T17:16:47.184Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0536",
+    "customerId": "CUST167",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-03-19T16:36:07.270Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0537",
+    "customerId": "CUST572",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-11-26T01:12:44.838Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0538",
+    "customerId": "CUST470",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-10-13T12:46:06.375Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0539",
+    "customerId": "CUST166",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-06-01T03:40:30.404Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0540",
+    "customerId": "CUST673",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-09-03T18:50:33.890Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0541",
+    "customerId": "CUST178",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-03-10T10:13:43.356Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0542",
+    "customerId": "CUST469",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-08-30T07:49:37.641Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0543",
+    "customerId": "CUST594",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-10-26T22:14:27.019Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0544",
+    "customerId": "CUST216",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-04-26T14:12:41.060Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0545",
+    "customerId": "CUST065",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-12-26T18:02:08.734Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0546",
+    "customerId": "CUST246",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-01-13T04:26:21.022Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0547",
+    "customerId": "CUST572",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-11-07T18:28:43.478Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0548",
+    "customerId": "CUST056",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-08-03T19:42:02.680Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0549",
+    "customerId": "CUST505",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-05-14T11:18:31.690Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0550",
+    "customerId": "CUST650",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-12-01T09:56:08.982Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0551",
+    "customerId": "CUST336",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-05-10T00:26:07.190Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0552",
+    "customerId": "CUST347",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-06-26T23:28:34.314Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0553",
+    "customerId": "CUST528",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-07-24T04:57:27.811Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0554",
+    "customerId": "CUST450",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-07-04T04:51:05.229Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0555",
+    "customerId": "CUST128",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-11-26T05:05:21.481Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0556",
+    "customerId": "CUST116",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-09-15T16:02:59.867Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0557",
+    "customerId": "CUST696",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-02-11T22:42:01.056Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0558",
+    "customerId": "CUST080",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-09-29T06:20:48.097Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0559",
+    "customerId": "CUST420",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-06-15T15:50:25.937Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0560",
+    "customerId": "CUST587",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-10-13T10:18:55.550Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0561",
+    "customerId": "CUST627",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-12-30T11:27:02.476Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0562",
+    "customerId": "CUST292",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-12-11T20:58:44.198Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0563",
+    "customerId": "CUST628",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-06-02T16:19:37.592Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0564",
+    "customerId": "CUST140",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-04-19T16:47:50.705Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0565",
+    "customerId": "CUST192",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-01-08T04:17:29.157Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0566",
+    "customerId": "CUST394",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-05-31T17:59:35.487Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0567",
+    "customerId": "CUST127",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-11-26T21:01:53.680Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0568",
+    "customerId": "CUST036",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-11-29T05:29:54.406Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0569",
+    "customerId": "CUST235",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-08-08T13:11:24.372Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0570",
+    "customerId": "CUST294",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-11-24T04:14:03.949Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0571",
+    "customerId": "CUST051",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-07-05T16:08:03.536Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0572",
+    "customerId": "CUST428",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-04-12T02:16:35.205Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0573",
+    "customerId": "CUST702",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-10-03T12:19:35.585Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0574",
+    "customerId": "CUST657",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-10-08T05:22:47.381Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0575",
+    "customerId": "CUST638",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-07-12T17:29:27.313Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0576",
+    "customerId": "CUST478",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-12-01T19:48:09.904Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0577",
+    "customerId": "CUST461",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-05-26T02:46:50.455Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0578",
+    "customerId": "CUST418",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-07-18T13:23:16.897Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0579",
+    "customerId": "CUST498",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-12-10T07:46:37.937Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0580",
+    "customerId": "CUST237",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-11-18T18:22:12.624Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0581",
+    "customerId": "CUST123",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-06-12T09:48:41.961Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0582",
+    "customerId": "CUST505",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-10-18T07:45:19.693Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0583",
+    "customerId": "CUST706",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-09-25T08:12:47.873Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0584",
+    "customerId": "CUST464",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-12-17T00:58:50.545Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0585",
+    "customerId": "CUST207",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-01-26T22:25:40.361Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0586",
+    "customerId": "CUST449",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-08-14T03:20:54.919Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0587",
+    "customerId": "CUST750",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-09-14T01:22:05.889Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0588",
+    "customerId": "CUST023",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-07-03T17:01:01.302Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0589",
+    "customerId": "CUST621",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-11-22T19:33:29.187Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0590",
+    "customerId": "CUST213",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-09-02T20:34:21.569Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0591",
+    "customerId": "CUST643",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-11-18T05:47:51.949Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0592",
+    "customerId": "CUST399",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-03-03T08:48:02.504Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0593",
+    "customerId": "CUST348",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-11-17T17:16:27.181Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0594",
+    "customerId": "CUST301",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-03-26T00:04:03.862Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0595",
+    "customerId": "CUST347",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-09-18T20:59:10.626Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0596",
+    "customerId": "CUST015",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-03-05T14:23:48.010Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0597",
+    "customerId": "CUST517",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-11-16T01:57:23.492Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0598",
+    "customerId": "CUST311",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-08-14T06:47:21.632Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0599",
+    "customerId": "CUST020",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-10-29T20:49:34.322Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0600",
+    "customerId": "CUST376",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-03-16T19:06:22.246Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0601",
+    "customerId": "CUST322",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-07-19T19:37:47.670Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0602",
+    "customerId": "CUST517",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-12-03T04:13:36.466Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0603",
+    "customerId": "CUST427",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-02-09T20:01:46.207Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0604",
+    "customerId": "CUST398",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-03-21T04:12:42.035Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0605",
+    "customerId": "CUST577",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-11-27T07:05:01.660Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0606",
+    "customerId": "CUST636",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-03-26T09:02:49.899Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0607",
+    "customerId": "CUST665",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-04-07T05:30:47.791Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0608",
+    "customerId": "CUST106",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-09-26T01:16:03.688Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0609",
+    "customerId": "CUST102",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-02-11T15:03:19.590Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0610",
+    "customerId": "CUST673",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-10-28T01:31:17.549Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0611",
+    "customerId": "CUST273",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-04-26T23:49:44.617Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0612",
+    "customerId": "CUST653",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-08-24T09:23:42.007Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0613",
+    "customerId": "CUST079",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-02-16T05:11:06.745Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0614",
+    "customerId": "CUST161",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-03-13T21:24:15.427Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0615",
+    "customerId": "CUST045",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-06-22T01:06:54.515Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0616",
+    "customerId": "CUST161",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-08-19T17:05:48.488Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0617",
+    "customerId": "CUST402",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-09-02T10:17:45.108Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0618",
+    "customerId": "CUST459",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-09-19T01:54:05.433Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0619",
+    "customerId": "CUST073",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-04-27T15:28:24.891Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0620",
+    "customerId": "CUST348",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-11-14T20:34:47.684Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0621",
+    "customerId": "CUST029",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-11-28T04:14:51.226Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0622",
+    "customerId": "CUST680",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-09-02T10:04:34.854Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0623",
+    "customerId": "CUST359",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-07-12T04:01:02.164Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0624",
+    "customerId": "CUST034",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-03-31T00:08:40.886Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0625",
+    "customerId": "CUST294",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-02-14T21:34:06.749Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0626",
+    "customerId": "CUST766",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-02-24T00:01:36.445Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0627",
+    "customerId": "CUST688",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-05-03T12:50:30.020Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0628",
+    "customerId": "CUST224",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-08-29T15:52:27.106Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0629",
+    "customerId": "CUST212",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-04-06T20:14:01.597Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0630",
+    "customerId": "CUST533",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-09-05T09:44:27.897Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0631",
+    "customerId": "CUST510",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-04-20T08:50:42.247Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0632",
+    "customerId": "CUST784",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-07-04T09:06:30.251Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0633",
+    "customerId": "CUST454",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-05-11T21:59:43.783Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0634",
+    "customerId": "CUST716",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-07-01T08:30:18.206Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0635",
+    "customerId": "CUST692",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-08-26T04:59:18.479Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0636",
+    "customerId": "CUST577",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-10-01T10:17:43.229Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0637",
+    "customerId": "CUST001",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-06-05T10:03:39.177Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0638",
+    "customerId": "CUST700",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-03-08T01:53:43.841Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0639",
+    "customerId": "CUST317",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-03-15T07:51:51.870Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0640",
+    "customerId": "CUST584",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-02-04T01:45:32.796Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0641",
+    "customerId": "CUST463",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-08-25T01:23:22.091Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0642",
+    "customerId": "CUST222",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-02-02T21:48:27.228Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0643",
+    "customerId": "CUST086",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-02-02T13:33:59.886Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0644",
+    "customerId": "CUST528",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-09-07T12:47:59.324Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0645",
+    "customerId": "CUST032",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-09-23T20:08:56.755Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0646",
+    "customerId": "CUST733",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-08-22T16:16:51.943Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0647",
+    "customerId": "CUST375",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-07-03T06:13:41.580Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0648",
+    "customerId": "CUST190",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-11-20T20:42:12.416Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0649",
+    "customerId": "CUST177",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-04-12T00:25:39.204Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0650",
+    "customerId": "CUST586",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-02-25T03:18:58.006Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0651",
+    "customerId": "CUST097",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-11-28T17:13:36.859Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0652",
+    "customerId": "CUST124",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-10-17T01:26:52.131Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0653",
+    "customerId": "CUST753",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-08-12T13:43:33.675Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0654",
+    "customerId": "CUST211",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-08-23T09:24:55.273Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0655",
+    "customerId": "CUST129",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-11-22T22:24:13.723Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0656",
+    "customerId": "CUST028",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-11-04T09:29:29.943Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0657",
+    "customerId": "CUST577",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-09-23T04:24:59.097Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0658",
+    "customerId": "CUST059",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-04-15T00:39:04.108Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0659",
+    "customerId": "CUST010",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-09-06T17:35:55.571Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0660",
+    "customerId": "CUST045",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-05-01T22:02:32.195Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0661",
+    "customerId": "CUST143",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-02-23T09:17:00.424Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0662",
+    "customerId": "CUST756",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-06-08T13:34:51.604Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0663",
+    "customerId": "CUST502",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-09-29T17:57:09.824Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0664",
+    "customerId": "CUST160",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-04-15T00:35:55.067Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0665",
+    "customerId": "CUST783",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-10-08T13:44:22.530Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0666",
+    "customerId": "CUST170",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-06-09T09:07:38.719Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0667",
+    "customerId": "CUST167",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-07-07T22:45:57.896Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0668",
+    "customerId": "CUST610",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-05-20T06:40:32.994Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0669",
+    "customerId": "CUST212",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-12-09T15:42:38.050Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0670",
+    "customerId": "CUST325",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-06-18T00:24:35.499Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0671",
+    "customerId": "CUST036",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-08-26T18:58:01.745Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0672",
+    "customerId": "CUST372",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-07-03T07:16:13.861Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0673",
+    "customerId": "CUST630",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-08-05T23:18:14.496Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0674",
+    "customerId": "CUST278",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-11-17T19:31:26.788Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0675",
+    "customerId": "CUST230",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-08-25T04:30:01.648Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0676",
+    "customerId": "CUST306",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-04-20T18:40:11.450Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0677",
+    "customerId": "CUST534",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-01-27T08:13:42.415Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0678",
+    "customerId": "CUST347",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-12-04T14:09:14.217Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0679",
+    "customerId": "CUST558",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-10-28T21:18:38.834Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0680",
+    "customerId": "CUST199",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-07-18T06:32:36.811Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0681",
+    "customerId": "CUST374",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-02-23T00:47:35.694Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0682",
+    "customerId": "CUST207",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-04-17T19:43:22.665Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0683",
+    "customerId": "CUST707",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-01-19T14:25:57.396Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0684",
+    "customerId": "CUST372",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-08-14T20:24:04.273Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0685",
+    "customerId": "CUST602",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-08-19T03:24:34.385Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0686",
+    "customerId": "CUST702",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-09-05T19:05:56.275Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0687",
+    "customerId": "CUST109",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-09-30T02:50:37.448Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0688",
+    "customerId": "CUST602",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-04-27T16:37:21.144Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0689",
+    "customerId": "CUST255",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-11-03T04:01:39.073Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0690",
+    "customerId": "CUST061",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-11-22T08:18:16.572Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0691",
+    "customerId": "CUST618",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-08-30T00:14:41.897Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0692",
+    "customerId": "CUST638",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-11-17T18:41:28.877Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0693",
+    "customerId": "CUST528",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-04-02T19:34:55.971Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0694",
+    "customerId": "CUST510",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-12-30T23:43:55.612Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0695",
+    "customerId": "CUST789",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-11-25T16:47:04.310Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0696",
+    "customerId": "CUST293",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-09-19T08:10:28.040Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0697",
+    "customerId": "CUST714",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-08-11T02:13:36.059Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0698",
+    "customerId": "CUST683",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-01-19T03:13:13.227Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0699",
+    "customerId": "CUST327",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-05-27T05:12:33.676Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0700",
+    "customerId": "CUST485",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-04-22T15:37:57.051Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0701",
+    "customerId": "CUST712",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-12-30T03:13:17.679Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0702",
+    "customerId": "CUST796",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-07-16T16:16:04.094Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0703",
+    "customerId": "CUST043",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-09-12T03:03:47.835Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0704",
+    "customerId": "CUST759",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-10-22T04:52:51.678Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0705",
+    "customerId": "CUST337",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-03-01T04:08:51.917Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0706",
+    "customerId": "CUST426",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-07-31T06:43:59.623Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0707",
+    "customerId": "CUST231",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-02-02T03:47:18.462Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0708",
+    "customerId": "CUST602",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-03-06T21:42:18.073Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0709",
+    "customerId": "CUST392",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-04-12T13:03:33.273Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0710",
+    "customerId": "CUST609",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-07-10T12:25:57.895Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0711",
+    "customerId": "CUST712",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-07-22T01:38:29.845Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0712",
+    "customerId": "CUST444",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-02-22T13:24:45.992Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0713",
+    "customerId": "CUST269",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-03-31T10:04:56.733Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0714",
+    "customerId": "CUST053",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-01-07T19:37:17.137Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0715",
+    "customerId": "CUST619",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-04-03T11:24:41.303Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0716",
+    "customerId": "CUST743",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-09-10T08:52:53.244Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0717",
+    "customerId": "CUST084",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-02-23T20:02:46.737Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0718",
+    "customerId": "CUST282",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-05-02T21:22:57.775Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0719",
+    "customerId": "CUST399",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-10-13T00:22:56.697Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0720",
+    "customerId": "CUST551",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-05-18T16:31:28.233Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0721",
+    "customerId": "CUST749",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-01-15T01:38:51.956Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0722",
+    "customerId": "CUST249",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-06-16T20:03:17.987Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0723",
+    "customerId": "CUST486",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-02-09T13:10:19.976Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0724",
+    "customerId": "CUST020",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-11-17T05:02:07.840Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0725",
+    "customerId": "CUST061",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-04-06T04:41:22.411Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0726",
+    "customerId": "CUST630",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-04-18T22:35:04.351Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0727",
+    "customerId": "CUST582",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-04-22T08:44:34.375Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0728",
+    "customerId": "CUST488",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-07-27T05:06:55.090Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0729",
+    "customerId": "CUST295",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-10-10T02:47:46.774Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0730",
+    "customerId": "CUST045",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-05-08T13:35:29.443Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0731",
+    "customerId": "CUST589",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-08-13T07:37:48.210Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0732",
+    "customerId": "CUST475",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-09-12T15:55:49.081Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0733",
+    "customerId": "CUST701",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-03-18T10:14:12.633Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0734",
+    "customerId": "CUST013",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-02-11T02:13:14.230Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0735",
+    "customerId": "CUST451",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-11-02T15:01:27.773Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0736",
+    "customerId": "CUST532",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-11-12T07:42:21.117Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0737",
+    "customerId": "CUST119",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-11-23T16:56:52.129Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0738",
+    "customerId": "CUST012",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-05-27T06:48:13.237Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0739",
+    "customerId": "CUST153",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-03-28T04:48:05.257Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0740",
+    "customerId": "CUST468",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-07-14T07:29:56.766Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0741",
+    "customerId": "CUST761",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-09-30T13:48:35.559Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0742",
+    "customerId": "CUST429",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-01-16T04:02:46.155Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0743",
+    "customerId": "CUST248",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-05-08T13:56:50.918Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0744",
+    "customerId": "CUST609",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-10-31T16:01:32.413Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0745",
+    "customerId": "CUST752",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-01-11T11:13:09.366Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0746",
+    "customerId": "CUST175",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-05-04T20:51:45.231Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0747",
+    "customerId": "CUST555",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-02-09T10:07:31.573Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0748",
+    "customerId": "CUST577",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-03-24T23:52:37.414Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0749",
+    "customerId": "CUST764",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-08-08T10:46:41.540Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0750",
+    "customerId": "CUST178",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-09-08T19:01:01.353Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0751",
+    "customerId": "CUST603",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-10-18T04:23:06.732Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0752",
+    "customerId": "CUST433",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-08-02T08:44:28.076Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0753",
+    "customerId": "CUST680",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-06-03T18:43:27.901Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0754",
+    "customerId": "CUST311",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-05-23T18:40:44.164Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0755",
+    "customerId": "CUST070",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-06-14T20:35:04.181Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0756",
+    "customerId": "CUST163",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-02-26T17:34:45.225Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0757",
+    "customerId": "CUST079",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-05-31T19:04:06.184Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0758",
+    "customerId": "CUST103",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-05-02T01:56:46.052Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0759",
+    "customerId": "CUST059",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-05-29T20:15:17.277Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0760",
+    "customerId": "CUST600",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-11-04T22:45:49.481Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0761",
+    "customerId": "CUST706",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-10-24T09:45:35.641Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0762",
+    "customerId": "CUST369",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-02-18T09:17:18.835Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0763",
+    "customerId": "CUST748",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-09-12T02:02:42.042Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0764",
+    "customerId": "CUST518",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-03-25T01:03:23.536Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0765",
+    "customerId": "CUST651",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-09-17T18:21:31.242Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0766",
+    "customerId": "CUST017",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-09-13T23:24:25.671Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0767",
+    "customerId": "CUST331",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-10-24T16:33:21.931Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0768",
+    "customerId": "CUST230",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-11-05T11:26:52.104Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0769",
+    "customerId": "CUST560",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-07-03T21:28:10.867Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0770",
+    "customerId": "CUST609",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2026-04-20T13:41:47.125Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0771",
+    "customerId": "CUST385",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-04-03T01:13:52.387Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0772",
+    "customerId": "CUST692",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-12-14T11:55:08.165Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0773",
+    "customerId": "CUST362",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-03-16T23:28:49.587Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0774",
+    "customerId": "CUST378",
+    "channel": "email",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-12-22T14:39:22.733Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0775",
+    "customerId": "CUST385",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-01-18T23:13:08.823Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0776",
+    "customerId": "CUST772",
+    "channel": "email",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-05-23T08:43:50.332Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0777",
+    "customerId": "CUST265",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2026-03-30T04:15:26.889Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0778",
+    "customerId": "CUST394",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-08-30T03:39:02.623Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0779",
+    "customerId": "CUST346",
+    "channel": "email",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-08-31T11:23:29.088Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0780",
+    "customerId": "CUST282",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-05-17T06:00:15.802Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0781",
+    "customerId": "CUST715",
+    "channel": "sms",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-11-29T02:06:45.806Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0782",
+    "customerId": "CUST451",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-08-31T20:55:10.356Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0783",
+    "customerId": "CUST545",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-10-07T08:59:02.435Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0784",
+    "customerId": "CUST229",
+    "channel": "wa",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2025-11-01T00:18:49.602Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0785",
+    "customerId": "CUST035",
+    "channel": "sms",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2026-05-06T16:11:40.690Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0786",
+    "customerId": "CUST608",
+    "channel": "email",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-07-16T20:05:01.015Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0787",
+    "customerId": "CUST473",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-04-11T11:08:45.319Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0788",
+    "customerId": "CUST162",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-09-12T15:21:28.139Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0789",
+    "customerId": "CUST027",
+    "channel": "sms",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-12-13T04:58:06.528Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0790",
+    "customerId": "CUST478",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-11-13T19:12:44.743Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0791",
+    "customerId": "CUST227",
+    "channel": "wa",
+    "body": "Selamat! Anda memenangkan giveaway.",
+    "sentAt": "2025-09-15T21:11:44.291Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0792",
+    "customerId": "CUST267",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-07-20T16:18:29.100Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0793",
+    "customerId": "CUST160",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-06-10T06:15:35.524Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0794",
+    "customerId": "CUST301",
+    "channel": "sms",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-08-04T21:13:55.722Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0795",
+    "customerId": "CUST390",
+    "channel": "wa",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2025-08-27T20:38:45.783Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0796",
+    "customerId": "CUST411",
+    "channel": "email",
+    "body": "Terima kasih telah menjadi pelanggan kami!",
+    "sentAt": "2026-03-26T15:18:09.302Z",
+    "read": true
+  },
+  {
+    "messageId": "MSG0797",
+    "customerId": "CUST064",
+    "channel": "wa",
+    "body": "Dapatkan diskon khusus minggu ini.",
+    "sentAt": "2025-06-09T22:04:53.954Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0798",
+    "customerId": "CUST176",
+    "channel": "sms",
+    "body": "Kami butuh konfirmasi jadwal untuk layanan Anda.",
+    "sentAt": "2026-03-30T10:02:33.556Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0799",
+    "customerId": "CUST345",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-06-07T06:07:44.054Z",
+    "read": false
+  },
+  {
+    "messageId": "MSG0800",
+    "customerId": "CUST640",
+    "channel": "wa",
+    "body": "Ada pembaruan penting tentang pesanan Anda.",
+    "sentAt": "2025-12-14T13:37:37.228Z",
+    "read": true
+  }
+]

@@ -3,17 +3,14 @@ import PageHeader from "../components/PageHeader";
 import OrderForm from "../components/OrderForm";
 import OrderFilterBar from "../components/OrderFilterBar";
 import OrdersTable from "../components/OrdersTable";
-import ordersData from "../data/orders";
+import ordersData from "../data/orders.json";
 
 export default function Orders() {
     const [orders, setOrders] = useState(ordersData);
     const [showForm, setShowForm] = useState(false);
     
-    // Search & Filter State
     const [searchQuery, setSearchQuery] = useState("");
     const [filterStatus, setFilterStatus] = useState("All");
-
-    // Pagination State
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
 
@@ -24,7 +21,6 @@ export default function Orders() {
         orderDate: ""
     });
 
-    // Reset page to 1 when search or filter changes
     useEffect(() => {
         setCurrentPage(1);
     }, [searchQuery, filterStatus]);
@@ -61,18 +57,17 @@ export default function Orders() {
         return matchesSearch && matchesFilter;
     });
 
-    // Pagination logic
     const totalPages = Math.ceil(filteredOrders.length / itemsPerPage);
     const currentOrders = filteredOrders.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
     return (
-        <div className="p-8 relative">
-            <PageHeader title="Pemesanan">
+        <div className="p-8 relative font-poppins bg-[#F9F7F5] min-h-screen">
+            <PageHeader title="Pemesanan" description="Kelola semua pesanan wedding di satu tempat">
                 <button 
                     onClick={() => setShowForm(true)}
                     className="bg-[#10B981] hover:bg-emerald-600 text-white font-bold py-2.5 px-6 rounded-xl shadow-md shadow-emerald-100 transition-all flex items-center gap-2 text-sm"
                 >
-                    + Add Pemesanan
+                    + Tambah Pesanan
                 </button>
             </PageHeader>
 

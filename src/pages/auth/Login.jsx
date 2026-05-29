@@ -34,7 +34,7 @@ export default function Login() {
     }
 
     return (
-        <div className="w-full max-w-[360px] mx-auto flex flex-col shadow-[0_15px_40px_rgba(0,0,0,0.10)] rounded-[28px] overflow-hidden bg-white border border-gray-100">
+        <div className="w-full max-w-[360px] mx-auto flex flex-col shadow-[0_15px_40px_rgba(0,0,0,0.10)] rounded-[28px] overflow-hidden bg-white border border-gray-100 font-poppins">
 
             {/* ── Foto Lily ── */}
             <div className="h-40 w-full overflow-hidden bg-emerald-50">
@@ -50,18 +50,24 @@ export default function Login() {
                 />
             </div>
 
-            {/* ── Form ── */}
-            <div className="px-8 pb-8 pt-6">
-
-                {/* Heading */}
-                <div className="mb-6 text-center">
-                    <h2 className="text-xl font-bold text-gray-900 tracking-tight">
-                        Log in
-                    </h2>
-                    <p className="text-[#10B981] text-[9px] font-bold mt-1 tracking-[0.2em] uppercase">
-                        Wedding Organizer
+            {/* ── Header atas ── */}
+            <div className="px-8 pt-6">
+                <div className="mb-4 text-center">
+                    <p className="text-[9px] uppercase tracking-[0.2em] text-[#10B981] font-bold">
+                        SayYes
+                    </p>
+                    <h1 className="text-2xl font-extrabold text-gray-900">
+                        WeddingDay
+                    </h1>
+                    <p className="text-xs text-gray-500 mt-2">
+                        Selamat datang, silakan login untuk melanjutkan.
                     </p>
                 </div>
+            </div>
+
+            {/* ── Form ── */}
+            <div className="px-8 pb-8">
+
 
                 {/* Error */}
                 {error && (

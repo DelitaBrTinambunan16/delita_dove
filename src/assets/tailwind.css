@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
 @import "tailwindcss";
 
-/* Fonts */
+
+/* Fonts - Tetap dipertahankan sebagai fallback aman */
 @font-face {
   font-family: 'Barlow';
   src: url('./assets/fonts/Barlow-Regular.ttf');
@@ -22,9 +24,12 @@
   --color-success: #22C55E;
   --color-danger: #EF4444;
   
-  /* Typography */
-  --font-poppins: "Poppins", sans-serif;
-  --font-barlow: "Barlow", sans-serif;
+  /* UPGRADE FONT JADI KEREN:
+    - --font-poppins dialihkan ke 'Plus Jakarta Sans' (sangat bersih untuk teks & menu)
+    - --font-barlow dialihkan ke 'Space Grotesk' (gaya tech-luxury, mantap untuk angka & judul)
+  */
+  --font-poppins: "Plus Jakarta Sans", "Poppins", sans-serif;
+  --font-barlow: "Space Grotesk", "Barlow", sans-serif;
   
   /* Custom Radius */
   --radius-xl: 16px;
@@ -34,11 +39,11 @@
 /* Base style */
 @layer base {
   body {
-    @apply font-poppins bg-[--color-natural-bg] text-gray-900 antialiased;
+    @apply font-poppins bg-[--color-natural-bg] text-gray-900 antialiased tracking-tight;
   }
   
   h1, h2, h3 {
-    @apply font-bold tracking-tight;
+    @apply font-barlow font-bold tracking-tight text-slate-900;
   }
 }
 

@@ -1,10 +1,15 @@
-export default function PageHeader({ title, children }) {
+export default function PageHeader({ title, description, children }) {
     return (
-        <div id="pageheader-container" className="flex items-center justify-between pb-2 pt-1">
-            <div id="pageheader-left" className="flex flex-col">
-                <span id="page-title" className="text-xl font-serif text-gray-900">
+        <div id="pageheader-container" className="flex flex-col gap-1 pb-2 pt-1 md:flex-row md:items-center md:justify-between">
+            <div id="pageheader-left" className="flex flex-col gap-1">
+                <span id="page-title" className="text-2xl font-bold font-poppins text-stone-800">
                     {title}
                 </span>
+                {description && (
+                    <p className="text-sm font-medium font-poppins text-stone-400">
+                        {description}
+                    </p>
+                )}
             </div>
             {children && (
                 <div id="pageheader-right">

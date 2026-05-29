@@ -45,16 +45,16 @@ export default function Products() {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 font-poppins bg-[#F9F7F5] min-h-screen p-8">
       <PageHeader
-        title="Products"
-        breadcrumb={["Dashboard", "Product List"]}
+        title="Produk"
+        description="Atur paket produk pernikahan dengan cepat"
       >
         <button
           onClick={() => setShowForm(true)}
-          className="bg-[#10B981] hover:bg-emerald-600 text-white font-bold py-2.5 px-6 rounded-xl shadow-md shadow-emerald-100 transition-all flex items-center gap-2 text-sm"
+          className="bg-[var(--color-primary)] hover:bg-emerald-600 text-white font-bold py-2.5 px-6 rounded-2xl shadow-md shadow-emerald-100 transition-all flex items-center gap-2 text-sm"
         >
-          Add Product
+          Tambah Produk
         </button>
       </PageHeader>
 

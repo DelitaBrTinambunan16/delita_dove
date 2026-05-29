@@ -56,7 +56,7 @@ export default function ProductCard({ product, onDelete }) {
           loading="lazy"
         />
         {/* Label Kategori */}
-        <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-blue-600 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider flex items-center gap-1 shadow-sm">
+          <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-blue-600 text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider flex items-center gap-1 shadow-sm">
           <FaTag size={8} /> {category || "WEDDING"}
         </span>
       </div>
@@ -66,7 +66,7 @@ export default function ProductCard({ product, onDelete }) {
         
         {/* Bagian Atas: Kode */}
         <div className="flex justify-end mb-1">
-          <span className="text-gray-400 text-[10px] font-mono font-semibold tracking-wider">
+          <span className="text-gray-400 text-[10px] font-medium font-semibold tracking-wider">
             {code}
           </span>
         </div>
@@ -77,7 +77,7 @@ export default function ProductCard({ product, onDelete }) {
             {title}
           </h3>
           <p className="text-gray-400 text-xs mt-1 font-medium">
-            Vendor: <span className="text-gray-500 font-semibold">{brand || "WeddingDay"}</span>
+            Vendor: <span className="text-gray-500 font-semibold">{brand || "SayYes WeddingDay"}</span>
           </p>
         </div>
 
