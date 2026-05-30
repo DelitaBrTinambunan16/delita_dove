@@ -1,16 +1,46 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaSearch, FaChevronRight, FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
+import {
+  FaSearch,
+  FaChevronRight,
+  FaCheckCircle,
+  FaExclamationTriangle,
+} from "react-icons/fa";
 import PageHeader from "../components/PageHeader";
 import customersData from "../data/customers.json";
 
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+} from "@/components/ui/avatar";
+
+//  Helper: ambil inisial dari nama //
+function getInitials(name = "") {
+  const parts = name.trim().split(" ");
+  if (parts.length === 1) return parts[0][0]?.toUpperCase() ?? "?";
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+}
+
+//  Helper: warna avatar fallback berdasarkan loyalty //
+function getAvatarColor(loyalty) {
+  switch (loyalty) {
+    case "Platinum": return "bg-purple-100 text-purple-700";
+    case "Gold":     return "bg-amber-100 text-amber-700";
+    case "Silver":   return "bg-slate-100 text-slate-600";
+    case "Bronze":   return "bg-orange-100 text-orange-700";
+    default:         return "bg-gray-100 text-gray-500";
+  }
+}
+
 export default function Customers() {
   const navigate = useNavigate();
-  
-  const [searchTerm, setSearchTerm] = useState("");
+
+  const [searchTerm, setSearchTerm]     = useState("");
   const [loyaltyFilter, setLoyaltyFilter] = useState("All");
-  const [statusFilter, setStatusFilter] = useState("All");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [statusFilter, setStatusFilter]  = useState("All");
+  const [currentPage, setCurrentPage]   = useState(1);
+
   const itemsPerPage = 10;
 
   useEffect(() => {
@@ -23,95 +53,104 @@ export default function Customers() {
     return parts[parts.length - 1].trim();
   };
 
-  // ✅ FIX: Tambahkan null-safe di baris nameMatch & emailMatch
-  const filteredCustomers = customersData.filter((customer) => {
-    const nameMatch = (customer.customerName || "").toLowerCase().includes((searchTerm || "").toLowerCase());
-    const emailMatch = (customer.email || "").toLowerCase().includes((searchTerm || "").toLowerCase());
-    const matchesSearch = nameMatch || emailMatch;
-    const matchesLoyalty = loyaltyFilter === "All" || customer.loyalty === loyaltyFilter;
-    
-    let matchesStatus = true;
-    if (statusFilter !== "All") {
-      if (statusFilter === "Aktif") {
-        matchesStatus = customer.status === "Active";
-      } else if (statusFilter === "Tidak Aktif") {
-        matchesStatus = customer.status === "Inactive";
-      }
-    }
+  const filteredCustomers = useMemo(() => {
+    return customersData.filter((customer) => {
+      const name  = customer.customerName ?? "";
+      const email = customer.email ?? "";
+      const keyword = searchTerm.toLowerCase();
 
-    return matchesSearch && matchesLoyalty && matchesStatus;
-  });
+      const matchesSearch =
+        name.toLowerCase().includes(keyword) ||
+        email.toLowerCase().includes(keyword);
+
+      const matchesLoyalty =
+        loyaltyFilter === "All" || customer.loyalty === loyaltyFilter;
+
+      const matchesStatus =
+        statusFilter === "All"
+          ? true
+          : statusFilter === "Aktif"
+          ? customer.status === "Active"
+          : customer.status === "Inactive";
+
+      return matchesSearch && matchesLoyalty && matchesStatus;
+    });
+  }, [searchTerm, loyaltyFilter, statusFilter]);
 
   const totalPages = Math.ceil(filteredCustomers.length / itemsPerPage);
-  const currentCustomers = filteredCustomers.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
+
+  const currentCustomers = useMemo(() => {
+    const start = (currentPage - 1) * itemsPerPage;
+    return filteredCustomers.slice(start, start + itemsPerPage);
+  }, [filteredCustomers, currentPage]);
 
   const getLoyaltyBadgeColor = (loyalty) => {
     switch (loyalty) {
       case "Platinum": return "bg-purple-100 text-purple-700 border-purple-200";
-      case "Gold": return "bg-amber-100 text-amber-700 border-amber-200";
-      case "Silver": return "bg-slate-100 text-slate-700 border-slate-200";
-      case "Bronze": return "bg-orange-100 text-orange-700 border-orange-200";
-      default: return "bg-gray-100 text-gray-700 border-gray-200";
+      case "Gold":     return "bg-amber-100 text-amber-700 border-amber-200";
+      case "Silver":   return "bg-slate-100 text-slate-700 border-slate-200";
+      case "Bronze":   return "bg-orange-100 text-orange-700 border-orange-200";
+      default:         return "bg-gray-100 text-gray-700 border-gray-200";
     }
   };
 
-  const getStatusBadgeColor = (status) => {
-    return status === "Active"
+  const getStatusBadgeColor = (status) =>
+    status === "Active"
       ? "bg-emerald-100 text-emerald-700 border-emerald-200"
       : "bg-rose-100 text-rose-700 border-rose-200";
-  };
 
   const getComplaintsBadge = (complaints) => {
-    if (!complaints || complaints.length === 0) {
+    if (!Array.isArray(complaints) || complaints.length === 0) {
       return (
         <span className="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded bg-gray-50 text-gray-500 border border-gray-100">
-          <FaCheckCircle className="text-gray-400" size={10} /> Tidak ada
+          <FaCheckCircle size={10} /> Tidak ada
         </span>
       );
     }
-    const pendingCount = complaints.filter(c => !c.resolved).length;
-    if (pendingCount > 0) {
+    const pending = complaints.filter((c) => !c?.resolved).length;
+    if (pending > 0) {
       return (
-        <span className="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded bg-amber-50 text-amber-700 border border-amber-200 font-medium">
-          <FaExclamationTriangle className="text-amber-500" size={10} /> {complaints.length} Komplain ({pendingCount} pending)
+        <span className="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded bg-amber-50 text-amber-700 border border-amber-200">
+          <FaExclamationTriangle size={10} />
+          {complaints.length} ({pending} pending)
         </span>
       );
     }
     return (
       <span className="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
-        <FaCheckCircle className="text-emerald-500" size={10} /> {complaints.length} Selesai
+        <FaCheckCircle size={10} />
+        {complaints.length} selesai
       </span>
     );
   };
 
   return (
-    <div className="p-8 relative font-poppins bg-[#F9F7F5] min-h-screen">
+    <div className="p-8 font-poppins bg-[#F9F7F5] min-h-screen">
       <PageHeader
         title="Data Customer"
-        description="Kelola data operasional customer, tingkat membership, status aktif, dan catatan admin"
+        description="Kelola data customer, membership, status, dan aktivitas"
       />
 
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mt-4">
-        <div className="p-4 border-b border-gray-50 flex flex-col sm:flex-row justify-between items-center gap-3">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 mt-4 overflow-hidden">
+
+        {/* ── FILTER ── */}
+        <div className="p-4 border-b flex flex-col sm:flex-row gap-3 justify-between">
+
           <div className="relative w-full sm:w-80">
             <input
-              type="text"
-              placeholder="Cari nama atau email..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-gray-50 border border-gray-200 outline-none focus:border-[var(--color-primary)] focus:ring-1 focus:ring-emerald-100 transition-all text-sm font-poppins"
+              placeholder="Cari nama atau email..."
+              className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border rounded-xl outline-none focus:border-emerald-500 text-sm"
             />
-            <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-300 text-xs" />
+            <FaSearch className="absolute left-3 top-3 text-gray-300" />
           </div>
 
-          <div className="flex items-center gap-3 w-full sm:w-auto">
+          <div className="flex gap-3 flex-wrap">
             <select
               value={loyaltyFilter}
               onChange={(e) => setLoyaltyFilter(e.target.value)}
-              className="w-full sm:w-auto border border-gray-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#10B981] bg-gray-50 font-medium text-gray-600 font-poppins"
+              className="px-4 py-2.5 border rounded-xl bg-gray-50 text-sm outline-none focus:border-emerald-500"
             >
               <option value="All">Semua Membership</option>
               <option value="Bronze">Bronze</option>
@@ -123,70 +162,94 @@ export default function Customers() {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="w-full sm:w-auto border border-gray-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-[#10B981] bg-gray-50 font-medium text-gray-600 font-poppins"
+              className="px-4 py-2.5 border rounded-xl bg-gray-50 text-sm outline-none focus:border-emerald-500"
             >
               <option value="All">Semua Status</option>
               <option value="Aktif">Aktif</option>
               <option value="Tidak Aktif">Tidak Aktif</option>
             </select>
 
-            <span className="text-xs text-gray-400 whitespace-nowrap hidden sm:block">
-              {filteredCustomers.length} pelanggan
+            <span className="self-center text-xs text-gray-400 hidden sm:block">
+              {filteredCustomers.length} customer
             </span>
           </div>
         </div>
 
+        {/* ── TABLE ── */}
         <div className="overflow-x-auto">
-          <table className="w-full text-sm text-left font-poppins">
-            <thead className="text-xs text-gray-400 uppercase tracking-wider border-b border-gray-50">
+          <table className="w-full text-sm">
+            <thead className="text-xs text-gray-400 uppercase border-b bg-gray-50/50">
               <tr>
-                <th className="px-6 py-4 font-semibold">ID Customer</th>
-                <th className="px-6 py-4 font-semibold">Nama Lengkap</th>
-                <th className="px-6 py-4 font-semibold">No. HP</th>
-                <th className="px-6 py-4 font-semibold">Email</th>
-                <th className="px-6 py-4 font-semibold">Kota</th>
-                <th className="px-6 py-4 font-semibold text-center">Level Membership</th>
-                <th className="px-6 py-4 font-semibold text-center">Status Aktif</th>
-                <th className="px-6 py-4 font-semibold">Riwayat Komplain</th>
-                <th className="px-6 py-4 font-semibold">Catatan Admin</th>
-                <th className="px-6 py-4 font-semibold text-center">Aksi</th>
+                <th className="p-4 text-left">Customer</th>
+                <th className="p-4 text-left">HP</th>
+                <th className="p-4 text-left">Kota</th>
+                <th className="p-4 text-left">Membership</th>
+                <th className="p-4 text-left">Status</th>
+                <th className="p-4 text-left">Komplain</th>
+                <th className="p-4 text-left">Catatan</th>
+                <th className="p-4 text-center">Aksi</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50">
-              {currentCustomers.length > 0 ? (
-                currentCustomers.map((customer) => (
-                  <tr
-                    key={customer.customerId}
-                    className="hover:bg-gray-50/50 transition-colors cursor-pointer group"
-                    onClick={() => navigate(`/customers/${customer.customerId}`, { state: { customer } })}
-                  >
-                    <td className="px-6 py-5 font-semibold text-gray-500 font-mono text-xs">{customer.customerId}</td>
-                    <td className="px-6 py-5 font-bold text-gray-800 group-hover:text-[#10B981] transition-colors">{customer.customerName}</td>
-                    <td className="px-6 py-5 text-gray-500 font-mono text-[13px]">{customer.phone}</td>
-                    <td className="px-6 py-5 text-gray-500 font-light truncate max-w-[160px]">{customer.email}</td>
-                    <td className="px-6 py-5 text-gray-600">{getCity(customer.address)}</td>
-                    <td className="px-6 py-5 text-center">
-                      <span className={`inline-block text-[11px] font-bold px-2.5 py-1 rounded-full border ${getLoyaltyBadgeColor(customer.loyalty)}`}>
-                        {customer.loyalty}
-                      </span>
-                    </td>
-                    <td className="px-6 py-5 text-center">
-                      <span className={`inline-block text-[11px] font-bold px-2.5 py-1 rounded-full border ${getStatusBadgeColor(customer.status)}`}>
-                        {customer.status === "Active" ? "Aktif" : "Tidak Aktif"}
-                      </span>
-                    </td>
-                    <td className="px-6 py-5">{getComplaintsBadge(customer.complaints)}</td>
-                    <td className="px-6 py-5 max-w-[200px] truncate text-gray-400 font-light text-[12px]">{customer.adminNotes || "-"}</td>
-                    <td className="px-6 py-5 text-center">
-                      <div className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-gray-50 border border-gray-100 text-gray-400 group-hover:bg-emerald-50 group-hover:text-[#10B981] group-hover:border-emerald-100 transition-all">
-                        <FaChevronRight size={9} />
+
+            <tbody>
+              {currentCustomers.map((c) => (
+                <tr
+                  key={c.customerId}
+                  onClick={() =>
+                    navigate(`/customers/${c.customerId}`, { state: { c } })
+                  }
+                  className="hover:bg-gray-50 cursor-pointer border-b border-gray-50 transition-colors"
+                >
+                  {/* ✅ ShadCN Avatar di setiap baris customer */}
+                  <td className="p-4">
+                    <div className="flex items-center gap-3">
+                      <Avatar size="default">
+                        <AvatarImage src={c.profilePhoto} alt={c.customerName} />
+                        <AvatarFallback
+                          className={`text-xs font-bold ${getAvatarColor(c.loyalty)}`}
+                        >
+                          {getInitials(c.customerName)}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className="font-semibold text-gray-800 text-sm">
+                          {c.customerName}
+                        </p>
+                        <p className="text-xs text-gray-400">{c.email}</p>
                       </div>
-                    </td>
-                  </tr>
-                ))
-              ) : (
+                    </div>
+                  </td>
+
+                  <td className="p-4 text-gray-600 text-sm">{c.phone}</td>
+                  <td className="p-4 text-gray-600 text-sm">{getCity(c.address)}</td>
+
+                  <td className="p-4">
+                    <span className={`px-2 py-1 rounded border text-xs font-semibold ${getLoyaltyBadgeColor(c.loyalty)}`}>
+                      {c.loyalty}
+                    </span>
+                  </td>
+
+                  <td className="p-4">
+                    <span className={`px-2 py-1 rounded border text-xs font-semibold ${getStatusBadgeColor(c.status)}`}>
+                      {c.status === "Active" ? "Aktif" : "Tidak Aktif"}
+                    </span>
+                  </td>
+
+                  <td className="p-4">{getComplaintsBadge(c.complaints)}</td>
+
+                  <td className="p-4 text-xs text-gray-400 truncate max-w-[150px]">
+                    {c.adminNotes || "-"}
+                  </td>
+
+                  <td className="p-4 text-center">
+                    <FaChevronRight className="mx-auto text-gray-300" />
+                  </td>
+                </tr>
+              ))}
+
+              {currentCustomers.length === 0 && (
                 <tr>
-                  <td colSpan="10" className="px-6 py-8 text-center text-gray-500">
+                  <td colSpan={8} className="py-12 text-center text-gray-400 text-sm">
                     Tidak ada customer yang sesuai filter
                   </td>
                 </tr>
@@ -195,23 +258,26 @@ export default function Customers() {
           </table>
         </div>
 
+        {/* ── PAGINATION ── */}
         {filteredCustomers.length > 0 && (
-          <div className="p-4 border-t border-gray-50 flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0 font-poppins">
-            <span className="text-sm text-gray-500">
-              Menampilkan {(currentPage - 1) * itemsPerPage + 1} hingga {Math.min(currentPage * itemsPerPage, filteredCustomers.length)} dari {filteredCustomers.length} pelanggan
+          <div className="p-4 border-t border-gray-50 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <span className="text-sm text-gray-400">
+              Menampilkan {(currentPage - 1) * itemsPerPage + 1}–
+              {Math.min(currentPage * itemsPerPage, filteredCustomers.length)} dari{" "}
+              {filteredCustomers.length} customer
             </span>
-            <div className="flex space-x-2">
+            <div className="flex gap-2">
               <button
-                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
                 disabled={currentPage === 1}
-                className="px-4 py-2 border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed font-medium transition-colors"
+                className="px-4 py-2 border border-gray-200 rounded-lg text-sm text-gray-500 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition"
               >
                 Sebelumnya
               </button>
               <button
-                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
                 disabled={currentPage === totalPages}
-                className="px-4 py-2 border border-gray-200 rounded-lg text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed font-medium transition-colors"
+                className="px-4 py-2 border border-gray-200 rounded-lg text-sm text-gray-500 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition"
               >
                 Selanjutnya
               </button>
