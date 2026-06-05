@@ -56,15 +56,15 @@ export default function Sidebar() {
         </NavLink>
 
         <NavLink to="/customers" className={menuClass}>
-          <FaUsers size={15} /> <span>Data Customer</span>
+          <FaUsers size={15} /> <span>Customers</span>
         </NavLink>
 
         <NavLink to="/orders" className={menuClass}>
-          <FaClipboardList size={15} /> <span>Pemesanan</span>
+          <FaClipboardList size={15} /> <span>Orders</span>
         </NavLink>
 
         <NavLink to="/products" className={menuClass}>
-          <FaBox size={15} /> <span>Produk</span>
+          <FaBox size={15} /> <span>Products</span>
         </NavLink>
 
         <NavLink to="/campaign" className={menuClass}>
