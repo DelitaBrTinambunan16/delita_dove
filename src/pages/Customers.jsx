@@ -200,7 +200,7 @@ export default function Customers() {
                   }
                   className="hover:bg-gray-50 cursor-pointer border-b border-gray-50 transition-colors"
                 >
-                  {/* ✅ ShadCN Avatar di setiap baris customer */}
+                  {/* // ShadCN Avatar di setiap baris customer // */}
                   <td className="p-4">
                     <div className="flex items-center gap-3">
                       <Avatar size="default">
