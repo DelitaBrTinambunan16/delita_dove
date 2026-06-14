@@ -5,14 +5,19 @@ import NotificationMenu from "./NotificationMenu";
 import ProfileMenu from "./ProfileMenu";
 
 const pageTitles = {
-  "/": "Dashboard",
-  "/customers": "Data Customer",
-  "/orders": "Pemesanan",
-  "/products": "Produk",
-  "/portfolio": "Portofolio",
-  "/auth/login": "Login",
-  "/auth/register": "Register",
-  "/auth/forgot": "Lupa Password",
+  "/": "Home",
+  "/admin": "Dashboard",
+  "/admin/dashboard": "Dashboard",
+  "/admin/customers": "Data Customer",
+  "/admin/orders": "Pemesanan",
+  "/admin/products": "Produk",
+  "/admin/portfolio": "Portofolio",
+  "/admin/campaign": "Campaign",
+  "/admin/message": "Inbox Pesan",
+  "/admin/member": "Member",
+  "/login": "Login",
+  "/register": "Register",
+  "/forgot": "Lupa Password",
 };
 
 export default function Header() {
@@ -30,6 +35,9 @@ export default function Header() {
             <h1 className="text-xl font-semibold text-emerald-600">{title}</h1>
 
             <div className="flex items-center gap-6">
+                <a href="/guest" target="_blank" rel="noreferrer" className="hidden sm:inline-flex items-center justify-center rounded-full border border-emerald-300 bg-emerald-100 px-5 py-2 text-xs font-bold text-emerald-800 transition hover:bg-emerald-200 shadow-sm">
+                  Buka Halaman Guest
+                </a>
                 <SearchInput />
                 <NotificationMenu />
                 <ProfileMenu />

@@ -1,0 +1,38 @@
+export const promoOffers = [
+  {
+    title: "Diskon 20% Paket Dekorasi",
+    code: "WED20",
+    description: "Hemat budget dekorasi pernikahan kamu dengan paket lengkap.",
+    validUntil: "31 Desember 2026",
+    details: "Berlaku untuk pemesanan dekorasi minimal Rp 5.000.000.",
+    image: "https://images.unsplash.com/photo-1522770179533-24471fcdba45?auto=format&fit=crop&w=900&q=80",
+    badge: "Dekorasi",
+  },
+  {
+    title: "Bonus Undangan Digital",
+    code: "INVITEFREE",
+    description: "Dapatkan undangan digital eksklusif yang bisa dibagikan ke tamu.",
+    validUntil: "30 November 2026",
+    details: "Gratis undangan digital untuk paket tamu undangan 100 orang ke atas.",
+    image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=900&q=80",
+    badge: "Undangan",
+  },
+  {
+    title: "Free Gift Card",
+    code: "LOVE2026",
+    description: "Gratis gift card sebagai bonus untuk pemesanan paket tertentu.",
+    validUntil: "15 Desember 2026",
+    details: "Bonus gift card untuk setiap pemesanan paket lengkap dan wedding planner.",
+    image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80",
+    badge: "Gift",
+  },
+  {
+    title: "VIP Tamu Eksklusif",
+    code: "VIP2026",
+    description: "Akses layanan VIP tamu untuk pengalaman wedding lebih istimewa.",
+    validUntil: "31 Desember 2026",
+    details: "Termasuk prioritas booking dan layanan khusus tamu undangan VIP.",
+    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
+    badge: "VIP",
+  },
+];

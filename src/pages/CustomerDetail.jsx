@@ -22,10 +22,12 @@ function InfoRow({ label, value }) {
 }
 
 function SubBadge({ value }) {
-  const yes = value === "Ya" || value === "Yes";
+  const isEmail = typeof value === "string" && value.includes("@");
+  const yes = isEmail || value === "Ya" || value === "Yes";
+  const label = isEmail ? value : yes ? "Ya" : "Belum terdaftar";
   return (
     <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold ${yes ? "bg-emerald-50 text-emerald-600" : "bg-gray-100 text-gray-400"}`}>
-      {yes ? <FaCheckCircle size={9} /> : <FaTimesCircle size={9} />} {value}
+      {yes ? <FaCheckCircle size={9} /> : <FaTimesCircle size={9} />} {label}
     </span>
   );
 }
@@ -40,7 +42,7 @@ export default function CustomerDetail() {
     return (
       <div className="p-8 text-center space-y-3">
         <p className="text-red-500 font-semibold">Pelanggan tidak ditemukan.</p>
-        <Link to="/customers" className="text-[#10B981] text-sm hover:underline">← Kembali</Link>
+        <Link to="/admin/customers" className="text-[#10B981] text-sm hover:underline">← Kembali</Link>
       </div>
     );
   }
@@ -51,7 +53,7 @@ export default function CustomerDetail() {
     <div className="p-6 max-w-4xl mx-auto space-y-4">
 
       {/* BACK */}
-      <Link to="/customers" className="inline-flex items-center gap-2 text-xs text-gray-400 hover:text-[#10B981] font-bold transition">
+      <Link to="/admin/customers" className="inline-flex items-center gap-2 text-xs text-gray-400 hover:text-[#10B981] font-bold transition">
         <FaArrowLeft size={10} /> Kembali ke Daftar Pelanggan
       </Link>
 
@@ -144,7 +146,7 @@ export default function CustomerDetail() {
           </div>
           <div className="py-2.5 border-b border-gray-50 flex justify-between items-center">
             <span className="text-xs text-gray-400 font-medium">Email Sub</span>
-            <SubBadge value={customer.emailSub || customer.emailSubscription} />
+            <SubBadge value={customer.emailSub === "Ya" ? customer.email : customer.emailSub || customer.emailSubscription} />
           </div>
           <div className="py-2.5 flex justify-between items-center">
             <span className="text-xs text-gray-400 font-medium">SMS Sub</span>

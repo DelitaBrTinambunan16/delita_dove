@@ -60,19 +60,27 @@ export default function Dashboard() {
   // 2. Calculate Customer Source (Bar Chart)
   const sourceBarData = useMemo(() => {
     const counts = customersData.reduce((acc, customer) => {
-      const source = customer.source || "Referral";
+      // Map old source data to new social media sources
+      let source = customer.source || "Instagram";
+      if (source === "Referral") source = "Teman/Keluarga";
+      if (source === "Event") source = "TikTok";
+      if (source === "Ad") source = "Instagram";
+      if (source === "Organic") source = "Facebook";
+      if (source === "Import") source = "Lainnya";
+      
       acc[source] = (acc[source] || 0) + 1;
       return acc;
     }, {});
 
     const colorMap = {
-      Instagram: "#10B981",
-      TikTok: "#34D399",
-      Google: "#C5A358",
-      Referral: "#065F46",
+      "Instagram": "#E1306C",
+      "TikTok": "#25F4EE",
+      "Facebook": "#1877F2",
+      "Teman/Keluarga": "#10B981",
+      "Lainnya": "#94A3B8",
     };
 
-    const preferredOrder = ["Instagram", "TikTok", "Google", "Referral"];
+    const preferredOrder = ["Instagram", "TikTok", "Facebook", "Teman/Keluarga", "Lainnya"];
     const entries = Object.entries(counts).map(([name, count]) => ({
       name,
       count,

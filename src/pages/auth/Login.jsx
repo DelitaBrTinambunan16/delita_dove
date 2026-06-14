@@ -1,13 +1,15 @@
 import { useState } from "react"
 import axios from "axios"
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate, Link, useLocation } from "react-router-dom"
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa"
 import { ImSpinner2 } from "react-icons/im"
+import { loginUser } from "../../lib/auth"
 
 import lilyImg from "../../assets/img/lily.jpg"
 
 export default function Login() {
     const navigate = useNavigate()
+    const location = useLocation()
     const [loading, setLoading]   = useState(false)
     const [error, setError]       = useState("")
     const [showPass, setShowPass] = useState(false)
@@ -21,11 +23,15 @@ export default function Login() {
         setLoading(true)
         setError("")
         try {
-            const res = await axios.post("https://dummyjson.com/user/login", {
+                    const res = await axios.post("https://dummyjson.com/user/login", {
                 username: dataForm.email,
                 password: dataForm.password,
             })
-            if (res.status === 200) navigate("/")
+            if (res.status === 200) {
+                loginUser(dataForm.email)
+                const from = location.state?.from?.pathname || "/admin"
+                navigate(from, { replace: true })
+            }
         } catch (err) {
             setError("Email atau Password salah!")
         } finally {
@@ -60,7 +66,7 @@ export default function Login() {
                         WeddingDay
                     </h1>
                     <p className="text-xs text-gray-500 mt-2">
-                        Selamat datang, silakan login untuk melanjutkan.
+                        Login admin hanya untuk mengatur dashboard. Pembeli dapat masuk dari halaman guest.
                     </p>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import {
+  FaHome,
   FaChartLine,
   FaBox,
   FaUsers,
@@ -8,6 +9,7 @@ import {
   FaEnvelope,
   FaGem,
   FaSignOutAlt,
+  FaUserShield,
 } from "react-icons/fa";
 
 export default function Sidebar() {
@@ -51,29 +53,34 @@ export default function Sidebar() {
       <div className="flex-1 space-y-1">
         <p className="px-3 mb-3 text-[10px] font-bold uppercase tracking-widest text-emerald-400/60 font-barlow">Menu Utama</p>
 
-        <NavLink to="/" end className={menuClass}>
-          <FaChartLine size={15} /> <span>Beranda</span>
+        <NavLink to="/admin/dashboard" end className={menuClass}>
+          <FaChartLine size={15} /> <span>Dashboard</span>
         </NavLink>
 
-        <NavLink to="/customers" className={menuClass}>
+        <NavLink to="/admin/customers" className={menuClass}>
           <FaUsers size={15} /> <span>Customers</span>
         </NavLink>
 
-        <NavLink to="/orders" className={menuClass}>
+        <NavLink to="/admin/orders" className={menuClass}>
           <FaClipboardList size={15} /> <span>Orders</span>
         </NavLink>
 
-        <NavLink to="/products" className={menuClass}>
+        <NavLink to="/admin/products" className={menuClass}>
           <FaBox size={15} /> <span>Products</span>
         </NavLink>
 
-        <NavLink to="/campaign" className={menuClass}>
+        <NavLink to="/admin/campaign" className={menuClass}>
           <FaBullhorn size={15} /> <span>Campaign</span>
         </NavLink>
 
-        <NavLink to="/message" className={menuClass}>
+        <NavLink to="/admin/message" className={menuClass}>
           <FaEnvelope size={15} /> <span>Message</span>
         </NavLink>
+
+        <NavLink to="/admin/member" className={menuClass}>
+          <FaUserShield size={15} /> <span>Member</span>
+        </NavLink>
+
       </div>
 
       {/* ── FOOTER UTILITY ── */}

@@ -59,7 +59,7 @@ export default function ProductDetail() {
 
             {/* BACK BUTTON */}
             <Link
-                to="/products"
+                to="/admin/products"
                 className="inline-block mt-6 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
             >
                 ← Back to Products
