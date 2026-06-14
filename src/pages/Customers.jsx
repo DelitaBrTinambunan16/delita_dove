@@ -7,7 +7,7 @@ import {
   FaExclamationTriangle,
 } from "react-icons/fa";
 import PageHeader from "../components/PageHeader";
-import customersData from "../data/customers.json";
+import { usersAPI } from "../services/usersAPI";
 
 import {
   Avatar,
@@ -36,12 +36,35 @@ function getAvatarColor(loyalty) {
 export default function Customers() {
   const navigate = useNavigate();
 
-  const [searchTerm, setSearchTerm]     = useState("");
+  // --- PERUBAHAN: state data dari Supabase ---
+  const [customersData, setCustomersData] = useState([]);
+  const [loadingData, setLoadingData] = useState(true);
+  const [fetchError, setFetchError] = useState("");
+
+  const [searchTerm, setSearchTerm]       = useState("");
   const [loyaltyFilter, setLoyaltyFilter] = useState("All");
-  const [statusFilter, setStatusFilter]  = useState("All");
-  const [currentPage, setCurrentPage]   = useState(1);
+  const [statusFilter, setStatusFilter]   = useState("All");
+  const [currentPage, setCurrentPage]     = useState(1);
 
   const itemsPerPage = 10;
+
+  // --- PERUBAHAN: fetch dari Supabase saat pertama render ---
+  useEffect(() => {
+    const load = async () => {
+      try {
+        setLoadingData(true);
+        setFetchError("");
+        const data = await usersAPI.fetchUsers();
+        setCustomersData(data);
+      } catch (err) {
+        setFetchError("Gagal memuat data customer dari server.");
+        console.error(err);
+      } finally {
+        setLoadingData(false);
+      }
+    };
+    load();
+  }, []);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -55,7 +78,8 @@ export default function Customers() {
 
   const filteredCustomers = useMemo(() => {
     return customersData.filter((customer) => {
-      const name  = customer.customerName ?? "";
+      // --- PERUBAHAN: support field name (Supabase) dan customerName (JSON lama) ---
+      const name  = customer.name ?? customer.customerName ?? "";
       const email = customer.email ?? "";
       const keyword = searchTerm.toLowerCase();
 
@@ -75,7 +99,7 @@ export default function Customers() {
 
       return matchesSearch && matchesLoyalty && matchesStatus;
     });
-  }, [searchTerm, loyaltyFilter, statusFilter]);
+  }, [searchTerm, loyaltyFilter, statusFilter, customersData]);
 
   const totalPages = Math.ceil(filteredCustomers.length / itemsPerPage);
 
@@ -99,27 +123,18 @@ export default function Customers() {
       ? "bg-emerald-100 text-emerald-700 border-emerald-200"
       : "bg-rose-100 text-rose-700 border-rose-200";
 
-  const getComplaintsBadge = (complaints) => {
-    if (!Array.isArray(complaints) || complaints.length === 0) {
+  // --- PERUBAHAN: complaint sekarang string dari Supabase, bukan array ---
+  const getComplaintsBadge = (complaint) => {
+    if (!complaint || complaint === "Tidak Ada" || complaint === "") {
       return (
         <span className="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded bg-gray-50 text-gray-500 border border-gray-100">
           <FaCheckCircle size={10} /> Tidak ada
         </span>
       );
     }
-    const pending = complaints.filter((c) => !c?.resolved).length;
-    if (pending > 0) {
-      return (
-        <span className="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded bg-amber-50 text-amber-700 border border-amber-200">
-          <FaExclamationTriangle size={10} />
-          {complaints.length} ({pending} pending)
-        </span>
-      );
-    }
     return (
-      <span className="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
-        <FaCheckCircle size={10} />
-        {complaints.length} selesai
+      <span className="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded bg-amber-50 text-amber-700 border border-amber-200">
+        <FaExclamationTriangle size={10} /> Ada komplain
       </span>
     );
   };
@@ -175,91 +190,99 @@ export default function Customers() {
           </div>
         </div>
 
+        {/* ── LOADING STATE ── */}
+        {loadingData && (
+          <div className="py-12 text-center text-gray-400 text-sm">
+            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-emerald-500 mx-auto mb-3"></div>
+            Memuat data customer...
+          </div>
+        )}
+
+        {/* ── ERROR STATE ── */}
+        {!loadingData && fetchError && (
+          <div className="py-12 text-center text-red-400 text-sm">{fetchError}</div>
+        )}
+
         {/* ── TABLE ── */}
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead className="text-xs text-gray-400 uppercase border-b bg-gray-50/50">
-              <tr>
-                <th className="p-4 text-left">Customer</th>
-                <th className="p-4 text-left">HP</th>
-                <th className="p-4 text-left">Kota</th>
-                <th className="p-4 text-left">Membership</th>
-                <th className="p-4 text-left">Status</th>
-                <th className="p-4 text-left">Komplain</th>
-                <th className="p-4 text-left">Catatan</th>
-                <th className="p-4 text-center">Aksi</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {currentCustomers.map((c) => (
-                <tr
-                  key={c.customerId}
-                  onClick={() =>
-                    navigate(`/customers/${c.customerId}`, { state: { c } })
-                  }
-                  className="hover:bg-gray-50 cursor-pointer border-b border-gray-50 transition-colors"
-                >
-                  {/* // ShadCN Avatar di setiap baris customer // */}
-                  <td className="p-4">
-                    <div className="flex items-center gap-3">
-                      <Avatar size="default">
-                        <AvatarImage src={c.profilePhoto} alt={c.customerName} />
-                        <AvatarFallback
-                          className={`text-xs font-bold ${getAvatarColor(c.loyalty)}`}
-                        >
-                          {getInitials(c.customerName)}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div>
-                        <p className="font-semibold text-gray-800 text-sm">
-                          {c.customerName}
-                        </p>
-                        <p className="text-xs text-gray-400">{c.email}</p>
-                      </div>
-                    </div>
-                  </td>
-
-                  <td className="p-4 text-gray-600 text-sm">{c.phone}</td>
-                  <td className="p-4 text-gray-600 text-sm">{getCity(c.address)}</td>
-
-                  <td className="p-4">
-                    <span className={`px-2 py-1 rounded border text-xs font-semibold ${getLoyaltyBadgeColor(c.loyalty)}`}>
-                      {c.loyalty}
-                    </span>
-                  </td>
-
-                  <td className="p-4">
-                    <span className={`px-2 py-1 rounded border text-xs font-semibold ${getStatusBadgeColor(c.status)}`}>
-                      {c.status === "Active" ? "Aktif" : "Tidak Aktif"}
-                    </span>
-                  </td>
-
-                  <td className="p-4">{getComplaintsBadge(c.complaints)}</td>
-
-                  <td className="p-4 text-xs text-gray-400 truncate max-w-[150px]">
-                    {c.adminNotes || "-"}
-                  </td>
-
-                  <td className="p-4 text-center">
-                    <FaChevronRight className="mx-auto text-gray-300" />
-                  </td>
-                </tr>
-              ))}
-
-              {currentCustomers.length === 0 && (
+        {!loadingData && !fetchError && (
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead className="text-xs text-gray-400 uppercase border-b bg-gray-50/50">
                 <tr>
-                  <td colSpan={8} className="py-12 text-center text-gray-400 text-sm">
-                    Tidak ada customer yang sesuai filter
-                  </td>
+                  <th className="p-4 text-left">Customer</th>
+                  <th className="p-4 text-left">HP</th>
+                  <th className="p-4 text-left">Kota</th>
+                  <th className="p-4 text-left">Membership</th>
+                  <th className="p-4 text-left">Status</th>
+                  <th className="p-4 text-left">Komplain</th>
+                  <th className="p-4 text-left">Catatan</th>
+                  <th className="p-4 text-center">Aksi</th>
                 </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+
+              <tbody>
+                {currentCustomers.map((c) => (
+                  <tr
+                    key={c.id}
+                    onClick={() => navigate(`/customers/${c.id}`, { state: { c } })}
+                    className="hover:bg-gray-50 cursor-pointer border-b border-gray-50 transition-colors"
+                  >
+                    <td className="p-4">
+                      <div className="flex items-center gap-3">
+                        <Avatar size="default">
+                          <AvatarImage src={c.profilePhoto} alt={c.name} />
+                          <AvatarFallback className={`text-xs font-bold ${getAvatarColor(c.loyalty)}`}>
+                            {getInitials(c.name)}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <p className="font-semibold text-gray-800 text-sm">{c.name}</p>
+                          <p className="text-xs text-gray-400">{c.email}</p>
+                        </div>
+                      </div>
+                    </td>
+
+                    <td className="p-4 text-gray-600 text-sm">{c.phone || "-"}</td>
+                    <td className="p-4 text-gray-600 text-sm">{c.city || getCity(c.address)}</td>
+
+                    <td className="p-4">
+                      <span className={`px-2 py-1 rounded border text-xs font-semibold ${getLoyaltyBadgeColor(c.loyalty)}`}>
+                        {c.loyalty || "Bronze"}
+                      </span>
+                    </td>
+
+                    <td className="p-4">
+                      <span className={`px-2 py-1 rounded border text-xs font-semibold ${getStatusBadgeColor(c.status)}`}>
+                        {c.status === "Active" ? "Aktif" : "Tidak Aktif"}
+                      </span>
+                    </td>
+
+                    <td className="p-4">{getComplaintsBadge(c.complaint)}</td>
+
+                    <td className="p-4 text-xs text-gray-400 truncate max-w-[150px]">
+                      {c.promo_code || "-"}
+                    </td>
+
+                    <td className="p-4 text-center">
+                      <FaChevronRight className="mx-auto text-gray-300" />
+                    </td>
+                  </tr>
+                ))}
+
+                {currentCustomers.length === 0 && (
+                  <tr>
+                    <td colSpan={8} className="py-12 text-center text-gray-400 text-sm">
+                      Tidak ada customer yang sesuai filter
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        )}
 
         {/* ── PAGINATION ── */}
-        {filteredCustomers.length > 0 && (
+        {!loadingData && filteredCustomers.length > 0 && (
           <div className="p-4 border-t border-gray-50 flex flex-col sm:flex-row justify-between items-center gap-3">
             <span className="text-sm text-gray-400">
               Menampilkan {(currentPage - 1) * itemsPerPage + 1}–

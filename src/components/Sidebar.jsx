@@ -77,9 +77,9 @@ export default function Sidebar() {
           <FaEnvelope size={15} /> <span>Message</span>
         </NavLink>
 
-        <NavLink to="/admin/member" className={menuClass}>
+        {/* <NavLink to="/admin/member" className={menuClass}>
           <FaUserShield size={15} /> <span>Member</span>
-        </NavLink>
+        </NavLink> */}
 
       </div>
 

@@ -20,7 +20,9 @@ const GuestLayout = lazy(() => import("./layouts/GuestLayout"));
 
 const Login = lazy(() => import("./pages/auth/Login"));
 const Register = lazy(() => import("./pages/auth/Register"));
+const GuestLogin = lazy(() => import("./pages/auth/GuestLogin"));
 const GuestRegister = lazy(() => import("./pages/auth/GuestRegister"));
+
 const Forgot = lazy(() => import("./pages/auth/Forgot"));
 
 const Error400 = lazy(() => import("./pages/Error400"));
@@ -61,6 +63,7 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           {/* Guest login route intentionally removed from header; registration remains. */}
           <Route path="/guest/register" element={<GuestRegister />} />
+            <Route path="/guest/login" element={<GuestLogin />} />
           <Route path="/forgot" element={<Forgot />} />
         </Route>
 

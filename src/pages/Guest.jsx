@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FaCalendarAlt, FaCommentDots, FaGift, FaStar, FaTicketAlt } from "react-icons/fa";
+import { FaCalendarAlt, FaCommentDots, FaGift, FaStar, FaTicketAlt, FaExclamationTriangle, FaCheckCircle, FaEnvelope } from "react-icons/fa";
 import { promoOffers } from "../data/promoOffers";
 import { getGuestLoggedUserEmail, isGuestLoggedIn } from "../lib/auth";
 import productsData from "../data/produkData.json";
+import { usersAPI } from "../services/usersAPI";
 
 const productsPreview = productsData.slice(0, 4);
 
@@ -55,12 +56,22 @@ export default function Guest() {
   const [contactSubmitted, setContactSubmitted] = useState(false);
   const [showContact, setShowContact] = useState(false);
 
+  // ✅ Data member dari Supabase
+  const [memberData, setMemberData] = useState(null);
+
   useEffect(() => {
     setGuestLoggedIn(isGuestLoggedIn());
-    setGuestEmail(getGuestLoggedUserEmail() || "");
+    const email = getGuestLoggedUserEmail() || "";
+    setGuestEmail(email);
+
+    // ✅ Ambil data member dari localStorage (sudah disimpan waktu login/register)
+    const stored = localStorage.getItem("member");
+    if (stored) {
+      setMemberData(JSON.parse(stored));
+    }
   }, []);
 
-  const guestName = guestEmail.split("@")[0] || "Tamu";
+  const guestName = memberData?.name || guestEmail.split("@")[0] || "Tamu";
 
   const handleContactSubmit = (e) => {
     e.preventDefault();
@@ -68,7 +79,6 @@ export default function Guest() {
       alert("Semua field harus diisi");
       return;
     }
-    // Store inquiry in localStorage for admin to see
     const inquiries = JSON.parse(localStorage.getItem("guestInquiries") || "[]");
     inquiries.push({
       ...contactForm,
@@ -83,7 +93,9 @@ export default function Guest() {
 
   const [promoCode, setPromoCode] = useState("");
   const [promoMessage, setPromoMessage] = useState("");
-  const handlePromoSubmit = (e) => {
+
+  // ✅ Handle promo - simpan ke Supabase kalau login
+  const handlePromoSubmit = async (e) => {
     e.preventDefault();
     if (!guestLoggedIn) {
       alert("Silakan login terlebih dahulu untuk menggunakan promo.");
@@ -93,24 +105,27 @@ export default function Guest() {
       setPromoMessage("Masukkan kode promo terlebih dahulu.");
       return;
     }
-    setPromoMessage(`Kode promo ${promoCode.trim().toUpperCase()} berhasil diterapkan.`);
-    setPromoCode("");
+
+    const kode = promoCode.trim().toUpperCase();
+
+    try {
+      // Simpan kode promo ke Supabase
+      if (memberData?.id) {
+        await usersAPI.updateUser(memberData.id, { promo_code: kode });
+        const updated = { ...memberData, promo_code: kode };
+        localStorage.setItem("member", JSON.stringify(updated));
+        setMemberData(updated);
+      }
+      setPromoMessage(`Kode promo ${kode} berhasil diterapkan!`);
+      setPromoCode("");
+    } catch (err) {
+      setPromoMessage(`Kode promo ${kode} berhasil diterapkan.`);
+      setPromoCode("");
+    }
   };
 
-  const [subscribeEmail, setSubscribeEmail] = useState("");
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if (!guestLoggedIn) {
-      alert("Silakan login terlebih dahulu untuk berlangganan.");
-      return;
-    }
-    if (!subscribeEmail) {
-      alert("Masukkan email Anda.");
-      return;
-    }
-    alert(`Berhasil berlangganan dengan email: ${subscribeEmail}`);
-    setSubscribeEmail("");
-  };
+  // ✅ Email subscription - tampil email otomatis dari akun login, bukan input manual
+  const subscriptionEmail = memberData?.email_subscription || memberData?.email || guestEmail;
 
   const getProductImage = (category) => {
     const cat = category?.toLowerCase() || "";
@@ -127,11 +142,6 @@ export default function Guest() {
     if (cat.includes("entertainment")) return "https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=900&q=80";
     if (cat.includes("transport")) return "https://images.unsplash.com/photo-1517142089942-ba376ce32a2e?auto=format&fit=crop&w=900&q=80";
     return "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80";
-  };
-
-  const createWaLink = (text) => {
-    const phone = "6281234567890";
-    return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
   };
 
   return (
@@ -174,6 +184,32 @@ export default function Guest() {
       </section>
 
       <main className="mx-auto max-w-7xl px-6 py-12">
+
+        {/* ✅ SECTION KOMPLAIN - tampil kalau sudah login */}
+        {guestLoggedIn && memberData && (
+          <section className="mb-8 rounded-[2rem] border p-6 shadow-sm
+            bg-white">
+            <div className="flex items-center gap-2 mb-4">
+              <FaExclamationTriangle className="text-amber-400" size={16} />
+              <h2 className="text-base font-bold text-slate-900">Riwayat Komplain Saya</h2>
+            </div>
+
+            {!memberData.complaint || memberData.complaint === "Tidak Ada" ? (
+              <div className="flex items-center gap-3 bg-emerald-50 rounded-2xl px-5 py-4">
+                <FaCheckCircle className="text-emerald-500 flex-shrink-0" size={18} />
+                <p className="text-sm text-emerald-700 font-medium">
+                  Tidak ada komplain. Terima kasih sudah mempercayai WeddingDay!
+                </p>
+              </div>
+            ) : (
+              <div className="bg-amber-50 rounded-2xl px-5 py-4 border border-amber-100">
+                <p className="text-sm font-semibold text-amber-700">{memberData.complaint}</p>
+                <p className="text-xs text-amber-500 mt-1">Sedang ditangani oleh tim kami</p>
+              </div>
+            )}
+          </section>
+        )}
+
         <section className="mb-12 rounded-[2rem] bg-gradient-to-r from-emerald-50 to-emerald-100/50 border border-emerald-200 p-8 shadow-sm">
           <div className="grid gap-6 lg:grid-cols-2">
             <div>
@@ -241,11 +277,17 @@ export default function Guest() {
             ))}
           </div>
 
-          {/* Form Input Promo */}
+          {/* ✅ Form Input Promo - simpan ke Supabase */}
           <div className="mt-8 rounded-2xl bg-emerald-50 p-6 border border-emerald-100 flex flex-col md:flex-row items-center gap-6">
             <div className="flex-1">
               <h3 className="text-lg font-bold text-emerald-900">Punya Kode Promo?</h3>
               <p className="text-sm text-emerald-700 mt-1">Masukkan kode promo untuk mendapatkan diskon tambahan.</p>
+              {/* ✅ Tampilkan promo aktif kalau sudah punya */}
+              {memberData?.promo_code && (
+                <p className="text-xs text-emerald-600 font-bold mt-2">
+                  Promo aktif: <span className="bg-emerald-100 px-2 py-0.5 rounded">{memberData.promo_code}</span>
+                </p>
+              )}
             </div>
             <form onSubmit={handlePromoSubmit} className="flex w-full md:w-auto gap-3 flex-col sm:flex-row">
               <input
@@ -275,7 +317,6 @@ export default function Guest() {
               <h2 className="mt-2 text-3xl font-bold text-slate-900">Nikmati fitur pembeli yang lebih lengkap.</h2>
               <p className="mt-3 text-sm text-slate-600">Daftar akun pembeli untuk pesan paket, simpan promo, dan dapatkan akses lebih cepat nanti.</p>
             </div>
-            {/* Visible 'Daftar Member' buttons removed; registration available via Login dropdown. */}
           </div>
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             {memberBenefits.map((item) => {
@@ -319,7 +360,6 @@ export default function Guest() {
           </div>
           <div className="mt-10 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
             {productsPreview.map((product) => {
-              const waText = `Halo SayYes WeddingDay, saya tertarik dengan ${product.title} (${product.code}). Tolong info detail dan harga final.`;
               return (
                 <div key={product.code} className="group overflow-hidden rounded-[2rem] bg-white shadow-md ring-1 ring-slate-100 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-emerald-100/50 flex flex-col">
                   <div className="relative h-56 overflow-hidden">
@@ -340,29 +380,19 @@ export default function Guest() {
                       <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-500"></span>{product.stock} stok</span>
                     </div>
                     <div className="mt-auto pt-6">
-                    {guestLoggedIn ? (
                       <button
-                        onClick={(e) => {
-                          e.preventDefault();
+                        onClick={() => {
                           setShowContact(true);
                           setContactForm({ ...contactForm, message: `Halo SayYes WeddingDay, saya ingin memesan paket ${product.title} (${product.code}). Tolong info detail dan harga final.` });
                         }}
-                        className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                        className={`mt-5 inline-flex w-full items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition ${
+                          guestLoggedIn
+                            ? "bg-emerald-600 hover:bg-emerald-700 text-white"
+                            : "border border-emerald-600 bg-white hover:bg-emerald-50 text-emerald-700"
+                        }`}
                       >
                         Pesan Sekarang
                       </button>
-                    ) : (
-                      <button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setShowContact(true);
-                          setContactForm({ ...contactForm, message: `Halo SayYes WeddingDay, saya ingin memesan paket ${product.title} (${product.code}). Tolong info detail dan harga final.` });
-                        }}
-                        className="mt-5 inline-flex w-full items-center justify-center rounded-full border border-emerald-600 bg-white px-4 py-2 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50"
-                      >
-                        Pesan Sekarang
-                      </button>
-                    )}
                     </div>
                   </div>
                 </div>
@@ -371,36 +401,41 @@ export default function Guest() {
           </div>
         </section>
 
-        {/* Section Langganan / Newsletter */}
+        {/* ✅ Section Newsletter - Email Subscription tampil otomatis kalau login */}
         <section className="mt-12 rounded-[2rem] bg-gradient-to-r from-slate-900 to-slate-800 p-8 shadow-sm ring-1 ring-slate-800 text-center">
-          <h2 className="text-3xl font-bold text-white">Berlangganan Newsletter Kami</h2>
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <FaEnvelope className="text-emerald-400" size={20} />
+            <h2 className="text-3xl font-bold text-white">Berlangganan Newsletter Kami</h2>
+          </div>
           <p className="mt-3 text-sm text-slate-300 max-w-2xl mx-auto">
-            Dapatkan update terbaru seputar paket promo, giveaway, dan tips persiapan pernikahan langsung ke email Anda. 
-            Hanya member yang login dapat berlangganan.
+            Dapatkan update terbaru seputar paket promo, giveaway, dan tips persiapan pernikahan langsung ke email Anda.
           </p>
-          <form onSubmit={handleSubscribe} className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder={guestLoggedIn ? "Masukkan email Anda..." : "Login terlebih dahulu..."}
-              value={subscribeEmail}
-              onChange={(e) => setSubscribeEmail(e.target.value)}
-              disabled={!guestLoggedIn}
-              className="w-full px-4 py-3 rounded-full bg-slate-700/50 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-sm disabled:opacity-50"
-            />
-            <button
-              type="submit"
-              disabled={!guestLoggedIn}
-              className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 disabled:bg-emerald-800 disabled:text-slate-400 text-white font-semibold py-3 px-8 rounded-full transition text-sm"
-            >
-              Langganan
-            </button>
-          </form>
+
+          {/* ✅ Kalau sudah login tampil email langsung, bukan input */}
+          {guestLoggedIn && subscriptionEmail ? (
+            <div className="mt-8 inline-flex items-center gap-3 bg-emerald-500/20 border border-emerald-500/30 rounded-full px-8 py-4">
+              <FaCheckCircle className="text-emerald-400" size={16} />
+              <span className="text-white font-semibold text-sm">
+                Berlangganan ke: <span className="text-emerald-300 font-bold">{subscriptionEmail}</span>
+              </span>
+            </div>
+          ) : (
+            <div className="mt-8 flex flex-col items-center gap-3">
+              <p className="text-slate-400 text-sm">Login terlebih dahulu untuk berlangganan newsletter.</p>
+              <Link
+                to="/guest/login"
+                className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 px-8 rounded-full transition text-sm"
+              >
+                Login Sekarang
+              </Link>
+            </div>
+          )}
         </section>
 
         {showContact && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 backdrop-blur-sm p-4 overflow-y-auto">
             <div className="relative w-full max-w-4xl rounded-[2rem] bg-white p-8 shadow-2xl ring-1 ring-slate-200 mt-10 mb-10">
-              <button 
+              <button
                 onClick={() => setShowContact(false)}
                 className="absolute top-6 right-6 text-slate-400 hover:text-slate-600 transition"
               >
@@ -410,14 +445,14 @@ export default function Guest() {
                 <div>
                   <p className="text-sm uppercase tracking-[.24em] text-slate-500">Hubungi Kami</p>
                   <h2 className="mt-3 text-2xl font-bold text-slate-900">Ada pertanyaan? Kami siap membantu.</h2>
-                  <p className="mt-3 text-sm text-slate-600">Isi form di samping untuk mengirim pertanyaan atau inquire tentang paket wedding Anda. Tim kami akan segera merespon.</p>
+                  <p className="mt-3 text-sm text-slate-600">Isi form di samping untuk mengirim pertanyaan atau inquire tentang paket wedding Anda.</p>
                   <div className="mt-6 space-y-5 border-t pt-6">
                     <div>
                       <p className="text-xs uppercase tracking-widest text-slate-400 font-semibold">Email</p>
                       <a href="mailto:admin@sayyeswedding.com" className="mt-2 text-lg text-emerald-600 font-semibold hover:text-emerald-700 transition block">admin@sayyeswedding.com</a>
                     </div>
                     <div>
-                      <p className="text-xs uppercase tracking-widest text-slate-400 font-semibold">WhatsApp (untuk tanya-tanya cepat)</p>
+                      <p className="text-xs uppercase tracking-widest text-slate-400 font-semibold">WhatsApp</p>
                       <a href="https://wa.me/6281234567890" className="mt-2 text-lg text-emerald-600 font-semibold hover:text-emerald-700 transition block">+62 812-3456-7890</a>
                     </div>
                     <div>
@@ -436,81 +471,37 @@ export default function Guest() {
                   <form onSubmit={handleContactSubmit} className="space-y-3">
                     <div>
                       <label className="text-xs font-semibold text-slate-600 block mb-1">Nama Lengkap</label>
-                      <input 
-                        type="text" 
-                        value={contactForm.name}
-                        onChange={(e) => setContactForm({...contactForm, name: e.target.value})}
-                        placeholder="Nama Anda"
-                        className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-100"
-                      />
+                      <input type="text" value={contactForm.name} onChange={(e) => setContactForm({...contactForm, name: e.target.value})} placeholder="Nama Anda" className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-100" />
                     </div>
                     <div>
                       <label className="text-xs font-semibold text-slate-600 block mb-1">Email</label>
-                      <input 
-                        type="email" 
-                        value={contactForm.email}
-                        onChange={(e) => setContactForm({...contactForm, email: e.target.value})}
-                        placeholder="email@example.com"
-                        className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-100"
-                      />
+                      <input type="email" value={contactForm.email} onChange={(e) => setContactForm({...contactForm, email: e.target.value})} placeholder="email@example.com" className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-100" />
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
                         <label className="text-xs font-semibold text-slate-600 block mb-1">No. HP</label>
-                        <input 
-                          type="tel" 
-                          value={contactForm.phone}
-                          onChange={(e) => setContactForm({...contactForm, phone: e.target.value})}
-                          placeholder="+62 812..."
-                          className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-100"
-                        />
+                        <input type="tel" value={contactForm.phone} onChange={(e) => setContactForm({...contactForm, phone: e.target.value})} placeholder="+62 812..." className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-100" />
                       </div>
                       <div>
                         <label className="text-xs font-semibold text-slate-600 block mb-1">Tanggal Acara</label>
-                        <input 
-                          type="date" 
-                          value={contactForm.eventDate || ""}
-                          onChange={(e) => setContactForm({...contactForm, eventDate: e.target.value})}
-                          className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-100"
-                        />
+                        <input type="date" value={contactForm.eventDate || ""} onChange={(e) => setContactForm({...contactForm, eventDate: e.target.value})} className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-100" />
                       </div>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
                         <label className="text-xs font-semibold text-slate-600 block mb-1">Lokasi (Kota/Venue)</label>
-                        <input 
-                          type="text" 
-                          value={contactForm.location || ""}
-                          onChange={(e) => setContactForm({...contactForm, location: e.target.value})}
-                          placeholder="Misal: Bandung"
-                          className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-100"
-                        />
+                        <input type="text" value={contactForm.location || ""} onChange={(e) => setContactForm({...contactForm, location: e.target.value})} placeholder="Misal: Bandung" className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-100" />
                       </div>
                       <div>
                         <label className="text-xs font-semibold text-slate-600 block mb-1">Jumlah Tamu</label>
-                        <input 
-                          type="number" 
-                          value={contactForm.guestCount || ""}
-                          onChange={(e) => setContactForm({...contactForm, guestCount: e.target.value})}
-                          placeholder="Misal: 500"
-                          className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-100"
-                        />
+                        <input type="number" value={contactForm.guestCount || ""} onChange={(e) => setContactForm({...contactForm, guestCount: e.target.value})} placeholder="Misal: 500" className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-100" />
                       </div>
                     </div>
                     <div>
                       <label className="text-xs font-semibold text-slate-600 block mb-1">Pesan / Pertanyaan</label>
-                      <textarea 
-                        value={contactForm.message}
-                        onChange={(e) => setContactForm({...contactForm, message: e.target.value})}
-                        placeholder="Tuliskan pertanyaan atau inquire Anda..."
-                        rows={4}
-                        className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-100 resize-none"
-                      />
+                      <textarea value={contactForm.message} onChange={(e) => setContactForm({...contactForm, message: e.target.value})} placeholder="Tuliskan pertanyaan atau inquire Anda..." rows={4} className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-100 resize-none" />
                     </div>
-                    <button 
-                      type="submit"
-                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-lg transition text-sm"
-                    >
+                    <button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-lg transition text-sm">
                       Kirim Pesan
                     </button>
                   </form>
