@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-// ✅ Pakai URL dan API_KEY dari Supabase project kamu sendiri
 const API_URL = "https://lynvsmtpnnkluxmwgcay.supabase.co/rest/v1/users"
 const API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5bnZzbXRwbm5rbHV4bXdnY2F5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEzNjIwMTQsImV4cCI6MjA5NjkzODAxNH0.iwoBAbGWz8Mgf6bmXtVdlXWXy89uNG1imYalKr-cYqc"
 
@@ -12,13 +11,13 @@ const headers = {
 
 export const usersAPI = {
 
-    // ✅ Ambil semua user — dipakai di halaman admin Customers
+    // Ambil semua user — untuk halaman admin Customers
     async fetchUsers() {
         const response = await axios.get(API_URL, { headers })
         return response.data
     },
 
-    // ✅ Login — cari user berdasarkan email & password
+    // Login member — cek email & password di tabel users
     async login(email, password) {
         const response = await axios.get(
             `${API_URL}?email=eq.${email}&password=eq.${password}`,
@@ -27,7 +26,7 @@ export const usersAPI = {
         return response.data
     },
 
-    // ✅ Register — tambah user baru, return data yang baru dibuat
+    // Register member baru
     async register(data) {
         const response = await axios.post(API_URL, data, {
             headers: {
@@ -38,7 +37,7 @@ export const usersAPI = {
         return response.data
     },
 
-    // ✅ Ambil satu user berdasarkan id
+    // Ambil data member by id
     async getUserById(id) {
         const response = await axios.get(
             `${API_URL}?id=eq.${id}`,
@@ -47,7 +46,7 @@ export const usersAPI = {
         return response.data[0]
     },
 
-    // ✅ Update user — untuk simpan complaint, promo_code, dll
+    // Update data member (complaint, promo_code, dll)
     async updateUser(id, data) {
         const response = await axios.patch(
             `${API_URL}?id=eq.${id}`,
@@ -60,5 +59,13 @@ export const usersAPI = {
             }
         )
         return response.data[0]
+    },
+
+    // Hapus member berdasarkan id
+    async deleteUser(id) {
+        await axios.delete(
+            `${API_URL}?id=eq.${id}`,
+            { headers }
+        )
     },
 }

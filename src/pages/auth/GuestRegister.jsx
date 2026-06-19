@@ -17,7 +17,6 @@ export default function GuestRegister() {
         phone: "",
         city: "",
     })
-
     const handleChange = (e) =>
         setDataForm({ ...dataForm, [e.target.name]: e.target.value })
 
@@ -133,7 +132,6 @@ export default function GuestRegister() {
 
                     <p className="text-center text-[10px] text-gray-400 mt-5 font-medium">
                         Sudah punya akun?{" "}
-                        {/* ✅ Path diperbaiki */}
                         <Link to="/guest/login" className="text-[#10B981] font-bold hover:underline">
                             Login di sini
                         </Link>

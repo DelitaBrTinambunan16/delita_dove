@@ -56,7 +56,7 @@ export default function Guest() {
   const [contactSubmitted, setContactSubmitted] = useState(false);
   const [showContact, setShowContact] = useState(false);
 
-  // ✅ Data member dari Supabase
+  // Data member dari Supabase
   const [memberData, setMemberData] = useState(null);
 
   useEffect(() => {
@@ -64,7 +64,7 @@ export default function Guest() {
     const email = getGuestLoggedUserEmail() || "";
     setGuestEmail(email);
 
-    // ✅ Ambil data member dari localStorage (sudah disimpan waktu login/register)
+    //Ambil data member dari localStorage (sudah disimpan waktu login/register)
     const stored = localStorage.getItem("member");
     if (stored) {
       setMemberData(JSON.parse(stored));
@@ -185,7 +185,7 @@ export default function Guest() {
 
       <main className="mx-auto max-w-7xl px-6 py-12">
 
-        {/* ✅ SECTION KOMPLAIN - tampil kalau sudah login */}
+        {/*SECTION KOMPLAIN - tampil kalau sudah login */}
         {guestLoggedIn && memberData && (
           <section className="mb-8 rounded-[2rem] border p-6 shadow-sm
             bg-white">
@@ -439,7 +439,7 @@ export default function Guest() {
                 onClick={() => setShowContact(false)}
                 className="absolute top-6 right-6 text-slate-400 hover:text-slate-600 transition"
               >
-                ✕ Tutup
+               
               </button>
               <div className="grid gap-8 lg:grid-cols-2">
                 <div>
