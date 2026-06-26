@@ -4,6 +4,7 @@ import OrderForm from "../components/OrderForm";
 import OrderFilterBar from "../components/OrderFilterBar";
 import OrdersTable from "../components/OrdersTable";
 import ordersData from "../data/orders.json";
+import { supabase } from "../lib/supabaseClient";
 
 export default function Orders() {
     const [orders, setOrders] = useState(ordersData);
@@ -18,8 +19,38 @@ export default function Orders() {
         customerName: "",
         status: "Pending",
         paket: "Premium",
+        venue: "Garden Paradise",
         orderDate: ""
     });
+
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('orders')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+                
+                if (error) throw error;
+                if (data && data.length > 0) {
+                    // Map dari database (snake_case) ke format komponen lokal (camelCase)
+                    const mappedOrders = data.map(o => ({
+                        orderId: o.order_id,
+                        customerName: o.customer_name,
+                        status: o.status,
+                        totalPrice: o.total_price,
+                        venue: o.notes?.split(',')[0]?.replace('Venue: ', '') || 'Garden Paradise', // ekstrak venue jika ada
+                        orderDate: o.event_date || o.created_at.split('T')[0]
+                    }));
+                    setOrders(mappedOrders);
+                }
+            } catch (err) {
+                console.error("Gagal memuat pesanan dari Supabase:", err);
+            }
+        };
+
+        fetchOrders();
+    }, []);
 
     useEffect(() => {
         setCurrentPage(1);
@@ -43,11 +74,12 @@ export default function Orders() {
             customerName: formData.customerName,
             status: formData.status,
             totalPrice: price,
+            venue: formData.venue,
             orderDate: formData.orderDate || new Date().toISOString().split('T')[0]
         };
         setOrders([newOrder, ...orders]);
         setShowForm(false);
-        setFormData({ customerName: "", status: "Pending", paket: "Premium", orderDate: "" });
+        setFormData({ customerName: "", status: "Pending", paket: "Premium", venue: "Garden Paradise", orderDate: "" });
     }
 
     const filteredOrders = orders.filter(order => {

@@ -36,6 +36,14 @@ export default function OrderForm({ show, onClose, formData, setFormData, onSubm
             </select>
           </div>
           <div>
+            <label className="block text-sm font-medium text-slate-700 mb-2">Venue</label>
+            <select name="venue" value={formData.venue} onChange={handleChange} className={inputClass}>
+              <option value="Garden Paradise">Garden Paradise</option>
+              <option value="Grand Ballroom">Grand Ballroom</option>
+              <option value="Cozy Intimate">Cozy Intimate</option>
+            </select>
+          </div>
+          <div>
             <label className="block text-sm font-medium text-slate-700 mb-2">Status Pemesanan</label>
             <select name="status" value={formData.status} onChange={handleChange} className={inputClass}>
               <option value="Pending">Pending</option>

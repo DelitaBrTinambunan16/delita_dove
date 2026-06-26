@@ -20,7 +20,8 @@ export default function OrdersTable({ currentOrders, currentPage, totalPages, fi
                 const idNum = parseInt(item.orderId.replace(/\D/g, '')) || 1;
                 const phoneRepeated = idNum.toString().repeat(4).substring(0, 4);
                 const phoneFormatted = `+62 812-${phoneRepeated}-${phoneRepeated}`;
-                const venue = item.totalPrice >= 4000000 ? "Garden Paradise" : (item.totalPrice >= 2500000 ? "Grand Ballroom" : "Cozy Intimate");
+                const derivedVenue = item.totalPrice >= 4000000 ? "Garden Paradise" : (item.totalPrice >= 2500000 ? "Grand Ballroom" : "Cozy Intimate");
+                const venue = item.venue || derivedVenue;
 
                 return (
                   <tr key={item.orderId} className="hover:bg-gray-50/50 transition-colors">

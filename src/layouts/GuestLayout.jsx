@@ -15,8 +15,10 @@ export default function GuestLayout() {
 
   const handleLogout = () => {
     logoutGuestUser();
+    localStorage.removeItem("member");
     setGuestLoggedIn(false);
     setGuestEmail("");
+    window.dispatchEvent(new Event("guest-logout"));
   };
 
   return (
@@ -36,7 +38,7 @@ export default function GuestLayout() {
             {guestLoggedIn ? (
               <div className="flex items-center gap-3">
                 <span className="hidden rounded-full bg-emerald-50 px-3 py-2 text-sm font-semibold text-emerald-700 sm:inline-flex">Hi, {guestEmail.split("@")[0]}</span>
-                <Link to="/guest/member" className="rounded-full bg-emerald-100 px-4 py-2 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-200">Dashboard Member</Link>
+                <Link to="/guest/member" className="rounded-full bg-emerald-100 px-4 py-2 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-200">Profil Member</Link>
                 <button onClick={handleLogout} className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">Logout</button>
               </div>
             ) : (
@@ -46,6 +48,7 @@ export default function GuestLayout() {
                   {showLoginDropdown && (
                     <div className="absolute right-0 mt-2 w-48 overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-slate-200 z-50">
                       <Link to="/login" onClick={() => setShowLoginDropdown(false)} className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">Login Admin</Link>
+                      <Link to="/guest/login" onClick={() => setShowLoginDropdown(false)} className="block px-4 py-2 text-sm text-emerald-700 hover:bg-emerald-50 border-t border-b border-slate-100">Login Member</Link>
                       <Link to="/guest/register" onClick={() => setShowLoginDropdown(false)} className="block px-4 py-2 text-sm text-emerald-700 hover:bg-emerald-50">Daftar Member</Link>
                     </div>
                   )}

@@ -1,12 +1,82 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FaCalendarAlt, FaCommentDots, FaGift, FaStar, FaTicketAlt, FaExclamationTriangle, FaCheckCircle, FaEnvelope } from "react-icons/fa";
+import { FaCalendarAlt, FaCommentDots, FaGift, FaStar, FaTicketAlt, FaExclamationTriangle, FaCheckCircle, FaEnvelope, FaPhone, FaInstagram, FaFacebook, FaTiktok, FaCheck, FaCrown, FaMapMarkerAlt } from "react-icons/fa";
 import { promoOffers } from "../data/promoOffers";
 import { getGuestLoggedUserEmail, isGuestLoggedIn } from "../lib/auth";
-import productsData from "../data/produkData.json";
 import { usersAPI } from "../services/usersAPI";
+import customersData from "../data/customers.json";
+import { supabase } from "../lib/supabaseClient";
+import productsData from "../data/produkData.json";
+import GuestOrderForm from "../components/GuestOrderForm";
 
-const productsPreview = productsData.slice(0, 4);
+const getProductRating = (id) => Number((4.3 + (id % 7) * 0.1).toFixed(1));
+
+const weddingPackages = [
+  {
+    name: "Premium",
+    venue: "Garden Paradise",
+    price: 4000000,
+    rating: 4.9,
+    tagline: "Pengalaman wedding mewah dan lengkap",
+    features: ["Dekorasi outdoor eksklusif", "Catering premium 300 pax", "Foto & video cinematic", "MUA & bridal full day", "MC profesional"],
+    badge: "Best Seller",
+    accent: "from-emerald-500 to-emerald-600",
+    ring: "ring-emerald-200",
+  },
+  {
+    name: "Deluxe",
+    venue: "Grand Ballroom",
+    price: 2500000,
+    rating: 4.7,
+    tagline: "Paket elegan untuk acara berkelas",
+    features: ["Ballroom indoor mewah", "Catering 200 pax", "Dokumentasi profesional", "Lighting & stage premium", "Koordinator acara"],
+    badge: "Populer",
+    accent: "from-sky-500 to-sky-600",
+    ring: "ring-sky-200",
+  },
+  {
+    name: "Standard",
+    venue: "Cozy Intimate",
+    price: 1000000,
+    rating: 4.5,
+    tagline: "Hemat tapi tetap berkesan",
+    features: ["Venue intimate nyaman", "Catering 100 pax", "Foto dokumentasi", "Dekorasi standar elegan"],
+    badge: "Hemat",
+    accent: "from-amber-500 to-amber-600",
+    ring: "ring-amber-200",
+  },
+];
+
+const membershipTiers = [
+  {
+    tier: "Bronze",
+    color: "orange",
+    badge: "bg-orange-100 text-orange-700",
+    icon: "bg-orange-50 text-orange-600",
+    benefits: ["Akses promo dasar", "Riwayat pesanan", "Konsultasi via WhatsApp"],
+  },
+  {
+    tier: "Silver",
+    color: "slate",
+    badge: "bg-slate-100 text-slate-700",
+    icon: "bg-slate-50 text-slate-600",
+    benefits: ["Semua benefit Bronze", "Diskon 5% setiap paket", "Priority booking"],
+  },
+  {
+    tier: "Gold",
+    color: "amber",
+    badge: "bg-amber-100 text-amber-700",
+    icon: "bg-amber-50 text-amber-600",
+    benefits: ["Semua benefit Silver", "Diskon 10% setiap paket", "Free konsultasi planner", "Akses promo eksklusif"],
+  },
+  {
+    tier: "Platinum",
+    color: "purple",
+    badge: "bg-purple-100 text-purple-700",
+    icon: "bg-purple-50 text-purple-600",
+    benefits: ["Semua benefit Gold", "Diskon 15% setiap paket", "Free upgrade venue", "Personal wedding advisor", "Akses giveaway prioritas"],
+  },
+];
 
 const guestNeeds = [
   {
@@ -55,20 +125,97 @@ export default function Guest() {
   const [contactForm, setContactForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [contactSubmitted, setContactSubmitted] = useState(false);
   const [showContact, setShowContact] = useState(false);
+  const [showOrderForm, setShowOrderForm] = useState(false);
+  const [orderPrefillPackage, setOrderPrefillPackage] = useState("Premium");
+  const [orderPromoCode, setOrderPromoCode] = useState("");
+  const [productsPreview, setProductsPreview] = useState([]);
 
   // Data member dari Supabase
   const [memberData, setMemberData] = useState(null);
+  const [localComplaints, setLocalComplaints] = useState([]);
 
   useEffect(() => {
-    setGuestLoggedIn(isGuestLoggedIn());
-    const email = getGuestLoggedUserEmail() || "";
-    setGuestEmail(email);
+    const checkLogin = async () => {
+      const loggedIn = isGuestLoggedIn();
+      setGuestLoggedIn(loggedIn);
+      const email = getGuestLoggedUserEmail() || "";
+      setGuestEmail(email);
 
-    //Ambil data member dari localStorage (sudah disimpan waktu login/register)
-    const stored = localStorage.getItem("member");
-    if (stored) {
-      setMemberData(JSON.parse(stored));
-    }
+      // Ambil data member dari localStorage (sudah disimpan waktu login/register)
+      const stored = localStorage.getItem("member");
+      let currentMember = null;
+      if (stored) {
+        try {
+          currentMember = JSON.parse(stored);
+          setMemberData(currentMember);
+        } catch (e) {
+          console.error(e);
+        }
+      }
+
+      // Muat riwayat komplain lokal dari browser session
+      try {
+        const storedComplaints = JSON.parse(localStorage.getItem("guestComplaints") || "{}");
+        if (storedComplaints[email]) {
+          setLocalComplaints(storedComplaints[email]);
+        }
+      } catch (e) {
+        console.error(e);
+      }
+
+      // Ambil data terbaru dari Supabase (sinkronisasi background)
+      if (loggedIn && (currentMember?.id || email)) {
+        try {
+          let freshUser = null;
+          if (currentMember?.id) {
+            freshUser = await usersAPI.getUserById(currentMember.id);
+          } else {
+            const allUsers = await usersAPI.fetchUsers();
+            freshUser = allUsers.find(u => u.email === email);
+          }
+
+          if (freshUser) {
+            localStorage.setItem("member", JSON.stringify(freshUser));
+            setMemberData(freshUser);
+          }
+        } catch (err) {
+          console.error("Gagal melakukan sinkronisasi data profil member dari Supabase:", err);
+        }
+      }
+    };
+
+    const fetchProducts = async () => {
+      try {
+        const { data, error } = await supabase.from('products').select('*').limit(8);
+        if (error) throw error;
+        if (data && data.length > 0) {
+          setProductsPreview(data);
+        } else {
+          // Fallback ke JSON lokal jika kosong
+          setProductsPreview(productsData.slice(0, 8));
+        }
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        setProductsPreview(productsData.slice(0, 8));
+      }
+    };
+
+    checkLogin();
+    fetchProducts();
+  }, []);
+
+  // Bersihkan state ketika member logout
+  useEffect(() => {
+    const handleGuestLogout = () => {
+      setGuestLoggedIn(false);
+      setGuestEmail("");
+      setMemberData(null);
+      setLocalComplaints([]);
+      setPromoCode("");
+      setPromoMessage("");
+    };
+    window.addEventListener("guest-logout", handleGuestLogout);
+    return () => window.removeEventListener("guest-logout", handleGuestLogout);
   }, []);
 
   const guestName = memberData?.name || guestEmail.split("@")[0] || "Tamu";
@@ -129,19 +276,19 @@ export default function Guest() {
 
   const getProductImage = (category) => {
     const cat = category?.toLowerCase() || "";
-    if (cat.includes("decoration")) return "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80";
+    if (cat.includes("decoration")) return "https://images.unsplash.com/photo-1464366403482-3a04ca6d3979?auto=format&fit=crop&w=900&q=80";
     if (cat.includes("attire") || cat.includes("gown") || cat.includes("jas")) return "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80";
-    if (cat.includes("catering")) return "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=900&q=80";
-    if (cat.includes("photography")) return "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=900&q=80";
-    if (cat.includes("invitation")) return "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?auto=format&fit=crop&w=900&q=80";
-    if (cat.includes("souvenir")) return "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=900&q=80";
-    if (cat.includes("beauty") || cat.includes("mua")) return "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80";
-    if (cat.includes("venue")) return "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80";
+    if (cat.includes("catering")) return "https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=900&q=80";
+    if (cat.includes("photography")) return "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80";
+    if (cat.includes("invitation")) return "https://images.unsplash.com/photo-1606810558060-5b53b1c3a5b8?auto=format&fit=crop&w=900&q=80";
+    if (cat.includes("souvenir")) return "https://images.unsplash.com/photo-1516225442-6dca7ab9ad0a?auto=format&fit=crop&w=900&q=80";
+    if (cat.includes("beauty") || cat.includes("mua")) return "https://images.unsplash.com/photo-1457972729786-0411a3b2b5a7?auto=format&fit=crop&w=900&q=80";
+    if (cat.includes("venue")) return "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=80";
     if (cat.includes("service")) return "https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=900&q=80";
-    if (cat.includes("jewelry")) return "https://images.unsplash.com/photo-1512996367567-03f0356d3d62?auto=format&fit=crop&w=900&q=80";
-    if (cat.includes("entertainment")) return "https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=900&q=80";
-    if (cat.includes("transport")) return "https://images.unsplash.com/photo-1517142089942-ba376ce32a2e?auto=format&fit=crop&w=900&q=80";
-    return "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80";
+    if (cat.includes("jewelry")) return "https://images.unsplash.com/photo-1513185158878-8d8c7a2a3a82?auto=format&fit=crop&w=900&q=80";
+    if (cat.includes("entertainment")) return "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=900&q=80";
+    if (cat.includes("transport")) return "https://images.unsplash.com/photo-1485463611174-fb2ee4b9603e?auto=format&fit=crop&w=900&q=80";
+    return "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=80";
   };
 
   return (
@@ -187,26 +334,45 @@ export default function Guest() {
 
         {/*SECTION KOMPLAIN - tampil kalau sudah login */}
         {guestLoggedIn && memberData && (
-          <section className="mb-8 rounded-[2rem] border p-6 shadow-sm
-            bg-white">
+          <section className="mb-8 rounded-[2rem] border border-slate-200 p-6 shadow-sm bg-white">
             <div className="flex items-center gap-2 mb-4">
-              <FaExclamationTriangle className="text-amber-400" size={16} />
+              <FaExclamationTriangle className="text-amber-500" size={16} />
               <h2 className="text-base font-bold text-slate-900">Riwayat Komplain Saya</h2>
             </div>
 
-            {!memberData.complaint || memberData.complaint === "Tidak Ada" ? (
-              <div className="flex items-center gap-3 bg-emerald-50 rounded-2xl px-5 py-4">
-                <FaCheckCircle className="text-emerald-500 flex-shrink-0" size={18} />
-                <p className="text-sm text-emerald-700 font-medium">
-                  Tidak ada komplain. Terima kasih sudah mempercayai WeddingDay!
-                </p>
-              </div>
-            ) : (
-              <div className="bg-amber-50 rounded-2xl px-5 py-4 border border-amber-100">
-                <p className="text-sm font-semibold text-amber-700">{memberData.complaint}</p>
-                <p className="text-xs text-amber-500 mt-1">Sedang ditangani oleh tim kami</p>
-              </div>
-            )}
+            {(() => {
+              const mockMember = customersData.find((c) => c.email === guestEmail) || {};
+              const allComplaints = [...(mockMember.complaints || []), ...localComplaints];
+
+              if (allComplaints.length === 0) {
+                return (
+                  <div className="flex items-center gap-3 bg-emerald-50 rounded-2xl px-5 py-4">
+                    <FaCheckCircle className="text-emerald-500 flex-shrink-0" size={18} />
+                    <p className="text-sm text-emerald-700 font-medium">
+                      Tidak ada komplain. Terima kasih sudah mempercayai WeddingDay!
+                    </p>
+                  </div>
+                );
+              }
+
+              return (
+                <ul className="space-y-3">
+                  {allComplaints.map((c, i) => (
+                    <li key={i} className="flex gap-2 items-start text-sm border-b border-slate-50 pb-2 last:border-0">
+                      {c.resolved ? (
+                        <FaCheckCircle className="text-emerald-500 mt-1 flex-shrink-0" />
+                      ) : (
+                        <FaExclamationTriangle className="text-amber-500 mt-1 flex-shrink-0" />
+                      )}
+                      <div>
+                        <p className="font-medium text-slate-800">{c.issue}</p>
+                        <p className="text-xs text-slate-500">{c.date} - {c.resolved ? "Selesai" : "Menunggu Tanggapan"}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              );
+            })()}
           </section>
         )}
 
@@ -272,6 +438,21 @@ export default function Guest() {
                   <div className="mt-5 p-3 rounded-xl bg-slate-50 border border-slate-100">
                     <p className="text-xs text-slate-500 font-medium">{promo.details}</p>
                   </div>
+                  <button
+                    onClick={() => {
+                      if (!guestLoggedIn) {
+                        setShowContact(true);
+                        setContactForm({ ...contactForm, message: `Halo SayYes WeddingDay, saya tertarik dengan promo ${promo.title} (Kode: ${promo.code}). Tolong info detailnya.` });
+                        return;
+                      }
+                      setOrderPrefillPackage("Premium");
+                      setOrderPromoCode(promo.code);
+                      setShowOrderForm(true);
+                    }}
+                    className={`mt-4 w-full inline-flex items-center justify-center rounded-full px-4 py-2 text-xs font-semibold transition ${guestLoggedIn ? "bg-emerald-600 hover:bg-emerald-700 text-white" : "border border-emerald-600 bg-white hover:bg-emerald-50 text-emerald-700"}`}
+                  >
+                    {guestLoggedIn ? `Pesan dengan ${promo.code}` : "Login untuk Pesan"}
+                  </button>
                 </div>
               </div>
             ))}
@@ -318,8 +499,8 @@ export default function Guest() {
               <p className="mt-3 text-sm text-slate-600">Daftar akun pembeli untuk pesan paket, simpan promo, dan dapatkan akses lebih cepat nanti.</p>
             </div>
           </div>
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
-            {memberBenefits.map((item) => {
+          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {[...memberBenefits, ...guestNeeds].map((item) => {
               const Icon = item.icon;
               return (
                 <div key={item.title} className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
@@ -334,19 +515,77 @@ export default function Guest() {
           </div>
         </section>
 
-        <section className="mt-10 grid gap-6 lg:grid-cols-4">
-          {guestNeeds.map((item) => {
-            const Icon = item.icon;
-            return (
-              <div key={item.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700">
-                  <Icon size={20} />
+        {/* SECTION PILIHAN MEMBERSHIP */}
+        <section id="membership" className="mt-10 rounded-[2rem] bg-white p-6 shadow-sm ring-1 ring-slate-200">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-sm uppercase tracking-[.24em] text-slate-500">Pilihan Membership</p>
+              <h2 className="mt-2 text-3xl font-bold text-slate-900">Tingkatkan ke membership kamu.</h2>
+              <p className="mt-3 text-sm text-slate-600">Semakin tinggi tier membership, semakin banyak keuntungan yang kamu dapatkan. Kumpulkan poin dari setiap transaksi untuk naik tier.</p>
+            </div>
+          </div>
+          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {membershipTiers.map((t, idx) => (
+              <div key={t.tier} className={`relative rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md ${idx === membershipTiers.length - 1 ? "ring-2 ring-purple-200" : ""}`}>
+                {idx === membershipTiers.length - 1 && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 rounded-full bg-purple-600 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white shadow"><FaCrown size={9} /> Unggulan</span>
+                )}
+                <div className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl ${t.icon}`}>
+                  <FaCrown size={20} />
                 </div>
-                <h3 className="mt-5 text-lg font-semibold text-slate-900">{item.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-600">{item.description}</p>
+                <div className="mt-4 flex items-center gap-2">
+                  <h3 className="text-lg font-semibold text-slate-900">{t.tier}</h3>
+                  <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${t.badge}`}>Tier {idx + 1}</span>
+                </div>
+                <ul className="mt-4 space-y-2">
+                  {t.benefits.map((b) => (
+                    <li key={b} className="flex items-start gap-2 text-xs text-slate-600">
+                      <FaCheck size={11} className="text-emerald-500 mt-0.5 flex-shrink-0" /> {b}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            );
-          })}
+            ))}
+          </div>
+        </section>
+
+        {/* SECTION PILIHAN PAKET */}
+        <section id="paket" className="mt-16 rounded-[2.5rem] bg-white/60 backdrop-blur-xl p-8 shadow-xl shadow-slate-200/40 ring-1 ring-white">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between border-b border-slate-200/50 pb-6">
+            <div>
+              <p className="text-sm uppercase tracking-[.24em] text-emerald-600 font-bold">Pilihan Paket</p>
+              <h2 className="mt-3 text-4xl font-black text-slate-900 drop-shadow-sm">Pilih paket wedding sesuai kebutuhanmu.</h2>
+              <p className="mt-3 text-base text-slate-600">Tiga pilihan paket lengkap dengan venue, dekorasi, dan layanan pendukung. Hubungi kami untuk kustomisasi.</p>
+            </div>
+          </div>
+          <div className="mt-10 grid gap-8 md:grid-cols-3">
+            {weddingPackages.map((pkg) => (
+              <div key={pkg.name} className={`group relative overflow-hidden rounded-[2rem] bg-white shadow-md ring-1 ${pkg.ring} transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col`}>
+                <div className={`bg-gradient-to-r ${pkg.accent} px-6 py-5 text-white`}>
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-xl font-bold">Paket {pkg.name}</h3>
+                    <span className="rounded-full bg-white/25 px-3 py-1 text-[10px] font-bold uppercase tracking-widest">{pkg.badge}</span>
+                  </div>
+                  <p className="mt-1 text-xs text-white/80 flex items-center gap-1"><FaMapMarkerAlt size={10} /> {pkg.venue}</p>
+                </div>
+                <div className="p-6 flex flex-col flex-1">
+                  <p className="text-2xl font-black text-slate-900">{new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(pkg.price)}</p>
+                  <div className="mt-2 flex items-center gap-1 text-xs font-semibold text-amber-500">
+                    <FaStar size={11} className="text-amber-400" /> {pkg.rating}
+                    <span className="text-slate-400 font-normal">/5.0</span>
+                  </div>
+                  <p className="mt-3 text-sm text-slate-600">{pkg.tagline}</p>
+                  <ul className="mt-4 space-y-2.5 flex-1">
+                    {pkg.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2 text-sm text-slate-700">
+                        <FaCheck size={12} className="text-emerald-500 mt-0.5 flex-shrink-0" /> {f}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section id="produk" className="mt-16 rounded-[2.5rem] bg-white/60 backdrop-blur-xl p-8 shadow-xl shadow-slate-200/40 ring-1 ring-white">
@@ -356,7 +595,20 @@ export default function Guest() {
               <h2 className="mt-3 text-4xl font-black text-slate-900 drop-shadow-sm">Paket populer kami.</h2>
               <p className="mt-3 text-base text-slate-600">Interested dengan paket? Hubungi kami untuk inkuiri detail.</p>
             </div>
-            <button onClick={() => setShowContact(true)} className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald-200/50 transition hover:scale-105 hover:shadow-emerald-300/50">Pesan Sekarang</button>
+            <button
+              onClick={() => {
+                if (guestLoggedIn) {
+                  setOrderPrefillPackage("Premium");
+                  setOrderPromoCode("");
+                  setShowOrderForm(true);
+                } else {
+                  setShowContact(true);
+                }
+              }}
+              className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald-200/50 transition hover:scale-105 hover:shadow-emerald-300/50"
+            >
+              {guestLoggedIn ? "Pesan Sekarang" : "Hubungi Kami"}
+            </button>
           </div>
           <div className="mt-10 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
             {productsPreview.map((product) => {
@@ -375,6 +627,15 @@ export default function Guest() {
                   <div className="p-6 flex flex-col flex-1">
                     <h3 className="text-xl font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">{product.title}</h3>
                     <p className="mt-2 text-2xl font-black text-emerald-600 drop-shadow-sm">{new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(product.price)}</p>
+                    <div className="mt-2 flex items-center gap-1.5">
+                      <div className="flex gap-0.5">
+                        {[1,2,3,4,5].map(s => (
+                          <FaStar key={s} size={11} className={s <= Math.round(getProductRating(product.id)) ? "text-amber-400" : "text-gray-200"} />
+                        ))}
+                      </div>
+                      <span className="text-xs font-semibold text-amber-600">{getProductRating(product.id)}</span>
+                      <span className="text-xs text-slate-400">({(product.id * 7) + 12} ulasan)</span>
+                    </div>
                     <div className="mt-4 flex items-center justify-between text-xs font-semibold text-slate-500 bg-slate-50 px-3 py-2 rounded-xl">
                       <span>{product.brand}</span>
                       <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-500"></span>{product.stock} stok</span>
@@ -382,8 +643,15 @@ export default function Guest() {
                     <div className="mt-auto pt-6">
                       <button
                         onClick={() => {
-                          setShowContact(true);
-                          setContactForm({ ...contactForm, message: `Halo SayYes WeddingDay, saya ingin memesan paket ${product.title} (${product.code}). Tolong info detail dan harga final.` });
+                          if (!guestLoggedIn) {
+                            setShowContact(true);
+                            setContactForm({ ...contactForm, message: `Halo SayYes WeddingDay, saya ingin memesan paket ${product.title} (${product.code}). Tolong info detail dan harga final.` });
+                            return;
+                          }
+                          const pkg = product.price >= 4000000 ? "Premium" : product.price >= 2500000 ? "Deluxe" : "Standard";
+                          setOrderPrefillPackage(pkg);
+                          setOrderPromoCode("");
+                          setShowOrderForm(true);
                         }}
                         className={`mt-5 inline-flex w-full items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition ${
                           guestLoggedIn
@@ -398,6 +666,61 @@ export default function Guest() {
                 </div>
               );
             })}
+          </div>
+        </section>
+        {/* SECTION KONTAK */}
+        <section id="kontak" className="mt-16 rounded-[2.5rem] bg-white border border-slate-200 p-8 shadow-xl shadow-slate-200/40 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-50 rounded-full mix-blend-multiply filter blur-3xl opacity-50" />
+          <div className="absolute -bottom-24 left-24 w-96 h-96 bg-sky-50 rounded-full mix-blend-multiply filter blur-3xl opacity-50" />
+          
+          <div className="text-center max-w-3xl mx-auto mb-10 relative z-10">
+            <span className="inline-flex rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-bold uppercase tracking-[.2em] text-emerald-700">Hubungi Kami</span>
+            <h2 className="mt-3 text-3xl font-black text-slate-900 drop-shadow-sm">Mari Wujudkan Pernikahan Impian Anda</h2>
+            <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+              Tim SayYes WeddingDay selalu siap melayani segala kebutuhan inkuiri, custom paket, maupun pertanyaan seputar event pernikahan Anda. Hubungi kami melalui kontak resmi dan jejaring sosial kami di bawah ini.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 relative z-10">
+            {/* Email Contact Card */}
+            <a href="mailto:admin@sayyeswedding.com" className="group flex flex-col items-center text-center p-6 bg-slate-50 border border-slate-200 rounded-3xl hover:bg-emerald-50 hover:border-emerald-300 transition-all duration-300 hover:-translate-y-1">
+              <div className="h-12 w-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-emerald-600 mb-4 transition-transform group-hover:scale-110">
+                <FaEnvelope size={20} />
+              </div>
+              <h3 className="text-base font-bold text-slate-900">Email Resmi</h3>
+              <p className="text-xs text-slate-500 mt-1">Kirimkan penawaran & inkuiri kerjasama</p>
+ *             <span className="mt-3 text-sm font-semibold text-emerald-600">admin@sayyeswedding.com</span>
+            </a>
+
+            {/* Phone/WhatsApp Card */}
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noreferrer" className="group flex flex-col items-center text-center p-6 bg-slate-50 border border-slate-200 rounded-3xl hover:bg-emerald-50 hover:border-emerald-300 transition-all duration-300 hover:-translate-y-1">
+              <div className="h-12 w-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-emerald-600 mb-4 transition-transform group-hover:scale-110">
+                <FaPhone size={20} />
+              </div>
+              <h3 className="text-base font-bold text-slate-900">WhatsApp & Telepon</h3>
+              <p className="text-xs text-slate-500 mt-1">Konsultasi cepat via obrolan langsung</p>
+              <span className="mt-3 text-sm font-semibold text-emerald-600">+62 823-8739-8764</span>
+            </a>
+
+            {/* Instagram Card */}
+            <a href="https://instagram.com/sayyeswedding" target="_blank" rel="noreferrer" className="group flex flex-col items-center text-center p-6 bg-slate-50 border border-slate-200 rounded-3xl hover:bg-pink-50 hover:border-pink-300 transition-all duration-300 hover:-translate-y-1">
+              <div className="h-12 w-12 rounded-2xl bg-pink-100 flex items-center justify-center text-pink-600 mb-4 transition-transform group-hover:scale-110">
+                <FaInstagram size={20} />
+              </div>
+              <h3 className="text-base font-bold text-slate-900">Instagram</h3>
+              <p className="text-xs text-slate-500 mt-1">Lihat portofolio & galeri dekorasi kami</p>
+              <span className="mt-3 text-sm font-semibold text-pink-600">@sayyeswedding</span>
+            </a>
+
+            {/* TikTok & Facebook Card */}
+            <a href="https://tiktok.com/@sayyeswedding" target="_blank" rel="noreferrer" className="group flex flex-col items-center text-center p-6 bg-slate-50 border border-slate-200 rounded-3xl hover:bg-slate-100 hover:border-slate-400 transition-all duration-300 hover:-translate-y-1">
+              <div className="h-12 w-12 rounded-2xl bg-slate-200 flex items-center justify-center text-slate-800 mb-4 transition-transform group-hover:scale-110">
+                <FaTiktok size={18} />
+              </div>
+              <h3 className="text-base font-bold text-slate-900">TikTok & Facebook</h3>
+              <p className="text-xs text-slate-500 mt-1">Video dokumentasi & review di balik layar</p>
+              <span className="mt-3 text-sm font-semibold text-slate-800">@sayyeswedding_day</span>
+            </a>
           </div>
         </section>
 
@@ -510,6 +833,15 @@ export default function Guest() {
             </div>
           </div>
         )}
+
+        <GuestOrderForm
+          show={showOrderForm}
+          onClose={() => setShowOrderForm(false)}
+          prefillPackage={orderPrefillPackage}
+          memberData={memberData}
+          guestEmail={guestEmail}
+          promoCode={orderPromoCode}
+        />
       </main>
     </div>
   );

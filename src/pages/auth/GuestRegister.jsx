@@ -4,6 +4,7 @@ import { FaRegEyeSlash, FaRegEye } from "react-icons/fa"
 import { ImSpinner2 } from "react-icons/im"
 import { usersAPI } from "../../services/usersAPI"
 import lilyImg from "../../assets/img/lily.jpg"
+import { loginGuestUser } from "../../lib/auth"
 
 export default function GuestRegister() {
     const navigate = useNavigate()
@@ -46,6 +47,7 @@ export default function GuestRegister() {
 
             const result = await usersAPI.register(newUser)
             localStorage.setItem("member", JSON.stringify(result[0]))
+            loginGuestUser(dataForm.email)
             navigate("/guest")
 
         } catch (err) {
