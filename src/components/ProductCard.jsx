@@ -1,4 +1,4 @@
-import { FaTrash, FaBox, FaTag } from "react-icons/fa";
+import { FaTrash, FaBox, FaTag, FaPen } from "react-icons/fa";
 const fmtRupiahLokal = (value) => {
   if (!value) return "Rp 0";
   return new Intl.NumberFormat("id-ID", {
@@ -8,7 +8,7 @@ const fmtRupiahLokal = (value) => {
   }).format(value);
 };
 
-export default function ProductCard({ product, onDelete }) {
+export default function ProductCard({ product, onDelete, onEdit }) {
   const { title, code, category, brand, price, stock, imageUrl } = product;
 
 
@@ -101,9 +101,17 @@ export default function ProductCard({ product, onDelete }) {
               </p>
             </div>
 
+            <button
+              onClick={() => onEdit?.(product)}
+              className="p-2 text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-xl transition-all"
+              title="Edit Produk"
+            >
+              <FaPen size={11} />
+            </button>
+
             {/* Tombol Hapus */}
             <button
-              onClick={() => onDelete(code)}
+              onClick={() => onDelete(product)}
               className="p-2 text-gray-400 hover:text-rose-500 hover:bg-rose-50 rounded-xl transition-all"
               title="Hapus Produk"
             >

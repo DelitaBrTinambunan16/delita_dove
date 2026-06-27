@@ -1,5 +1,4 @@
 import { useState } from "react"
-import axios from "axios"
 import { useNavigate, Link, useLocation } from "react-router-dom"
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa"
 import { ImSpinner2 } from "react-icons/im"
@@ -23,17 +22,11 @@ export default function Login() {
         setLoading(true)
         setError("")
         try {
-                    const res = await axios.post("https://dummyjson.com/user/login", {
-                username: dataForm.email,
-                password: dataForm.password,
-            })
-            if (res.status === 200) {
-                loginUser(dataForm.email)
-                const from = location.state?.from?.pathname || "/admin"
-                navigate(from, { replace: true })
-            }
+            await loginUser(dataForm.email, dataForm.password)
+            const from = location.state?.from?.pathname || "/admin"
+            navigate(from, { replace: true })
         } catch (err) {
-            setError("Email atau Password salah!")
+            setError(err.message || "Email atau Password salah!")
         } finally {
             setLoading(false)
         }
@@ -91,10 +84,10 @@ export default function Login() {
                         </label>
                         <input
                             name="email"
-                            type="text"
+                            type="email"
                             autoComplete="off"
                             onChange={handleChange}
-                            placeholder="emilys"
+                            placeholder="admin@delitadove.com"
                             className="w-full py-1.5 bg-transparent focus:outline-none text-xs text-gray-700 placeholder-gray-200"
                         />
                     </div>
@@ -117,7 +110,7 @@ export default function Login() {
                                 name="password"
                                 type={showPass ? "text" : "password"}
                                 onChange={handleChange}
-                                placeholder="emilyspass"
+                                placeholder="••••••••"
                                 className="w-full py-1.5 bg-transparent focus:outline-none text-xs text-gray-700 placeholder-gray-200"
                             />
                             <button

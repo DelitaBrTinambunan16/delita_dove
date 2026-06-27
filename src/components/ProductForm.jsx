@@ -1,4 +1,4 @@
-export default function ProductForm({ show, onClose, form, setForm, onSubmit }) {
+export default function ProductForm({ show, onClose, form, setForm, onSubmit, editingProduct }) {
   if (!show) return null;
 
   const handleChange = (e) => {
@@ -13,7 +13,7 @@ export default function ProductForm({ show, onClose, form, setForm, onSubmit }) 
       <div className="w-full max-w-lg rounded-[28px] bg-white shadow-[0_25px_80px_rgba(15,23,42,0.16)] border border-slate-100 p-6 font-poppins">
         <div className="flex items-start justify-between gap-4 mb-6">
           <div>
-            <h2 className="text-2xl font-bold text-slate-900">Tambah Produk</h2>
+            <h2 className="text-2xl font-bold text-slate-900">{editingProduct ? "Edit Produk" : "Tambah Produk"}</h2>
             <p className="text-sm text-slate-500 mt-1">Isi detail paket produk pernikahan dengan rapi.</p>
           </div>
           <button type="button" onClick={onClose} className="text-slate-400 hover:text-slate-600 transition">Batal</button>
@@ -86,7 +86,7 @@ export default function ProductForm({ show, onClose, form, setForm, onSubmit }) 
               type="submit"
               className="w-full sm:w-auto rounded-2xl bg-[var(--color-primary)] px-5 py-3 text-sm font-semibold text-white shadow-md shadow-emerald-200/40 hover:bg-emerald-600 transition"
             >
-              Simpan Produk
+              {editingProduct ? "Update Produk" : "Simpan Produk"}
             </button>
           </div>
         </form>

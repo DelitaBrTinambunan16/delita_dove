@@ -1,13 +1,14 @@
 import { useState, useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   FaSearch,
-  FaChevronRight,
   FaCheckCircle,
   FaExclamationTriangle,
+  FaPen,
+  FaTrash,
 } from "react-icons/fa";
 import PageHeader from "../components/PageHeader";
 import customersData from "../data/customers.json";
+import { supabase } from "../lib/supabaseClient";
 
 import {
   Avatar,
@@ -15,53 +16,126 @@ import {
   AvatarFallback,
 } from "@/components/ui/avatar";
 
-//  Helper: ambil inisial dari nama //
+const emptyForm = {
+  customerName: "",
+  email: "",
+  phone: "",
+  address: "",
+  city: "",
+  loyalty: "Bronze",
+  status: "Active",
+  rating: "0",
+  adminNotes: "",
+};
+
 function getInitials(name = "") {
   const parts = name.trim().split(" ");
-  if (parts.length === 1) return parts[0][0]?.toUpperCase() ?? "?";
+  if (parts.length === 1) return parts[0]?.[0]?.toUpperCase() ?? "?";
   return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
 }
 
-//  Helper: warna avatar fallback berdasarkan loyalty //
 function getAvatarColor(loyalty) {
   switch (loyalty) {
     case "Platinum": return "bg-purple-100 text-purple-700";
-    case "Gold":     return "bg-amber-100 text-amber-700";
-    case "Silver":   return "bg-slate-100 text-slate-600";
-    case "Bronze":   return "bg-orange-100 text-orange-700";
-    default:         return "bg-gray-100 text-gray-500";
+    case "Gold": return "bg-amber-100 text-amber-700";
+    case "Silver": return "bg-slate-100 text-slate-600";
+    case "Bronze": return "bg-orange-100 text-orange-700";
+    default: return "bg-gray-100 text-gray-500";
   }
 }
 
-export default function Customers() {
-  const navigate = useNavigate();
+function normalizeCustomer(row) {
+  return {
+    id: row.id,
+    customerId: row.customer_id || row.customerId,
+    customerName: row.customer_name || row.customerName,
+    email: row.email,
+    phone: row.phone,
+    address: row.address,
+    city: row.city,
+    loyalty: row.loyalty || "Bronze",
+    status: row.status || "Active",
+    joinDate: row.join_date || row.joinDate,
+    rating: Number(row.rating || 0),
+    adminNotes: row.admin_notes || row.adminNotes || "",
+    complaints: row.complaints || [],
+    profilePhoto: row.profilePhoto,
+  };
+}
 
-  const [searchTerm, setSearchTerm]     = useState("");
+function toPayload(form) {
+  return {
+    customer_name: form.customerName,
+    email: form.email || null,
+    phone: form.phone || null,
+    address: form.address || null,
+    city: form.city || null,
+    loyalty: form.loyalty,
+    status: form.status,
+    rating: Number(form.rating || 0),
+    admin_notes: form.adminNotes || null,
+  };
+}
+
+export default function Customers() {
+  const [customers, setCustomers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [loyaltyFilter, setLoyaltyFilter] = useState("All");
-  const [statusFilter, setStatusFilter]  = useState("All");
-  const [currentPage, setCurrentPage]   = useState(1);
+  const [statusFilter, setStatusFilter] = useState("All");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState("");
+  const [showForm, setShowForm] = useState(false);
+  const [editingCustomer, setEditingCustomer] = useState(null);
+  const [form, setForm] = useState(emptyForm);
 
   const itemsPerPage = 10;
+
+  const fetchCustomers = async () => {
+    setLoading(true);
+    try {
+      const { data, error } = await supabase
+        .from("customers")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) throw error;
+      const rows = data && data.length > 0 ? data.map(normalizeCustomer) : customersData.map(normalizeCustomer);
+      setCustomers(rows);
+      if (!data || data.length === 0) {
+        setMessage("Tabel customers kosong, menampilkan data contoh lokal.");
+      }
+    } catch (error) {
+      console.error("Gagal memuat customers Supabase:", error);
+      setCustomers(customersData.map(normalizeCustomer));
+      setMessage("Tabel customers belum siap, menampilkan data contoh lokal.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchCustomers();
+  }, []);
 
   useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm, loyaltyFilter, statusFilter]);
 
-  const getCity = (address) => {
-    if (!address) return "-";
-    const parts = address.split(",");
+  const getCity = (customer) => {
+    if (customer.city) return customer.city;
+    if (!customer.address) return "-";
+    const parts = customer.address.split(",");
     return parts[parts.length - 1].trim();
   };
 
   const filteredCustomers = useMemo(() => {
-    return customersData.filter((customer) => {
-      const name  = customer.customerName ?? "";
-      const email = customer.email ?? "";
+    return customers.filter((customer) => {
       const keyword = searchTerm.toLowerCase();
-
       const matchesSearch =
-        name.toLowerCase().includes(keyword) ||
-        email.toLowerCase().includes(keyword);
+        (customer.customerName || "").toLowerCase().includes(keyword) ||
+        (customer.email || "").toLowerCase().includes(keyword) ||
+        (customer.phone || "").includes(searchTerm);
 
       const matchesLoyalty =
         loyaltyFilter === "All" || customer.loyalty === loyaltyFilter;
@@ -75,9 +149,9 @@ export default function Customers() {
 
       return matchesSearch && matchesLoyalty && matchesStatus;
     });
-  }, [searchTerm, loyaltyFilter, statusFilter]);
+  }, [customers, searchTerm, loyaltyFilter, statusFilter]);
 
-  const totalPages = Math.ceil(filteredCustomers.length / itemsPerPage);
+  const totalPages = Math.max(1, Math.ceil(filteredCustomers.length / itemsPerPage));
 
   const currentCustomers = useMemo(() => {
     const start = (currentPage - 1) * itemsPerPage;
@@ -87,10 +161,10 @@ export default function Customers() {
   const getLoyaltyBadgeColor = (loyalty) => {
     switch (loyalty) {
       case "Platinum": return "bg-purple-100 text-purple-700 border-purple-200";
-      case "Gold":     return "bg-amber-100 text-amber-700 border-amber-200";
-      case "Silver":   return "bg-slate-100 text-slate-700 border-slate-200";
-      case "Bronze":   return "bg-orange-100 text-orange-700 border-orange-200";
-      default:         return "bg-gray-100 text-gray-700 border-gray-200";
+      case "Gold": return "bg-amber-100 text-amber-700 border-amber-200";
+      case "Silver": return "bg-slate-100 text-slate-700 border-slate-200";
+      case "Bronze": return "bg-orange-100 text-orange-700 border-orange-200";
+      default: return "bg-gray-100 text-gray-700 border-gray-200";
     }
   };
 
@@ -124,23 +198,122 @@ export default function Customers() {
     );
   };
 
+  const resetForm = () => {
+    setForm(emptyForm);
+    setEditingCustomer(null);
+  };
+
+  const openCreateForm = () => {
+    resetForm();
+    setShowForm(true);
+  };
+
+  const openEditForm = (customer) => {
+    setEditingCustomer(customer);
+    setForm({
+      customerName: customer.customerName || "",
+      email: customer.email || "",
+      phone: customer.phone || "",
+      address: customer.address || "",
+      city: getCity(customer) === "-" ? "" : getCity(customer),
+      loyalty: customer.loyalty || "Bronze",
+      status: customer.status || "Active",
+      rating: customer.rating || "0",
+      adminNotes: customer.adminNotes || "",
+    });
+    setShowForm(true);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const payload = toPayload(form);
+
+    try {
+      if (editingCustomer?.id) {
+        const { data, error } = await supabase
+          .from("customers")
+          .update(payload)
+          .eq("id", editingCustomer.id)
+          .select()
+          .single();
+        if (error) throw error;
+        setCustomers(customers.map((customer) => customer.id === editingCustomer.id ? normalizeCustomer(data) : customer));
+        setMessage("Customer berhasil diupdate.");
+      } else {
+        const { data, error } = await supabase
+          .from("customers")
+          .insert({
+            ...payload,
+            customer_id: `CUST-${Date.now().toString().slice(-6)}`,
+            complaints: [],
+          })
+          .select()
+          .single();
+        if (error) throw error;
+        setCustomers([normalizeCustomer(data), ...customers]);
+        setMessage("Customer berhasil ditambahkan.");
+      }
+    } catch (error) {
+      console.error("Gagal menyimpan customer:", error);
+      const localCustomer = normalizeCustomer({
+        ...payload,
+        customer_id: editingCustomer?.customerId || `LOCAL-${Date.now().toString().slice(-5)}`,
+        complaints: editingCustomer?.complaints || [],
+      });
+      if (editingCustomer) {
+        setCustomers(customers.map((customer) => customer.customerId === editingCustomer.customerId ? localCustomer : customer));
+      } else {
+        setCustomers([localCustomer, ...customers]);
+      }
+      setMessage("Supabase belum siap, perubahan hanya tersimpan sementara di browser.");
+    }
+
+    setShowForm(false);
+    resetForm();
+  };
+
+  const handleDelete = async (customer) => {
+    if (!window.confirm(`Hapus customer ${customer.customerName}?`)) return;
+    try {
+      if (customer.id) {
+        const { error } = await supabase.from("customers").delete().eq("id", customer.id);
+        if (error) throw error;
+      }
+      setCustomers(customers.filter((item) => item.customerId !== customer.customerId));
+      setMessage("Customer berhasil dihapus.");
+    } catch (error) {
+      console.error("Gagal menghapus customer:", error);
+      setMessage("Gagal menghapus customer dari Supabase.");
+    }
+  };
+
   return (
     <div className="p-8 font-poppins bg-[#F9F7F5] min-h-screen">
       <PageHeader
         title="Data Customer"
         description="Kelola data customer, membership, status, dan aktivitas"
-      />
+      >
+        <button
+          onClick={openCreateForm}
+          className="rounded-2xl bg-[#10B981] px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-emerald-100 transition hover:bg-emerald-600"
+        >
+          Tambah Customer
+        </button>
+      </PageHeader>
+
+      {message && (
+        <div className="mt-4 rounded-2xl border border-emerald-100 bg-white px-4 py-3 text-sm font-medium text-slate-600 shadow-sm">
+          {message}
+        </div>
+      )}
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 mt-4 overflow-hidden">
-
-        {/* ── FILTER ── */}
         <div className="p-4 border-b flex flex-col sm:flex-row gap-3 justify-between">
-
           <div className="relative w-full sm:w-80">
             <input
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Cari nama atau email..."
+              placeholder="Cari nama, email, atau HP..."
               className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border rounded-xl outline-none focus:border-emerald-500 text-sm"
             />
             <FaSearch className="absolute left-3 top-3 text-gray-300" />
@@ -175,7 +348,6 @@ export default function Customers() {
           </div>
         </div>
 
-        {/* ── TABLE ── */}
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="text-xs text-gray-400 uppercase border-b bg-gray-50/50">
@@ -192,62 +364,64 @@ export default function Customers() {
             </thead>
 
             <tbody>
-              {currentCustomers.map((c) => (
-                <tr
-                  key={c.customerId}
-                  onClick={() =>
-                    navigate(`/customers/${c.customerId}`, { state: { c } })
-                  }
-                  className="hover:bg-gray-50 cursor-pointer border-b border-gray-50 transition-colors"
-                >
-                  {/* // ShadCN Avatar di setiap baris customer // */}
+              {loading ? (
+                <tr>
+                  <td colSpan={8} className="py-12 text-center text-gray-400 text-sm">
+                    Memuat customer...
+                  </td>
+                </tr>
+              ) : currentCustomers.length > 0 ? currentCustomers.map((customer) => (
+                <tr key={customer.customerId} className="hover:bg-gray-50 border-b border-gray-50 transition-colors">
                   <td className="p-4">
                     <div className="flex items-center gap-3">
                       <Avatar size="default">
-                        <AvatarImage src={c.profilePhoto} alt={c.customerName} />
-                        <AvatarFallback
-                          className={`text-xs font-bold ${getAvatarColor(c.loyalty)}`}
-                        >
-                          {getInitials(c.customerName)}
+                        <AvatarImage src={customer.profilePhoto} alt={customer.customerName} />
+                        <AvatarFallback className={`text-xs font-bold ${getAvatarColor(customer.loyalty)}`}>
+                          {getInitials(customer.customerName)}
                         </AvatarFallback>
                       </Avatar>
                       <div>
-                        <p className="font-semibold text-gray-800 text-sm">
-                          {c.customerName}
-                        </p>
-                        <p className="text-xs text-gray-400">{c.email}</p>
+                        <p className="font-semibold text-gray-800 text-sm">{customer.customerName}</p>
+                        <p className="text-xs text-gray-400">{customer.email || "-"}</p>
                       </div>
                     </div>
                   </td>
-
-                  <td className="p-4 text-gray-600 text-sm">{c.phone}</td>
-                  <td className="p-4 text-gray-600 text-sm">{getCity(c.address)}</td>
-
+                  <td className="p-4 text-gray-600 text-sm">{customer.phone || "-"}</td>
+                  <td className="p-4 text-gray-600 text-sm">{getCity(customer)}</td>
                   <td className="p-4">
-                    <span className={`px-2 py-1 rounded border text-xs font-semibold ${getLoyaltyBadgeColor(c.loyalty)}`}>
-                      {c.loyalty}
+                    <span className={`px-2 py-1 rounded border text-xs font-semibold ${getLoyaltyBadgeColor(customer.loyalty)}`}>
+                      {customer.loyalty}
                     </span>
                   </td>
-
                   <td className="p-4">
-                    <span className={`px-2 py-1 rounded border text-xs font-semibold ${getStatusBadgeColor(c.status)}`}>
-                      {c.status === "Active" ? "Aktif" : "Tidak Aktif"}
+                    <span className={`px-2 py-1 rounded border text-xs font-semibold ${getStatusBadgeColor(customer.status)}`}>
+                      {customer.status === "Active" ? "Aktif" : "Tidak Aktif"}
                     </span>
                   </td>
-
-                  <td className="p-4">{getComplaintsBadge(c.complaints)}</td>
-
-                  <td className="p-4 text-xs text-gray-400 truncate max-w-[150px]">
-                    {c.adminNotes || "-"}
-                  </td>
-
-                  <td className="p-4 text-center">
-                    <FaChevronRight className="mx-auto text-gray-300" />
+                  <td className="p-4">{getComplaintsBadge(customer.complaints)}</td>
+                  <td className="p-4 text-xs text-gray-400 truncate max-w-[150px]">{customer.adminNotes || "-"}</td>
+                  <td className="p-4">
+                    <div className="flex justify-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => openEditForm(customer)}
+                        className="rounded-xl p-2 text-gray-400 transition hover:bg-blue-50 hover:text-blue-500"
+                        title="Edit customer"
+                      >
+                        <FaPen size={12} />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleDelete(customer)}
+                        className="rounded-xl p-2 text-gray-400 transition hover:bg-rose-50 hover:text-rose-500"
+                        title="Hapus customer"
+                      >
+                        <FaTrash size={12} />
+                      </button>
+                    </div>
                   </td>
                 </tr>
-              ))}
-
-              {currentCustomers.length === 0 && (
+              )) : (
                 <tr>
                   <td colSpan={8} className="py-12 text-center text-gray-400 text-sm">
                     Tidak ada customer yang sesuai filter
@@ -258,11 +432,10 @@ export default function Customers() {
           </table>
         </div>
 
-        {/* ── PAGINATION ── */}
         {filteredCustomers.length > 0 && (
           <div className="p-4 border-t border-gray-50 flex flex-col sm:flex-row justify-between items-center gap-3">
             <span className="text-sm text-gray-400">
-              Menampilkan {(currentPage - 1) * itemsPerPage + 1}–
+              Menampilkan {(currentPage - 1) * itemsPerPage + 1}-
               {Math.min(currentPage * itemsPerPage, filteredCustomers.length)} dari{" "}
               {filteredCustomers.length} customer
             </span>
@@ -285,6 +458,57 @@ export default function Customers() {
           </div>
         )}
       </div>
+
+      {showForm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-2xl rounded-[28px] border border-slate-100 bg-white p-6 shadow-[0_25px_80px_rgba(15,23,42,0.16)]">
+            <div className="mb-6 flex items-start justify-between gap-4">
+              <div>
+                <h2 className="text-2xl font-bold text-slate-900">{editingCustomer ? "Edit Customer" : "Tambah Customer"}</h2>
+                <p className="mt-1 text-sm text-slate-500">Isi data customer/prospek dengan ringkas.</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setShowForm(false);
+                  resetForm();
+                }}
+                className="text-sm font-semibold text-slate-400 hover:text-slate-600"
+              >
+                Batal
+              </button>
+            </div>
+
+            <form onSubmit={handleSubmit} className="grid gap-4 md:grid-cols-2">
+              <input required value={form.customerName} onChange={(e) => setForm({ ...form, customerName: e.target.value })} placeholder="Nama customer" className="rounded-2xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-emerald-500" />
+              <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="Email" className="rounded-2xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-emerald-500" />
+              <input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="Nomor HP" className="rounded-2xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-emerald-500" />
+              <input value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} placeholder="Kota" className="rounded-2xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-emerald-500" />
+              <input value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} placeholder="Alamat" className="rounded-2xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-emerald-500 md:col-span-2" />
+              <select value={form.loyalty} onChange={(e) => setForm({ ...form, loyalty: e.target.value })} className="rounded-2xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-emerald-500">
+                <option value="Bronze">Bronze</option>
+                <option value="Silver">Silver</option>
+                <option value="Gold">Gold</option>
+                <option value="Platinum">Platinum</option>
+              </select>
+              <select value={form.status} onChange={(e) => setForm({ ...form, status: e.target.value })} className="rounded-2xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-emerald-500">
+                <option value="Active">Aktif</option>
+                <option value="Inactive">Tidak Aktif</option>
+              </select>
+              <input type="number" min="0" max="5" step="0.1" value={form.rating} onChange={(e) => setForm({ ...form, rating: e.target.value })} placeholder="Rating" className="rounded-2xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-emerald-500" />
+              <input value={form.adminNotes} onChange={(e) => setForm({ ...form, adminNotes: e.target.value })} placeholder="Catatan admin" className="rounded-2xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-emerald-500" />
+              <div className="flex justify-end gap-3 md:col-span-2">
+                <button type="button" onClick={() => { setShowForm(false); resetForm(); }} className="rounded-2xl border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-600 hover:bg-slate-100">
+                  Batal
+                </button>
+                <button type="submit" className="rounded-2xl bg-[#10B981] px-5 py-3 text-sm font-semibold text-white hover:bg-emerald-600">
+                  {editingCustomer ? "Update Customer" : "Simpan Customer"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

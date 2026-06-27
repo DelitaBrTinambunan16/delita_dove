@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import { FaSearch, FaStar, FaCheckCircle, FaExclamationTriangle, FaReply } from "react-icons/fa";
 import PageHeader from "../components/PageHeader";
 import customersData from "../data/customers";
+import { supabase } from "../lib/supabaseClient";
 
 export default function Message() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -9,6 +10,8 @@ export default function Message() {
   const [currentPage, setCurrentPage] = useState(1);
   const [activeReplyId, setActiveReplyId] = useState(null);
   const [draftReply, setDraftReply] = useState("");
+  const [leadMessages, setLeadMessages] = useState([]);
+  const [messagesLoading, setMessagesLoading] = useState(true);
   const [replies, setReplies] = useState(() => {
     const initial = {};
     customersData.forEach((customer) => {
@@ -20,6 +23,28 @@ export default function Message() {
   useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm, complaintFilter]);
+
+  useEffect(() => {
+    const fetchLeadMessages = async () => {
+      setMessagesLoading(true);
+      try {
+        const { data, error } = await supabase
+          .from("messages")
+          .select("*")
+          .order("created_at", { ascending: false })
+          .limit(20);
+        if (error) throw error;
+        setLeadMessages(data || []);
+      } catch (error) {
+        console.error("Gagal memuat messages Supabase:", error);
+        setLeadMessages([]);
+      } finally {
+        setMessagesLoading(false);
+      }
+    };
+
+    fetchLeadMessages();
+  }, []);
 
   const filteredData = useMemo(() => {
     let localComplaints = {};
@@ -89,6 +114,48 @@ export default function Message() {
         title="Inbox Pesan Admin"
         description="Kelola pesan pembeli dan balas komplain langsung dari halaman admin."
       />
+
+      <section className="mt-4 rounded-3xl border border-gray-100 bg-white p-5 shadow-sm">
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <div>
+            <p className="text-sm font-bold text-slate-900">Lead Inquiry dari Landing Page</p>
+            <p className="text-xs text-slate-500">Data ini berasal dari tabel Supabase `messages`.</p>
+          </div>
+          <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700">
+            {leadMessages.length} pesan
+          </span>
+        </div>
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          {messagesLoading ? (
+            <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 text-sm text-slate-400">
+              Memuat pesan...
+            </div>
+          ) : leadMessages.length > 0 ? leadMessages.map((item) => (
+            <div key={item.id} className="rounded-2xl border border-slate-100 bg-slate-50 p-4">
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="text-sm font-bold text-slate-900">{item.name || "Guest"}</p>
+                  <p className="text-xs text-slate-500">{item.email || "-"} - {item.phone}</p>
+                </div>
+                <span className="rounded-full bg-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-600">
+                  {item.message_type}
+                </span>
+              </div>
+              <p className="mt-3 text-sm leading-6 text-slate-600">{item.message}</p>
+              <div className="mt-3 flex flex-wrap gap-2 text-[11px] font-semibold text-slate-500">
+                {item.event_date && <span className="rounded-full bg-white px-2 py-1">Tanggal: {item.event_date}</span>}
+                {item.location && <span className="rounded-full bg-white px-2 py-1">Lokasi: {item.location}</span>}
+                {item.guest_count && <span className="rounded-full bg-white px-2 py-1">{item.guest_count} tamu</span>}
+                {item.promo_code && <span className="rounded-full bg-white px-2 py-1">Promo: {item.promo_code}</span>}
+              </div>
+            </div>
+          )) : (
+            <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-4 text-sm text-slate-400">
+              Belum ada inquiry dari landing page.
+            </div>
+          )}
+        </div>
+      </section>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mt-4">
         <div className="p-4 border-b border-gray-50 flex flex-col sm:flex-row justify-between items-center gap-3">

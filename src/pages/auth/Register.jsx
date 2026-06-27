@@ -1,32 +1,170 @@
+import { useState } from "react"
+import { useNavigate, Link } from "react-router-dom"
+import { FaRegEyeSlash, FaRegEye } from "react-icons/fa"
+import { ImSpinner2 } from "react-icons/im"
+import { registerUser } from "../../lib/auth"
+
+import lilyImg from "../../assets/img/lily.jpg"
+
 export default function Register() {
+    const navigate = useNavigate()
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState("")
+    const [success, setSuccess] = useState("")
+    const [showPass, setShowPass] = useState(false)
+    const [dataForm, setDataForm] = useState({ email: "", password: "" })
+
+    const handleChange = (e) =>
+        setDataForm({ ...dataForm, [e.target.name]: e.target.value })
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        setLoading(true)
+        setError("")
+        setSuccess("")
+
+        if (dataForm.password.length < 6) {
+            setError("Password minimal 6 karakter.")
+            setLoading(false)
+            return
+        }
+
+        try {
+            await registerUser(dataForm.email, dataForm.password)
+            setSuccess("Registrasi berhasil! Silakan cek email untuk verifikasi, lalu login.")
+            setTimeout(() => navigate("/login"), 3000)
+        } catch (err) {
+            setError(err.message || "Registrasi gagal. Coba lagi.")
+        } finally {
+            setLoading(false)
+        }
+    }
+
     return (
-        <div>
-            <h2 className="text-xl font-semibold text-center mb-4 text-pink-500">
-                Register
-            </h2>
+        <div className="w-full max-w-[360px] mx-auto flex flex-col shadow-[0_15px_40px_rgba(0,0,0,0.10)] rounded-[28px] overflow-hidden bg-white border border-gray-100 font-poppins">
 
-            <form>
-
-                <input
-                    type="email"
-                    placeholder="Email"
-                    className="w-full border p-2 mb-3"
+            {/* ── Foto Lily ── */}
+            <div className="h-40 w-full overflow-hidden bg-emerald-50">
+                <img
+                    src={lilyImg}
+                    className="w-full h-full object-cover object-center"
+                    alt="Lily Decoration"
+                    onError={(e) => {
+                        e.target.parentElement.style.background =
+                            "linear-gradient(135deg,#d1fae5,#6ee7b7)"
+                        e.target.style.display = "none"
+                    }}
                 />
+            </div>
 
-                <input
-                    type="password"
-                    placeholder="Password"
-                    className="w-full border p-2 mb-3"
-                />
+            {/* ── Header ── */}
+            <div className="px-8 pt-6">
+                <div className="mb-4 text-center">
+                    <p className="text-[9px] uppercase tracking-[0.2em] text-[#10B981] font-bold">
+                        SayYes
+                    </p>
+                    <h1 className="text-2xl font-extrabold text-gray-900">
+                        WeddingDay
+                    </h1>
+                    <p className="text-xs text-gray-500 mt-2">
+                        Daftarkan akun admin baru untuk mengelola dashboard.
+                    </p>
+                </div>
+            </div>
 
-                <button
-                    type="submit"
-                    className="w-full bg-pink-500 text-white p-2"
-                >
-                    Register
-                </button>
+            {/* ── Form ── */}
+            <div className="px-8 pb-8">
 
-            </form>
+                {/* Error */}
+                {error && (
+                    <div className="mb-4 p-2 bg-red-50 border border-red-100 rounded-lg text-red-500 text-[10px] font-bold text-center">
+                        {error}
+                    </div>
+                )}
+
+                {/* Success */}
+                {success && (
+                    <div className="mb-4 p-2 bg-emerald-50 border border-emerald-100 rounded-lg text-emerald-600 text-[10px] font-bold text-center">
+                        {success}
+                    </div>
+                )}
+
+                <form onSubmit={handleSubmit} className="space-y-5">
+
+                    {/* Email */}
+                    <div className="border-b border-gray-100 focus-within:border-[#10B981] transition-all pb-0.5">
+                        <label className="text-[9px] uppercase tracking-widest text-gray-400 font-bold block">
+                            Email Address
+                        </label>
+                        <input
+                            name="email"
+                            type="email"
+                            autoComplete="off"
+                            onChange={handleChange}
+                            placeholder="admin@delitadove.com"
+                            required
+                            className="w-full py-1.5 bg-transparent focus:outline-none text-xs text-gray-700 placeholder-gray-200"
+                        />
+                    </div>
+
+                    {/* Password */}
+                    <div className="border-b border-gray-100 focus-within:border-[#10B981] transition-all pb-0.5">
+                        <label className="text-[9px] uppercase tracking-widest text-gray-400 font-bold">
+                            Password
+                        </label>
+                        <div className="flex items-center">
+                            <input
+                                name="password"
+                                type={showPass ? "text" : "password"}
+                                onChange={handleChange}
+                                placeholder="Minimal 6 karakter"
+                                required
+                                className="w-full py-1.5 bg-transparent focus:outline-none text-xs text-gray-700 placeholder-gray-200"
+                            />
+                            <button
+                                type="button"
+                                onClick={() => setShowPass(!showPass)}
+                                className="text-gray-300 hover:text-[#10B981] transition-colors ml-1 flex-shrink-0"
+                            >
+                                {showPass
+                                    ? <FaRegEye size={12} />
+                                    : <FaRegEyeSlash size={12} />
+                                }
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Tombol Register */}
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className="w-full bg-[#10B981] hover:bg-emerald-600 disabled:opacity-70 text-white py-3 rounded-xl font-bold text-xs shadow-lg shadow-emerald-100 transition-all flex items-center justify-center gap-2 mt-2"
+                    >
+                        {loading
+                            ? <ImSpinner2 className="animate-spin text-sm" />
+                            : "Create Account"
+                        }
+                    </button>
+                </form>
+
+                {/* Divider */}
+                <div className="flex items-center gap-3 my-5">
+                    <div className="flex-1 h-px bg-gray-100" />
+                    <span className="text-[9px] text-gray-300 font-medium">Or</span>
+                    <div className="flex-1 h-px bg-gray-100" />
+                </div>
+
+                {/* Login link */}
+                <p className="text-center text-[10px] text-gray-400 font-medium">
+                    Sudah punya akun?{" "}
+                    <Link
+                        to="/login"
+                        className="text-[#10B981] font-bold hover:underline"
+                    >
+                        Log in
+                    </Link>
+                </p>
+            </div>
         </div>
     )
 }

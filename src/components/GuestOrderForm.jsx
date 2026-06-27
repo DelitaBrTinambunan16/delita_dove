@@ -15,7 +15,7 @@ const inputClass =
   "w-full border border-slate-200 bg-white rounded-lg px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all";
 const labelClass = "block text-xs font-medium text-slate-600 mb-1";
 
-export default function GuestOrderForm({ show, onClose, prefillPackage, memberData, guestEmail, promoCode: propPromoCode }) {
+export default function GuestOrderForm({ show, onClose, prefillPackage, selectedProduct, memberData, guestEmail, promoCode: propPromoCode, onSubmitted }) {
   const navigate = useNavigate();
   const [submitted, setSubmitted] = useState(false);
 
@@ -40,7 +40,7 @@ export default function GuestOrderForm({ show, onClose, prefillPackage, memberDa
         name: memberData?.name || guestEmail?.split("@")[0] || "",
         email: memberData?.email || guestEmail || "",
         phone: memberData?.phone || "",
-        paket: pkg.name,
+        paket: selectedProduct?.title || pkg.name,
         venue: pkg.venue,
         orderDate: "",
         guestCount: "",
@@ -49,7 +49,7 @@ export default function GuestOrderForm({ show, onClose, prefillPackage, memberDa
         promoCode: propPromoCode || "",
       });
     }
-  }, [show, prefillPackage, propPromoCode, memberData, guestEmail]);
+  }, [show, prefillPackage, propPromoCode, memberData, guestEmail, selectedProduct]);
 
   if (!show) return null;
 
@@ -67,26 +67,47 @@ export default function GuestOrderForm({ show, onClose, prefillPackage, memberDa
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const email = form.email || guestEmail;
-    if (!email) return;
-
     const pkg = PACKAGE_OPTIONS.find((p) => p.name === form.paket);
+    const packageName = selectedProduct?.title || form.paket;
+    const totalPrice = selectedProduct?.price || pkg?.price || 0;
     const orderData = {
       order_id: "ORD-" + Math.random().toString(36).substr(2, 6).toUpperCase(),
+      product_id: selectedProduct?.id || null,
+      product_code: selectedProduct?.code || null,
       customer_name: form.name,
+      customer_email: form.email || guestEmail || null,
       customer_phone: form.phone,
-      package_name: form.paket,
+      package_name: packageName,
       event_date: form.orderDate,
-      total_price: pkg?.price || 0,
+      guest_count: form.guestCount ? Number(form.guestCount) : null,
+      location: form.location || null,
+      total_price: totalPrice,
       notes: `Venue: ${form.venue}, Location: ${form.location}, Guests: ${form.guestCount}, Promo: ${form.promoCode}. ${form.notes}`,
+      promo_code: form.promoCode || null,
       status: "Pending"
     };
 
     try {
       const { error } = await supabase.from('orders').insert([orderData]);
-      if (error) throw error;
+      if (error) {
+        const legacyOrderData = {
+          order_id: orderData.order_id,
+          customer_name: orderData.customer_name,
+          customer_phone: orderData.customer_phone,
+          package_name: orderData.package_name,
+          event_date: orderData.event_date,
+          total_price: orderData.total_price,
+          notes: orderData.notes,
+          status: orderData.status,
+        };
+        const { error: legacyError } = await supabase.from('orders').insert([legacyOrderData]);
+        if (legacyError) throw legacyError;
+      }
+      onSubmitted?.();
     } catch (err) {
       console.error("Gagal mengirim pesanan:", err);
+      alert("Gagal mengirim pesanan. Coba lagi.");
+      return;
     }
 
     setSubmitted(true);
@@ -101,6 +122,7 @@ export default function GuestOrderForm({ show, onClose, prefillPackage, memberDa
     new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(v);
 
   const selectedPkg = PACKAGE_OPTIONS.find((p) => p.name === form.paket);
+  const selectedPrice = selectedProduct?.price || selectedPkg?.price || 0;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 backdrop-blur-sm p-4 overflow-y-auto">
@@ -151,7 +173,9 @@ export default function GuestOrderForm({ show, onClose, prefillPackage, memberDa
               <div>
                 <label className={labelClass}>Pilih Paket</label>
                 <select name="paket" value={form.paket} onChange={handleChange} className={inputClass}>
-                  {PACKAGE_OPTIONS.map((p) => (
+                  {selectedProduct ? (
+                    <option value={selectedProduct.title}>{selectedProduct.title}</option>
+                  ) : PACKAGE_OPTIONS.map((p) => (
                     <option key={p.name} value={p.name}>{p.name}</option>
                   ))}
                 </select>
@@ -159,7 +183,7 @@ export default function GuestOrderForm({ show, onClose, prefillPackage, memberDa
               <div>
                 <label className={labelClass}>Harga Paket</label>
                 <div className="flex items-center h-[38px] px-3 rounded-lg bg-emerald-50 border border-emerald-100">
-                  <span className="text-sm font-bold text-emerald-600">{fmtRupiah(selectedPkg?.price || 0)}</span>
+                  <span className="text-sm font-bold text-emerald-600">{fmtRupiah(selectedPrice)}</span>
                 </div>
               </div>
             </div>
@@ -172,7 +196,7 @@ export default function GuestOrderForm({ show, onClose, prefillPackage, memberDa
               </div>
               <div>
                 <label className={labelClass}>Email</label>
-                <input required type="email" name="email" value={form.email} onChange={handleChange} className={inputClass} placeholder="email@example.com" />
+                <input type="email" name="email" value={form.email} onChange={handleChange} className={inputClass} placeholder="email@example.com" />
               </div>
             </div>
 
@@ -180,7 +204,7 @@ export default function GuestOrderForm({ show, onClose, prefillPackage, memberDa
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className={labelClass}>No. HP</label>
-                <input type="tel" name="phone" value={form.phone} onChange={handleChange} className={inputClass} placeholder="0812..." />
+                <input required type="tel" name="phone" value={form.phone} onChange={handleChange} className={inputClass} placeholder="0812..." />
               </div>
               <div>
                 <label className={labelClass}>Jumlah Tamu</label>

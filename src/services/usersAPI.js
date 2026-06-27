@@ -1,7 +1,6 @@
-import axios from 'axios'
-
-const API_URL = "https://lynvsmtpnnkluxmwgcay.supabase.co/rest/v1/users"
+const API_URL = "https://lynvsmtpnnkluxmwgcay.supabase.co/rest/v1/member"
 const API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5bnZzbXRwbm5rbHV4bXdnY2F5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEzNjIwMTQsImV4cCI6MjA5NjkzODAxNH0.iwoBAbGWz8Mgf6bmXtVdlXWXy89uNG1imYalKr-cYqc"
+import axios from 'axios'
 
 const headers = {
     apikey: API_KEY,
@@ -11,13 +10,13 @@ const headers = {
 
 export const usersAPI = {
 
-    // Ambil semua user — untuk halaman admin Customers
+    // Ambil semua member — untuk halaman admin
     async fetchUsers() {
         const response = await axios.get(API_URL, { headers })
         return response.data
     },
 
-    // Login member — cek email & password di tabel users
+    // Login member — cek email & password di tabel member
     async login(email, password) {
         const response = await axios.get(
             `${API_URL}?email=eq.${email}&password=eq.${password}`,
@@ -46,7 +45,7 @@ export const usersAPI = {
         return response.data[0]
     },
 
-    // Update data member (complaint, promo_code, dll)
+    // Update data member (promo_code, complaint, dll)
     async updateUser(id, data) {
         const response = await axios.patch(
             `${API_URL}?id=eq.${id}`,
@@ -63,9 +62,6 @@ export const usersAPI = {
 
     // Hapus member berdasarkan id
     async deleteUser(id) {
-        await axios.delete(
-            `${API_URL}?id=eq.${id}`,
-            { headers }
-        )
+        await axios.delete(`${API_URL}?id=eq.${id}`, { headers })
     },
 }

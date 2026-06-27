@@ -1,51 +1,19 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FaCalendarAlt, FaCommentDots, FaGift, FaStar, FaTicketAlt, FaExclamationTriangle, FaCheckCircle, FaEnvelope, FaPhone, FaInstagram, FaFacebook, FaTiktok, FaCheck, FaCrown, FaMapMarkerAlt } from "react-icons/fa";
+import { FaCalendarAlt, FaCommentDots, FaGift, FaStar, FaTicketAlt, FaExclamationTriangle, FaCheckCircle, FaEnvelope, FaPhone, FaInstagram, FaFacebook, FaTiktok, FaCheck, FaCrown, FaMapMarkerAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { promoOffers } from "../data/promoOffers";
 import { getGuestLoggedUserEmail, isGuestLoggedIn } from "../lib/auth";
 import { usersAPI } from "../services/usersAPI";
 import customersData from "../data/customers.json";
 import { supabase } from "../lib/supabaseClient";
 import productsData from "../data/produkData.json";
+import campaignsData from "../data/campaigns.json";
 import GuestOrderForm from "../components/GuestOrderForm";
 
 const getProductRating = (id) => Number((4.3 + (id % 7) * 0.1).toFixed(1));
+const formatRupiah = (value) =>
+  new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(value || 0);
 
-const weddingPackages = [
-  {
-    name: "Premium",
-    venue: "Garden Paradise",
-    price: 4000000,
-    rating: 4.9,
-    tagline: "Pengalaman wedding mewah dan lengkap",
-    features: ["Dekorasi outdoor eksklusif", "Catering premium 300 pax", "Foto & video cinematic", "MUA & bridal full day", "MC profesional"],
-    badge: "Best Seller",
-    accent: "from-emerald-500 to-emerald-600",
-    ring: "ring-emerald-200",
-  },
-  {
-    name: "Deluxe",
-    venue: "Grand Ballroom",
-    price: 2500000,
-    rating: 4.7,
-    tagline: "Paket elegan untuk acara berkelas",
-    features: ["Ballroom indoor mewah", "Catering 200 pax", "Dokumentasi profesional", "Lighting & stage premium", "Koordinator acara"],
-    badge: "Populer",
-    accent: "from-sky-500 to-sky-600",
-    ring: "ring-sky-200",
-  },
-  {
-    name: "Standard",
-    venue: "Cozy Intimate",
-    price: 1000000,
-    rating: 4.5,
-    tagline: "Hemat tapi tetap berkesan",
-    features: ["Venue intimate nyaman", "Catering 100 pax", "Foto dokumentasi", "Dekorasi standar elegan"],
-    badge: "Hemat",
-    accent: "from-amber-500 to-amber-600",
-    ring: "ring-amber-200",
-  },
-];
 
 const membershipTiers = [
   {
@@ -121,6 +89,120 @@ const memberBenefits = [
 
 export default function Guest() {
   const [guestLoggedIn, setGuestLoggedIn] = useState(false);
+  const [weddingPackages, setWeddingPackages] = useState([]);
+  const [productsPreview, setProductsPreview] = useState([]);
+  const [campaignPreview, setCampaignPreview] = useState([]);
+  const [productsLoading, setProductsLoading] = useState(true);
+  const [campaignLoading, setCampaignLoading] = useState(true);
+  const [landingError, setLandingError] = useState("");
+  const [highlightIndex, setHighlightIndex] = useState(0);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  useEffect(() => {
+    const fetchPackages = async () => {
+      setProductsLoading(true);
+      try {
+        const { data, error } = await supabase
+          .from('products')
+          .select('id, code, title, category, brand, price, stock')
+          .limit(12);
+        if (error) throw error;
+        const productRows = data && data.length > 0 ? data : productsData.slice(0, 12);
+        setProductsPreview(productRows.slice(0, 8));
+
+        // Mapping sederhana berdasarkan price range (sesuai PRD)
+        const mapped = productRows.map((p) => {
+          const tier = p.price >= 4000000 ? 'Premium' : p.price >= 2500000 ? 'Deluxe' : 'Standard';
+          const accent =
+            tier === 'Premium'
+              ? 'from-emerald-500 to-emerald-600'
+              : tier === 'Deluxe'
+                ? 'from-sky-500 to-sky-600'
+                : 'from-amber-500 to-amber-600';
+          const ring =
+            tier === 'Premium'
+              ? 'ring-emerald-200'
+              : tier === 'Deluxe'
+                ? 'ring-sky-200'
+                : 'ring-amber-200';
+          const badge = tier === 'Premium' ? 'Best Seller' : tier === 'Deluxe' ? 'Populer' : 'Hemat';
+
+          return {
+            name: tier,
+            venue: 'Custom Venue',
+            price: p.price,
+            rating: 4.7,
+            tagline: `Paket ${tier} tersedia dengan konfigurasi fleksibel.`,
+            features: [
+              'Konsultasi wedding sesuai kebutuhan',
+              'Rincian layanan mengikuti ketersediaan',
+              'Koordinasi timeline event',
+              'Dokumentasi & laporan ringkas',
+            ],
+            badge,
+            accent,
+            ring,
+          };
+        });
+
+        // Ambil 1 paket per tier supaya section konsisten 3 card
+        const byTier = { Premium: null, Deluxe: null, Standard: null };
+        for (const item of mapped) {
+          if (!byTier[item.name]) byTier[item.name] = item;
+        }
+
+        setWeddingPackages([
+          byTier.Premium || null,
+          byTier.Deluxe || null,
+          byTier.Standard || null,
+        ].filter(Boolean));
+      } catch (err) {
+        console.error('Error fetching packages:', err);
+        setLandingError("Data Supabase belum tersedia, menampilkan data contoh lokal.");
+        setProductsPreview(productsData.slice(0, 8));
+        // fallback minimal (agar section tetap render)
+        setWeddingPackages([
+          {
+            name: 'Premium',
+            venue: 'Garden Paradise',
+            price: 4000000,
+            rating: 4.9,
+            tagline: 'Pengalaman wedding mewah dan lengkap',
+            features: ['Dekorasi outdoor eksklusif'],
+            badge: 'Best Seller',
+            accent: 'from-emerald-500 to-emerald-600',
+            ring: 'ring-emerald-200',
+          },
+          {
+            name: 'Deluxe',
+            venue: 'Grand Ballroom',
+            price: 2500000,
+            rating: 4.7,
+            tagline: 'Paket elegan untuk acara berkelas',
+            features: ['Ballroom indoor mewah'],
+            badge: 'Populer',
+            accent: 'from-sky-500 to-sky-600',
+            ring: 'ring-sky-200',
+          },
+          {
+            name: 'Standard',
+            venue: 'Cozy Intimate',
+            price: 1000000,
+            rating: 4.5,
+            tagline: 'Hemat tapi tetap berkesan',
+            features: ['Venue intimate nyaman'],
+            badge: 'Hemat',
+            accent: 'from-amber-500 to-amber-600',
+            ring: 'ring-amber-200',
+          },
+        ]);
+      } finally {
+        setProductsLoading(false);
+      }
+    };
+
+    fetchPackages();
+  }, []);
   const [guestEmail, setGuestEmail] = useState("");
   const [contactForm, setContactForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [contactSubmitted, setContactSubmitted] = useState(false);
@@ -128,7 +210,6 @@ export default function Guest() {
   const [showOrderForm, setShowOrderForm] = useState(false);
   const [orderPrefillPackage, setOrderPrefillPackage] = useState("Premium");
   const [orderPromoCode, setOrderPromoCode] = useState("");
-  const [productsPreview, setProductsPreview] = useState([]);
 
   // Data member dari Supabase
   const [memberData, setMemberData] = useState(null);
@@ -184,24 +265,27 @@ export default function Guest() {
       }
     };
 
-    const fetchProducts = async () => {
+    const fetchCampaigns = async () => {
+      setCampaignLoading(true);
       try {
-        const { data, error } = await supabase.from('products').select('*').limit(8);
+        const { data, error } = await supabase
+          .from('campaigns')
+          .select('id, campaign_id, name, type, start_date, end_date, participants_count, image_url, description')
+          .order('participants_count', { ascending: false })
+          .limit(3);
         if (error) throw error;
-        if (data && data.length > 0) {
-          setProductsPreview(data);
-        } else {
-          // Fallback ke JSON lokal jika kosong
-          setProductsPreview(productsData.slice(0, 8));
-        }
+        const rows = data && data.length > 0 ? data : campaignsData.slice(0, 3);
+        setCampaignPreview(rows);
       } catch (error) {
-        console.error("Error fetching products:", error);
-        setProductsPreview(productsData.slice(0, 8));
+        console.error("Error fetching campaigns:", error);
+        setCampaignPreview(campaignsData.slice(0, 3));
+      } finally {
+        setCampaignLoading(false);
       }
     };
 
     checkLogin();
-    fetchProducts();
+    fetchCampaigns();
   }, []);
 
   // Bersihkan state ketika member logout
@@ -220,22 +304,39 @@ export default function Guest() {
 
   const guestName = memberData?.name || guestEmail.split("@")[0] || "Tamu";
 
-  const handleContactSubmit = (e) => {
+  const handleContactSubmit = async (e) => {
     e.preventDefault();
-    if (!contactForm.name || !contactForm.email || !contactForm.phone || !contactForm.message) {
-      alert("Semua field harus diisi");
+
+    // Minimal validation sesuai PRD v3: phone wajib
+    if (!contactForm.phone || !contactForm.phone.trim()) {
+      alert("Nomor HP wajib diisi");
       return;
     }
-    const inquiries = JSON.parse(localStorage.getItem("guestInquiries") || "[]");
-    inquiries.push({
-      ...contactForm,
-      id: Date.now(),
-      date: new Date().toLocaleString("id-ID"),
-    });
-    localStorage.setItem("guestInquiries", JSON.stringify(inquiries));
-    setContactSubmitted(true);
-    setContactForm({ name: "", email: "", phone: "", message: "" });
-    setTimeout(() => setContactSubmitted(false), 5000);
+
+    const payload = {
+      message_type: "general_inquiry",
+      name: contactForm.name || "-",
+      email: contactForm.email || "-",
+      phone: contactForm.phone,
+      event_date: contactForm.eventDate || null,
+      location: contactForm.location || null,
+      guest_count: contactForm.guestCount ? Number(contactForm.guestCount) : null,
+      message: contactForm.message || "-",
+      notes: null,
+      promo_code: null,
+    };
+
+    try {
+      const { error } = await supabase.from('messages').insert(payload);
+      if (error) throw error;
+
+      setContactSubmitted(true);
+      setContactForm({ name: "", email: "", phone: "", message: "" });
+      setTimeout(() => setContactSubmitted(false), 5000);
+    } catch (err) {
+      console.error("Error insert messages:", err);
+      alert("Gagal mengirim pesan. Coba lagi.");
+    }
   };
 
   const [promoCode, setPromoCode] = useState("");
@@ -289,6 +390,21 @@ export default function Guest() {
     if (cat.includes("entertainment")) return "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=900&q=80";
     if (cat.includes("transport")) return "https://images.unsplash.com/photo-1485463611174-fb2ee4b9603e?auto=format&fit=crop&w=900&q=80";
     return "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=80";
+  };
+
+  const highlightedProducts = productsPreview.slice(0, 4);
+  const activeHighlight = highlightedProducts[highlightIndex] || highlightedProducts[0];
+
+  const handleSelectProduct = (product) => {
+    setSelectedProduct(product);
+    const pkg = Number(product.price) >= 4000000 ? "Premium" : Number(product.price) >= 2500000 ? "Deluxe" : "Standard";
+    setOrderPrefillPackage(pkg);
+    setOrderPromoCode("");
+  };
+
+  const openBookingForm = (product = selectedProduct) => {
+    if (product) handleSelectProduct(product);
+    setShowOrderForm(true);
   };
 
   return (
@@ -593,25 +709,93 @@ export default function Guest() {
             <div>
               <p className="text-sm uppercase tracking-[.24em] text-emerald-600 font-bold">Produk Rekomendasi</p>
               <h2 className="mt-3 text-4xl font-black text-slate-900 drop-shadow-sm">Paket populer kami.</h2>
-              <p className="mt-3 text-base text-slate-600">Interested dengan paket? Hubungi kami untuk inkuiri detail.</p>
+              <p className="mt-3 text-base text-slate-600">Pilih paket yang diminati, lalu ajukan booking tanpa perlu login.</p>
             </div>
             <button
               onClick={() => {
-                if (guestLoggedIn) {
-                  setOrderPrefillPackage("Premium");
-                  setOrderPromoCode("");
-                  setShowOrderForm(true);
-                } else {
-                  setShowContact(true);
+                if (productsPreview[0]) {
+                  openBookingForm(productsPreview[0]);
+                  return;
                 }
+                setShowContact(true);
               }}
               className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 to-emerald-600 px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald-200/50 transition hover:scale-105 hover:shadow-emerald-300/50"
             >
-              {guestLoggedIn ? "Pesan Sekarang" : "Hubungi Kami"}
+              Ajukan Booking
             </button>
           </div>
+          {landingError && (
+            <div className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-700">
+              {landingError}
+            </div>
+          )}
+          {activeHighlight && (
+            <div className="mt-8 overflow-hidden rounded-[2rem] border border-emerald-100 bg-slate-950 text-white shadow-lg">
+              <div className="grid gap-0 lg:grid-cols-[1.15fr_.85fr]">
+                <div className="relative min-h-[280px]">
+                  <img
+                    src={getProductImage(activeHighlight.category)}
+                    alt={activeHighlight.title}
+                    className="absolute inset-0 h-full w-full object-cover opacity-70"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/70 to-transparent" />
+                  <div className="relative z-10 flex min-h-[280px] flex-col justify-end p-8">
+                    <p className="text-xs font-bold uppercase tracking-[.24em] text-emerald-200">Highlight Paket</p>
+                    <h3 className="mt-3 max-w-xl text-3xl font-black leading-tight">{activeHighlight.title}</h3>
+                    <p className="mt-3 text-sm text-white/75">{activeHighlight.category} - {activeHighlight.brand}</p>
+                    <p className="mt-4 text-2xl font-black text-emerald-200">{formatRupiah(activeHighlight.price)}</p>
+                  </div>
+                </div>
+                <div className="flex flex-col justify-between gap-6 bg-white p-6 text-slate-900">
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-[.2em] text-emerald-600">Carousel Produk</p>
+                    <p className="mt-3 text-sm leading-6 text-slate-600">
+                      Gunakan tombol next/prev untuk melihat paket unggulan yang diambil dari tabel products.
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setHighlightIndex((prev) => (prev - 1 + highlightedProducts.length) % highlightedProducts.length)}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:bg-slate-100"
+                      aria-label="Produk sebelumnya"
+                    >
+                      <FaChevronLeft size={13} />
+                    </button>
+                    <span className="text-xs font-bold text-slate-500">{highlightIndex + 1} / {highlightedProducts.length}</span>
+                    <button
+                      type="button"
+                      onClick={() => setHighlightIndex((prev) => (prev + 1) % highlightedProducts.length)}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:bg-slate-100"
+                      aria-label="Produk berikutnya"
+                    >
+                      <FaChevronRight size={13} />
+                    </button>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => openBookingForm(activeHighlight)}
+                    className="rounded-full bg-emerald-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-emerald-700"
+                  >
+                    Pilih Paket Ini
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
           <div className="mt-10 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
-            {productsPreview.map((product) => {
+            {productsLoading && [1, 2, 3, 4].map((item) => (
+              <div key={item} className="overflow-hidden rounded-[2rem] bg-white shadow-md ring-1 ring-slate-100">
+                <div className="h-56 animate-pulse bg-slate-200" />
+                <div className="space-y-4 p-6">
+                  <div className="h-5 w-3/4 animate-pulse rounded bg-slate-200" />
+                  <div className="h-7 w-1/2 animate-pulse rounded bg-slate-200" />
+                  <div className="h-10 animate-pulse rounded-xl bg-slate-100" />
+                  <div className="h-10 animate-pulse rounded-full bg-slate-200" />
+                </div>
+              </div>
+            ))}
+            {!productsLoading && productsPreview.map((product) => {
               return (
                 <div key={product.code} className="group overflow-hidden rounded-[2rem] bg-white shadow-md ring-1 ring-slate-100 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-emerald-100/50 flex flex-col">
                   <div className="relative h-56 overflow-hidden">
@@ -643,23 +827,15 @@ export default function Guest() {
                     <div className="mt-auto pt-6">
                       <button
                         onClick={() => {
-                          if (!guestLoggedIn) {
-                            setShowContact(true);
-                            setContactForm({ ...contactForm, message: `Halo SayYes WeddingDay, saya ingin memesan paket ${product.title} (${product.code}). Tolong info detail dan harga final.` });
-                            return;
-                          }
-                          const pkg = product.price >= 4000000 ? "Premium" : product.price >= 2500000 ? "Deluxe" : "Standard";
-                          setOrderPrefillPackage(pkg);
-                          setOrderPromoCode("");
-                          setShowOrderForm(true);
+                          handleSelectProduct(product);
                         }}
                         className={`mt-5 inline-flex w-full items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition ${
-                          guestLoggedIn
-                            ? "bg-emerald-600 hover:bg-emerald-700 text-white"
-                            : "border border-emerald-600 bg-white hover:bg-emerald-50 text-emerald-700"
+                          selectedProduct?.code === product.code
+                            ? "bg-slate-900 text-white"
+                            : "bg-emerald-600 hover:bg-emerald-700 text-white"
                         }`}
                       >
-                        Pesan Sekarang
+                        {selectedProduct?.code === product.code ? "Paket Terpilih" : "Pilih Paket"}
                       </button>
                     </div>
                   </div>
@@ -668,6 +844,79 @@ export default function Guest() {
             })}
           </div>
         </section>
+
+        <section id="portfolio" className="mt-16 rounded-[2.5rem] bg-white p-8 shadow-xl shadow-slate-200/40 ring-1 ring-slate-100">
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-sm uppercase tracking-[.24em] text-emerald-600 font-bold">Portfolio & Campaign</p>
+              <h2 className="mt-3 text-4xl font-black text-slate-900">Bukti karya dan aktivitas klien.</h2>
+              <p className="mt-3 max-w-2xl text-base text-slate-600">
+                Data social proof ini diambil dari tabel campaigns dan otomatis mengikuti data CRM.
+              </p>
+            </div>
+          </div>
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {campaignLoading && [1, 2, 3].map((item) => (
+              <div key={item} className="rounded-3xl border border-slate-100 bg-slate-50 p-5">
+                <div className="h-36 animate-pulse rounded-2xl bg-slate-200" />
+                <div className="mt-5 h-4 w-1/2 animate-pulse rounded bg-slate-200" />
+                <div className="mt-3 h-6 w-3/4 animate-pulse rounded bg-slate-200" />
+                <div className="mt-4 h-12 animate-pulse rounded bg-slate-200" />
+              </div>
+            ))}
+            {!campaignLoading && campaignPreview.map((campaign) => (
+              <div key={campaign.campaign_id || campaign.campaignId} className="overflow-hidden rounded-3xl border border-slate-100 bg-slate-50 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                <div className="h-44 overflow-hidden">
+                  <img
+                    src={campaign.image_url || "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=80"}
+                    alt={campaign.name}
+                    className="h-full w-full object-cover transition duration-500 hover:scale-105"
+                  />
+                </div>
+                <div className="p-5">
+                  <p className="text-[11px] font-bold uppercase tracking-[.24em] text-emerald-600">{campaign.type}</p>
+                  <h3 className="mt-2 text-lg font-bold text-slate-900">{campaign.name}</h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                    {campaign.description || `Diikuti oleh ${campaign.participants_count || campaign.participantsCount || 0} customer/prospek Delita Dove.`}
+                  </p>
+                  <div className="mt-4 flex items-center justify-between rounded-2xl bg-white px-4 py-3 text-xs font-bold text-slate-500">
+                    <span>{campaign.start_date || campaign.startDate || "-"}</span>
+                    <span className="text-emerald-600">{campaign.participants_count || campaign.participantsCount || 0} peserta</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {selectedProduct && (
+          <div className="fixed inset-x-0 bottom-4 z-40 mx-auto w-[calc(100%-2rem)] max-w-4xl rounded-3xl border border-emerald-100 bg-white/95 p-4 shadow-2xl shadow-slate-900/15 backdrop-blur-md">
+            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[.2em] text-emerald-600">1 Paket Terpilih</p>
+                <h3 className="mt-1 text-base font-bold text-slate-900">{selectedProduct.title}</h3>
+                <p className="text-sm font-semibold text-slate-500">{formatRupiah(selectedProduct.price)}</p>
+              </div>
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => setSelectedProduct(null)}
+                  className="rounded-full border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-100"
+                >
+                  Batal
+                </button>
+                <button
+                  type="button"
+                  onClick={() => openBookingForm(selectedProduct)}
+                  className="rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-emerald-700"
+                >
+                  Ajukan Booking
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* SECTION KONTAK */}
         <section id="kontak" className="mt-16 rounded-[2.5rem] bg-white border border-slate-200 p-8 shadow-xl shadow-slate-200/40 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-50 rounded-full mix-blend-multiply filter blur-3xl opacity-50" />
@@ -689,7 +938,7 @@ export default function Guest() {
               </div>
               <h3 className="text-base font-bold text-slate-900">Email Resmi</h3>
               <p className="text-xs text-slate-500 mt-1">Kirimkan penawaran & inkuiri kerjasama</p>
- *             <span className="mt-3 text-sm font-semibold text-emerald-600">admin@sayyeswedding.com</span>
+              <span className="mt-3 text-sm font-semibold text-emerald-600">admin@sayyeswedding.com</span>
             </a>
 
             {/* Phone/WhatsApp Card */}
@@ -838,9 +1087,11 @@ export default function Guest() {
           show={showOrderForm}
           onClose={() => setShowOrderForm(false)}
           prefillPackage={orderPrefillPackage}
+          selectedProduct={selectedProduct}
           memberData={memberData}
           guestEmail={guestEmail}
           promoCode={orderPromoCode}
+          onSubmitted={() => setSelectedProduct(null)}
         />
       </main>
     </div>
