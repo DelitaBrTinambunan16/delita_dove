@@ -24,7 +24,7 @@ const emptyForm = {
   city: "",
   loyalty: "Bronze",
   status: "Active",
-  rating: "0",
+  joinDate: "",
   adminNotes: "",
 };
 
@@ -56,7 +56,6 @@ function normalizeCustomer(row) {
     loyalty: row.loyalty || "Bronze",
     status: row.status || "Active",
     joinDate: row.join_date || row.joinDate,
-    rating: Number(row.rating || 0),
     adminNotes: row.admin_notes || row.adminNotes || "",
     complaints: row.complaints || [],
     profilePhoto: row.profilePhoto,
@@ -72,7 +71,7 @@ function toPayload(form) {
     city: form.city || null,
     loyalty: form.loyalty,
     status: form.status,
-    rating: Number(form.rating || 0),
+    join_date: form.joinDate || null,
     admin_notes: form.adminNotes || null,
   };
 }
@@ -218,7 +217,7 @@ export default function Customers() {
       city: getCity(customer) === "-" ? "" : getCity(customer),
       loyalty: customer.loyalty || "Bronze",
       status: customer.status || "Active",
-      rating: customer.rating || "0",
+      joinDate: customer.joinDate ? customer.joinDate.split('T')[0] : "",
       adminNotes: customer.adminNotes || "",
     });
     setShowForm(true);
@@ -354,11 +353,11 @@ export default function Customers() {
               <tr>
                 <th className="p-4 text-left">Customer</th>
                 <th className="p-4 text-left">HP</th>
+                <th className="p-4 text-left">Alamat</th>
                 <th className="p-4 text-left">Kota</th>
                 <th className="p-4 text-left">Membership</th>
                 <th className="p-4 text-left">Status</th>
-                <th className="p-4 text-left">Komplain</th>
-                <th className="p-4 text-left">Catatan</th>
+                <th className="p-4 text-left">Join Date</th>
                 <th className="p-4 text-center">Aksi</th>
               </tr>
             </thead>
@@ -387,6 +386,7 @@ export default function Customers() {
                     </div>
                   </td>
                   <td className="p-4 text-gray-600 text-sm">{customer.phone || "-"}</td>
+                  <td className="p-4 text-gray-600 text-sm truncate max-w-[120px]" title={customer.address}>{customer.address || "-"}</td>
                   <td className="p-4 text-gray-600 text-sm">{getCity(customer)}</td>
                   <td className="p-4">
                     <span className={`px-2 py-1 rounded border text-xs font-semibold ${getLoyaltyBadgeColor(customer.loyalty)}`}>
@@ -398,8 +398,7 @@ export default function Customers() {
                       {customer.status === "Active" ? "Aktif" : "Tidak Aktif"}
                     </span>
                   </td>
-                  <td className="p-4">{getComplaintsBadge(customer.complaints)}</td>
-                  <td className="p-4 text-xs text-gray-400 truncate max-w-[150px]">{customer.adminNotes || "-"}</td>
+                  <td className="p-4 text-gray-600 text-sm">{customer.joinDate ? customer.joinDate.split('T')[0] : "-"}</td>
                   <td className="p-4">
                     <div className="flex justify-center gap-2">
                       <button
@@ -485,6 +484,7 @@ export default function Customers() {
               <input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="Nomor HP" className="rounded-2xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-emerald-500" />
               <input value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} placeholder="Kota" className="rounded-2xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-emerald-500" />
               <input value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} placeholder="Alamat" className="rounded-2xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-emerald-500 md:col-span-2" />
+              <input type="date" value={form.joinDate} onChange={(e) => setForm({ ...form, joinDate: e.target.value })} placeholder="Tanggal Join" className="rounded-2xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-emerald-500" />
               <select value={form.loyalty} onChange={(e) => setForm({ ...form, loyalty: e.target.value })} className="rounded-2xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-emerald-500">
                 <option value="Bronze">Bronze</option>
                 <option value="Silver">Silver</option>
@@ -495,8 +495,7 @@ export default function Customers() {
                 <option value="Active">Aktif</option>
                 <option value="Inactive">Tidak Aktif</option>
               </select>
-              <input type="number" min="0" max="5" step="0.1" value={form.rating} onChange={(e) => setForm({ ...form, rating: e.target.value })} placeholder="Rating" className="rounded-2xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-emerald-500" />
-              <input value={form.adminNotes} onChange={(e) => setForm({ ...form, adminNotes: e.target.value })} placeholder="Catatan admin" className="rounded-2xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-emerald-500" />
+              <input value={form.adminNotes} onChange={(e) => setForm({ ...form, adminNotes: e.target.value })} placeholder="Catatan admin" className="rounded-2xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-emerald-500 md:col-span-2" />
               <div className="flex justify-end gap-3 md:col-span-2">
                 <button type="button" onClick={() => { setShowForm(false); resetForm(); }} className="rounded-2xl border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-600 hover:bg-slate-100">
                   Batal

@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import {
   PieChart,
   Pie,
@@ -10,9 +10,8 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import ordersData from "../data/orders.json";
-import customersData from "../data/customers.json";
 import dashboardData from "../data/dashboardData.json";
+import { supabase } from "../lib/supabaseClient";
 import { formatRupiah } from "../utils/format";
 import DashboardIntroBar from "../components/DashboardIntroBar";
 import DashboardHero from "../components/DashboardHero";
@@ -23,12 +22,58 @@ import DashboardRecentOrders from "../components/DashboardRecentOrders";
 const { monthlyData } = dashboardData;
 
 export default function Dashboard() {
+  const [customersData, setCustomersData] = useState([]);
+  const [ordersData, setOrdersData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch customers dari Supabase
+        const { data: customersFromDb, error: customersError } = await supabase
+          .from("customers")
+          .select("*");
+        
+        if (customersError) throw customersError;
+        setCustomersData(customersFromDb || []);
+
+        // Fetch orders dari Supabase
+        const { data: ordersFromDb, error: ordersError } = await supabase
+          .from("orders")
+          .select("*")
+          .order("created_at", { ascending: false });
+        
+        if (ordersError) throw ordersError;
+        
+        // Map dari database (snake_case) ke format komponen (camelCase)
+        const mappedOrders = (ordersFromDb || []).map(order => ({
+          orderId: order.id,
+          customerName: order.customer_name,
+          status: order.status,
+          totalPrice: order.total_price || 0,
+          orderDate: order.event_date || order.created_at,
+          paket: order.paket_type || "Standard",
+          venue: order.venue || "Garden Paradise"
+        }));
+        setOrdersData(mappedOrders);
+      } catch (error) {
+        console.error("Gagal memuat data dashboard:", error);
+        setCustomersData([]);
+        setOrdersData([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const totalCustomers = customersData.length;
   const totalOrders = ordersData.length;
   const pendingOrders = ordersData.filter((order) => order.status === "Pending").length;
   const completedRevenue = ordersData
     .filter((order) => order.status === "Completed")
-    .reduce((sum, order) => sum + order.totalPrice, 0);
+    .reduce((sum, order) => sum + (order.totalPrice || 0), 0);
 
   const recentOrders = [...ordersData]
     .sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate))
@@ -55,7 +100,7 @@ export default function Dashboard() {
       { name: "Gold", value: counts["Gold"] || 0, color: colorMap.Gold },
       { name: "Platinum", value: counts["Platinum"] || 0, color: colorMap.Platinum },
     ];
-  }, []);
+  }, [customersData]);
 
   // 2. Calculate Customer Source (Bar Chart)
   const sourceBarData = useMemo(() => {
@@ -95,7 +140,7 @@ export default function Dashboard() {
       ...ordered,
       ...entries.filter((entry) => !preferredOrder.includes(entry.name)),
     ];
-  }, []);
+  }, [customersData]);
 
   return (
     <div className="space-y-6 pb-12 text-gray-900 font-poppins bg-natural-bg min-h-screen w-full px-6 pt-4">

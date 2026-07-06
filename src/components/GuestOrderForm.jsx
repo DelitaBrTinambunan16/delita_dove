@@ -18,6 +18,9 @@ const labelClass = "block text-xs font-medium text-slate-600 mb-1";
 export default function GuestOrderForm({ show, onClose, prefillPackage, selectedProduct, memberData, guestEmail, promoCode: propPromoCode, onSubmitted }) {
   const navigate = useNavigate();
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [submitError, setSubmitError] = useState("");
 
   const [form, setForm] = useState({
     name: "",
@@ -31,6 +34,41 @@ export default function GuestOrderForm({ show, onClose, prefillPackage, selected
     notes: "",
     promoCode: "",
   });
+
+  // Validasi form order
+  const validateOrderForm = (formData) => {
+    const errs = {};
+    
+    if (!formData.name.trim()) {
+      errs.name = "Nama wajib diisi";
+    } else if (formData.name.trim().length < 3) {
+      errs.name = "Nama minimal 3 karakter";
+    }
+    
+    if (!formData.email.trim()) {
+      errs.email = "Email wajib diisi";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errs.email = "Format email tidak valid";
+    }
+    
+    if (!formData.phone.trim()) {
+      errs.phone = "No HP wajib diisi";
+    } else if (!/^(\+62|0)[0-9]{9,12}$/.test(formData.phone.replace(/[-\s]/g, ""))) {
+      errs.phone = "Format HP tidak valid (08xxx atau +628xxx)";
+    }
+    
+    if (!formData.orderDate.trim()) {
+      errs.orderDate = "Tanggal acara wajib diisi";
+    }
+    
+    if (!formData.guestCount) {
+      errs.guestCount = "Jumlah tamu wajib diisi";
+    } else if (Number(formData.guestCount) < 1) {
+      errs.guestCount = "Jumlah tamu minimal 1";
+    }
+    
+    return errs;
+  };
 
   // Sinkronisasi form setiap kali modal dibuka atau prefillPackage berubah
   useEffect(() => {
@@ -67,6 +105,19 @@ export default function GuestOrderForm({ show, onClose, prefillPackage, selected
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate
+    const formErrors = validateOrderForm(form);
+    setErrors(formErrors);
+    
+    if (Object.keys(formErrors).length > 0) {
+      setSubmitError("Silakan perbaiki error di bawah sebelum mengirim.");
+      return;
+    }
+    
+    setLoading(true);
+    setSubmitError("");
+    
     const pkg = PACKAGE_OPTIONS.find((p) => p.name === form.paket);
     const packageName = selectedProduct?.title || form.paket;
     const totalPrice = selectedProduct?.price || pkg?.price || 0;
@@ -74,48 +125,39 @@ export default function GuestOrderForm({ show, onClose, prefillPackage, selected
       order_id: "ORD-" + Math.random().toString(36).substr(2, 6).toUpperCase(),
       product_id: selectedProduct?.id || null,
       product_code: selectedProduct?.code || null,
-      customer_name: form.name,
-      customer_email: form.email || guestEmail || null,
-      customer_phone: form.phone,
+      customer_name: form.name.trim(),
+      customer_email: form.email?.trim() || guestEmail || null,
+      customer_phone: form.phone.trim(),
       package_name: packageName,
       event_date: form.orderDate,
       guest_count: form.guestCount ? Number(form.guestCount) : null,
-      location: form.location || null,
+      location: form.location?.trim() || null,
       total_price: totalPrice,
       notes: `Venue: ${form.venue}, Location: ${form.location}, Guests: ${form.guestCount}, Promo: ${form.promoCode}. ${form.notes}`,
-      promo_code: form.promoCode || null,
+      promo_code: form.promoCode?.trim() || null,
       status: "Pending"
     };
 
     try {
       const { error } = await supabase.from('orders').insert([orderData]);
       if (error) {
-        const legacyOrderData = {
-          order_id: orderData.order_id,
-          customer_name: orderData.customer_name,
-          customer_phone: orderData.customer_phone,
-          package_name: orderData.package_name,
-          event_date: orderData.event_date,
-          total_price: orderData.total_price,
-          notes: orderData.notes,
-          status: orderData.status,
-        };
-        const { error: legacyError } = await supabase.from('orders').insert([legacyOrderData]);
-        if (legacyError) throw legacyError;
+        if (error.message?.includes("constraint")) {
+          throw new Error("Data order sudah pernah dibuat. Silakan gunakan data lain.");
+        }
+        throw error;
       }
       onSubmitted?.();
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        onClose();
+        navigate("/guest");
+      }, 2500);
     } catch (err) {
       console.error("Gagal mengirim pesanan:", err);
-      alert("Gagal mengirim pesanan. Coba lagi.");
-      return;
+      setSubmitError(err.message || "Gagal mengirim pesanan. Silakan coba lagi.");
+      setLoading(false);
     }
-
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      onClose();
-      navigate("/guest");
-    }, 2500);
   };
 
   const fmtRupiah = (v) =>
@@ -159,6 +201,18 @@ export default function GuestOrderForm({ show, onClose, prefillPackage, selected
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-3">
+            {/* Error Alert */}
+            {submitError && (
+              <div className="p-3 bg-red-50 border border-red-200 rounded-lg flex items-start gap-2">
+                <svg className="w-4 h-4 text-red-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                </svg>
+                <div>
+                  <p className="text-xs font-semibold text-red-800">{submitError}</p>
+                </div>
+              </div>
+            )}
+
             {/* PROMO CODE (if provided) */}
             {form.promoCode && (
               <div className="rounded-lg bg-amber-50 border border-amber-100 px-3 py-2 flex items-center gap-2">
@@ -172,7 +226,7 @@ export default function GuestOrderForm({ show, onClose, prefillPackage, selected
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className={labelClass}>Pilih Paket</label>
-                <select name="paket" value={form.paket} onChange={handleChange} className={inputClass}>
+                <select name="paket" value={form.paket} onChange={handleChange} disabled={loading} className={inputClass + (loading ? " opacity-50 cursor-not-allowed" : "")}>
                   {selectedProduct ? (
                     <option value={selectedProduct.title}>{selectedProduct.title}</option>
                   ) : PACKAGE_OPTIONS.map((p) => (
@@ -188,27 +242,75 @@ export default function GuestOrderForm({ show, onClose, prefillPackage, selected
               </div>
             </div>
 
-            {/* NAME + EMAIL */}
-            <div className="grid grid-cols-1 gap-3">
-              <div>
-                <label className={labelClass}>Nama Lengkap</label>
-                <input required type="text" name="name" value={form.name} onChange={handleChange} className={inputClass} placeholder="Nama Anda" />
-              </div>
-              <div>
-                <label className={labelClass}>Email</label>
-                <input type="email" name="email" value={form.email} onChange={handleChange} className={inputClass} placeholder="email@example.com" />
-              </div>
+            {/* NAME */}
+            <div>
+              <label className={labelClass}>Nama Lengkap <span className="text-red-500">*</span></label>
+              <input 
+                type="text" 
+                name="name" 
+                value={form.name} 
+                onChange={(e) => {
+                  handleChange(e);
+                  if (errors.name) setErrors({...errors, name: ""});
+                }} 
+                disabled={loading}
+                className={inputClass + (errors.name ? " border-red-300 bg-red-50" : "") + (loading ? " opacity-50 cursor-not-allowed" : "")} 
+                placeholder="Nama Anda" 
+              />
+              {errors.name && <p className="text-xs text-red-600 mt-1">{errors.name}</p>}
+            </div>
+
+            {/* EMAIL */}
+            <div>
+              <label className={labelClass}>Email <span className="text-red-500">*</span></label>
+              <input 
+                type="email" 
+                name="email" 
+                value={form.email} 
+                onChange={(e) => {
+                  handleChange(e);
+                  if (errors.email) setErrors({...errors, email: ""});
+                }} 
+                disabled={loading}
+                className={inputClass + (errors.email ? " border-red-300 bg-red-50" : "") + (loading ? " opacity-50 cursor-not-allowed" : "")} 
+                placeholder="email@example.com" 
+              />
+              {errors.email && <p className="text-xs text-red-600 mt-1">{errors.email}</p>}
             </div>
 
             {/* PHONE + GUEST COUNT */}
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className={labelClass}>No. HP</label>
-                <input required type="tel" name="phone" value={form.phone} onChange={handleChange} className={inputClass} placeholder="0812..." />
+                <label className={labelClass}>No. HP <span className="text-red-500">*</span></label>
+                <input 
+                  type="tel" 
+                  name="phone" 
+                  value={form.phone} 
+                  onChange={(e) => {
+                    handleChange(e);
+                    if (errors.phone) setErrors({...errors, phone: ""});
+                  }} 
+                  disabled={loading}
+                  className={inputClass + (errors.phone ? " border-red-300 bg-red-50" : "") + (loading ? " opacity-50 cursor-not-allowed" : "")} 
+                  placeholder="0812..." 
+                />
+                {errors.phone && <p className="text-xs text-red-600 mt-1">{errors.phone}</p>}
               </div>
               <div>
-                <label className={labelClass}>Jumlah Tamu</label>
-                <input type="number" name="guestCount" value={form.guestCount} onChange={handleChange} className={inputClass} placeholder="200" />
+                <label className={labelClass}>Jumlah Tamu <span className="text-red-500">*</span></label>
+                <input 
+                  type="number" 
+                  name="guestCount" 
+                  value={form.guestCount} 
+                  onChange={(e) => {
+                    handleChange(e);
+                    if (errors.guestCount) setErrors({...errors, guestCount: ""});
+                  }} 
+                  disabled={loading}
+                  className={inputClass + (errors.guestCount ? " border-red-300 bg-red-50" : "") + (loading ? " opacity-50 cursor-not-allowed" : "")} 
+                  placeholder="200" 
+                />
+                {errors.guestCount && <p className="text-xs text-red-600 mt-1">{errors.guestCount}</p>}
               </div>
             </div>
 
@@ -216,28 +318,55 @@ export default function GuestOrderForm({ show, onClose, prefillPackage, selected
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className={labelClass}>Venue</label>
-                <select name="venue" value={form.venue} onChange={handleChange} className={inputClass}>
+                <select name="venue" value={form.venue} onChange={handleChange} disabled={loading} className={inputClass + (loading ? " opacity-50 cursor-not-allowed" : "")}>
                   {VENUE_OPTIONS.map((v) => (
                     <option key={v} value={v}>{v}</option>
                   ))}
                 </select>
               </div>
               <div>
-                <label className={labelClass}>Tanggal Acara</label>
-                <input required type="date" name="orderDate" value={form.orderDate} onChange={handleChange} className={inputClass} />
+                <label className={labelClass}>Tanggal Acara <span className="text-red-500">*</span></label>
+                <input 
+                  type="date" 
+                  name="orderDate" 
+                  value={form.orderDate} 
+                  onChange={(e) => {
+                    handleChange(e);
+                    if (errors.orderDate) setErrors({...errors, orderDate: ""});
+                  }} 
+                  disabled={loading}
+                  className={inputClass + (errors.orderDate ? " border-red-300 bg-red-50" : "") + (loading ? " opacity-50 cursor-not-allowed" : "")} 
+                />
+                {errors.orderDate && <p className="text-xs text-red-600 mt-1">{errors.orderDate}</p>}
               </div>
             </div>
 
             {/* LOCATION */}
             <div>
               <label className={labelClass}>Lokasi / Kota</label>
-              <input type="text" name="location" value={form.location || ""} onChange={handleChange} className={inputClass} placeholder="Misal: Bandung" />
+              <input 
+                type="text" 
+                name="location" 
+                value={form.location || ""} 
+                onChange={handleChange} 
+                disabled={loading}
+                className={inputClass + (loading ? " opacity-50 cursor-not-allowed" : "")} 
+                placeholder="Misal: Bandung" 
+              />
             </div>
 
             {/* NOTES */}
             <div>
               <label className={labelClass}>Catatan (opsional)</label>
-              <textarea name="notes" value={form.notes} onChange={handleChange} rows={2} className={inputClass + " resize-none"} placeholder="Permintaan khusus..." />
+              <textarea 
+                name="notes" 
+                value={form.notes} 
+                onChange={handleChange} 
+                rows={2} 
+                disabled={loading}
+                className={inputClass + " resize-none" + (loading ? " opacity-50 cursor-not-allowed" : "")} 
+                placeholder="Permintaan khusus..." 
+              />
             </div>
 
             {/* ACTIONS */}
@@ -245,18 +374,32 @@ export default function GuestOrderForm({ show, onClose, prefillPackage, selected
               <button
                 type="button"
                 onClick={() => {
+                  setErrors({});
+                  setSubmitError("");
                   onClose();
                   navigate("/guest");
                 }}
-                className="flex-1 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-100 transition"
+                disabled={loading}
+                className="flex-1 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-100 transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Batal
               </button>
               <button
                 type="submit"
-                className="flex-1 rounded-lg bg-emerald-600 px-4 py-2.5 text-xs font-semibold text-white shadow-sm hover:bg-emerald-700 transition"
+                disabled={loading}
+                className="flex-1 rounded-lg bg-emerald-600 px-4 py-2.5 text-xs font-semibold text-white shadow-sm hover:bg-emerald-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
-                Kirim Pesanan
+                {loading ? (
+                  <>
+                    <svg className="w-3 h-3 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    Mengirim...
+                  </>
+                ) : (
+                  "Pesan Sekarang"
+                )}
               </button>
             </div>
           </form>

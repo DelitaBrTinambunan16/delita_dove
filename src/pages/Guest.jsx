@@ -205,7 +205,10 @@ export default function Guest() {
   }, []);
   const [guestEmail, setGuestEmail] = useState("");
   const [contactForm, setContactForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [contactErrors, setContactErrors] = useState({});
+  const [contactLoading, setContactLoading] = useState(false);
   const [contactSubmitted, setContactSubmitted] = useState(false);
+  const [contactError, setContactError] = useState("");
   const [showContact, setShowContact] = useState(false);
   const [showOrderForm, setShowOrderForm] = useState(false);
   const [orderPrefillPackage, setOrderPrefillPackage] = useState("Premium");
@@ -304,38 +307,88 @@ export default function Guest() {
 
   const guestName = memberData?.name || guestEmail.split("@")[0] || "Tamu";
 
+  // ✅ Validation function untuk contact form
+  const validateContactForm = (form) => {
+    const errors = {};
+    
+    if (!form.name.trim()) {
+      errors.name = "Nama wajib diisi";
+    } else if (form.name.trim().length < 3) {
+      errors.name = "Nama minimal 3 karakter";
+    }
+    
+    if (!form.email.trim()) {
+      errors.email = "Email wajib diisi";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      errors.email = "Format email tidak valid (contoh: nama@email.com)";
+    }
+    
+    if (!form.phone.trim()) {
+      errors.phone = "Nomor HP wajib diisi";
+    } else if (!/^(\+62|0)[0-9]{9,12}$/.test(form.phone.replace(/[-\s]/g, ""))) {
+      errors.phone = "Format HP tidak valid (contoh: 08123456789 atau +62812345678)";
+    }
+    
+    if (!form.message.trim()) {
+      errors.message = "Pesan wajib diisi";
+    } else if (form.message.trim().length < 10) {
+      errors.message = "Pesan minimal 10 karakter";
+    }
+    
+    return errors;
+  };
+
   const handleContactSubmit = async (e) => {
     e.preventDefault();
-
-    // Minimal validation sesuai PRD v3: phone wajib
-    if (!contactForm.phone || !contactForm.phone.trim()) {
-      alert("Nomor HP wajib diisi");
+    
+    // Validate form
+    const errors = validateContactForm(contactForm);
+    setContactErrors(errors);
+    
+    if (Object.keys(errors).length > 0) {
+      setContactError("Silakan perbaiki error di bawah sebelum mengirim.");
       return;
     }
+    
+    setContactLoading(true);
+    setContactError("");
 
     const payload = {
       message_type: "general_inquiry",
-      name: contactForm.name || "-",
-      email: contactForm.email || "-",
-      phone: contactForm.phone,
+      name: contactForm.name.trim(),
+      email: contactForm.email.trim(),
+      phone: contactForm.phone.trim(),
       event_date: contactForm.eventDate || null,
       location: contactForm.location || null,
       guest_count: contactForm.guestCount ? Number(contactForm.guestCount) : null,
-      message: contactForm.message || "-",
+      message: contactForm.message.trim(),
       notes: null,
       promo_code: null,
     };
 
     try {
-      const { error } = await supabase.from('messages').insert(payload);
-      if (error) throw error;
+      const { error } = await supabase.from('messages').insert([payload]);
+      if (error) {
+        if (error.message?.includes("constraint")) {
+          throw new Error("Data sudah pernah terkirim. Silakan gunakan data lain atau hubungi admin.");
+        }
+        throw error;
+      }
 
       setContactSubmitted(true);
-      setContactForm({ name: "", email: "", phone: "", message: "" });
-      setTimeout(() => setContactSubmitted(false), 5000);
+      setContactForm({ name: "", email: "", phone: "", message: "", eventDate: "", location: "", guestCount: "" });
+      setContactErrors({});
+      
+      // Auto-hide modal setelah 3 detik
+      setTimeout(() => {
+        setContactSubmitted(false);
+        setShowContact(false);
+      }, 3000);
     } catch (err) {
       console.error("Error insert messages:", err);
-      alert("Gagal mengirim pesan. Coba lagi.");
+      setContactError(err.message || "Gagal mengirim pesan. Silakan coba lagi atau hubungi admin via WhatsApp.");
+    } finally {
+      setContactLoading(false);
     }
   };
 
@@ -1006,75 +1059,223 @@ export default function Guest() {
 
         {showContact && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 backdrop-blur-sm p-4 overflow-y-auto">
-            <div className="relative w-full max-w-4xl rounded-[2rem] bg-white p-8 shadow-2xl ring-1 ring-slate-200 mt-10 mb-10">
+            <div className="relative w-full max-w-4xl rounded-[2rem] bg-white shadow-2xl ring-1 ring-slate-200 mt-10 mb-10 overflow-hidden">
+              {/* Close Button */}
               <button
-                onClick={() => setShowContact(false)}
-                className="absolute top-6 right-6 text-slate-400 hover:text-slate-600 transition"
+                onClick={() => {
+                  setShowContact(false);
+                  setContactErrors({});
+                  setContactError("");
+                }}
+                className="absolute top-6 right-6 text-slate-400 hover:text-slate-600 transition z-10"
               >
-               
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </button>
-              <div className="grid gap-8 lg:grid-cols-2">
-                <div>
-                  <p className="text-sm uppercase tracking-[.24em] text-slate-500">Hubungi Kami</p>
-                  <h2 className="mt-3 text-2xl font-bold text-slate-900">Ada pertanyaan? Kami siap membantu.</h2>
-                  <p className="mt-3 text-sm text-slate-600">Isi form di samping untuk mengirim pertanyaan atau inquire tentang paket wedding Anda.</p>
-                  <div className="mt-6 space-y-5 border-t pt-6">
+
+              <div className="grid gap-0 lg:grid-cols-2">
+                {/* Left Section - Info */}
+                <div className="bg-gradient-to-br from-emerald-50 to-emerald-100/50 p-8 flex flex-col justify-between">
+                  <div>
+                    <p className="text-sm uppercase tracking-[.24em] text-emerald-700 font-semibold">Hubungi Kami</p>
+                    <h2 className="mt-3 text-2xl font-bold text-slate-900">Ada pertanyaan? Kami siap membantu.</h2>
+                    <p className="mt-3 text-sm text-slate-600">Isi form di samping untuk mengirim pertanyaan atau inquire tentang paket wedding Anda. Kami akan merespon dalam 24 jam.</p>
+                  </div>
+                  <div className="mt-6 space-y-5 border-t border-emerald-200 pt-6">
                     <div>
-                      <p className="text-xs uppercase tracking-widest text-slate-400 font-semibold">Email</p>
-                      <a href="mailto:admin@sayyeswedding.com" className="mt-2 text-lg text-emerald-600 font-semibold hover:text-emerald-700 transition block">admin@sayyeswedding.com</a>
+                      <p className="text-xs uppercase tracking-widest text-emerald-700 font-semibold">Email</p>
+                      <a href="mailto:admin@sayyeswedding.com" className="mt-2 text-base text-emerald-600 font-semibold hover:text-emerald-700 transition block">admin@sayyeswedding.com</a>
                     </div>
                     <div>
-                      <p className="text-xs uppercase tracking-widest text-slate-400 font-semibold">WhatsApp</p>
-                      <a href="https://wa.me/6281234567890" className="mt-2 text-lg text-emerald-600 font-semibold hover:text-emerald-700 transition block">+62 812-3456-7890</a>
+                      <p className="text-xs uppercase tracking-widest text-emerald-700 font-semibold">WhatsApp</p>
+                      <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" className="mt-2 text-base text-emerald-600 font-semibold hover:text-emerald-700 transition block">+62 812-3456-7890</a>
                     </div>
                     <div>
-                      <p className="text-xs uppercase tracking-widest text-slate-400 font-semibold">Alamat</p>
+                      <p className="text-xs uppercase tracking-widest text-emerald-700 font-semibold">Lokasi</p>
                       <p className="mt-2 text-sm text-slate-700">Jl. Melati No.12, Bandung</p>
                     </div>
                   </div>
                 </div>
-                <div className="bg-slate-50 rounded-2xl p-6">
-                  <p className="text-sm uppercase tracking-[.24em] text-emerald-600 font-semibold mb-4">Form Pesan Sekarang</p>
+
+                {/* Right Section - Form */}
+                <div className="p-8">
+                  <p className="text-sm uppercase tracking-[.24em] text-emerald-600 font-semibold mb-6">Form Pesan Sekarang</p>
+                  
+                  {/* Success Message */}
                   {contactSubmitted && (
-                    <div className="mb-4 p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-700 text-sm font-semibold text-center">
-                      ✓ Pesan Anda terkirim! Tim kami akan segera menghubungi Anda.
+                    <div className="mb-6 p-4 bg-emerald-50 border border-emerald-300 rounded-xl flex items-start gap-3">
+                      <svg className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      <div>
+                        <p className="font-semibold text-emerald-900">Pesan Terkirim!</p>
+                        <p className="text-sm text-emerald-700 mt-1">Tim kami akan menghubungi Anda dalam 24 jam. Tutup modal ini.</p>
+                      </div>
                     </div>
                   )}
-                  <form onSubmit={handleContactSubmit} className="space-y-3">
+
+                  {/* Error Alert */}
+                  {contactError && (
+                    <div className="mb-6 p-4 bg-red-50 border border-red-300 rounded-xl flex items-start gap-3">
+                      <svg className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                      </svg>
+                      <div>
+                        <p className="font-semibold text-red-900">Ada Kesalahan</p>
+                        <p className="text-sm text-red-700 mt-1">{contactError}</p>
+                      </div>
+                    </div>
+                  )}
+
+                  <form onSubmit={handleContactSubmit} className="space-y-4">
+                    {/* Name */}
                     <div>
-                      <label className="text-xs font-semibold text-slate-600 block mb-1">Nama Lengkap</label>
-                      <input type="text" value={contactForm.name} onChange={(e) => setContactForm({...contactForm, name: e.target.value})} placeholder="Nama Anda" className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-100" />
+                      <label className="text-xs font-semibold text-slate-700 block mb-1.5">
+                        Nama Lengkap <span className="text-red-500">*</span>
+                      </label>
+                      <input 
+                        type="text" 
+                        value={contactForm.name} 
+                        onChange={(e) => {
+                          setContactForm({...contactForm, name: e.target.value});
+                          if (contactErrors.name) setContactErrors({...contactErrors, name: ""});
+                        }} 
+                        placeholder="Nama Anda" 
+                        disabled={contactLoading}
+                        className={`w-full px-3 py-2.5 border rounded-lg text-sm transition focus:outline-none focus:ring-2 ${
+                          contactErrors.name 
+                            ? "border-red-300 bg-red-50 focus:ring-red-200 focus:border-red-500" 
+                            : "border-slate-200 bg-white focus:ring-emerald-200 focus:border-emerald-500"
+                        } disabled:opacity-50 disabled:cursor-not-allowed`} 
+                      />
+                      {contactErrors.name && <p className="text-xs text-red-600 mt-1">{contactErrors.name}</p>}
                     </div>
+
+                    {/* Email */}
                     <div>
-                      <label className="text-xs font-semibold text-slate-600 block mb-1">Email</label>
-                      <input type="email" value={contactForm.email} onChange={(e) => setContactForm({...contactForm, email: e.target.value})} placeholder="email@example.com" className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-100" />
+                      <label className="text-xs font-semibold text-slate-700 block mb-1.5">
+                        Email <span className="text-red-500">*</span>
+                      </label>
+                      <input 
+                        type="email" 
+                        value={contactForm.email} 
+                        onChange={(e) => {
+                          setContactForm({...contactForm, email: e.target.value});
+                          if (contactErrors.email) setContactErrors({...contactErrors, email: ""});
+                        }} 
+                        placeholder="email@example.com" 
+                        disabled={contactLoading}
+                        className={`w-full px-3 py-2.5 border rounded-lg text-sm transition focus:outline-none focus:ring-2 ${
+                          contactErrors.email 
+                            ? "border-red-300 bg-red-50 focus:ring-red-200 focus:border-red-500" 
+                            : "border-slate-200 bg-white focus:ring-emerald-200 focus:border-emerald-500"
+                        } disabled:opacity-50 disabled:cursor-not-allowed`} 
+                      />
+                      {contactErrors.email && <p className="text-xs text-red-600 mt-1">{contactErrors.email}</p>}
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div>
-                        <label className="text-xs font-semibold text-slate-600 block mb-1">No. HP</label>
-                        <input type="tel" value={contactForm.phone} onChange={(e) => setContactForm({...contactForm, phone: e.target.value})} placeholder="+62 812..." className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-100" />
-                      </div>
-                      <div>
-                        <label className="text-xs font-semibold text-slate-600 block mb-1">Tanggal Acara</label>
-                        <input type="date" value={contactForm.eventDate || ""} onChange={(e) => setContactForm({...contactForm, eventDate: e.target.value})} className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-100" />
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div>
-                        <label className="text-xs font-semibold text-slate-600 block mb-1">Lokasi (Kota/Venue)</label>
-                        <input type="text" value={contactForm.location || ""} onChange={(e) => setContactForm({...contactForm, location: e.target.value})} placeholder="Misal: Bandung" className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-100" />
-                      </div>
-                      <div>
-                        <label className="text-xs font-semibold text-slate-600 block mb-1">Jumlah Tamu</label>
-                        <input type="number" value={contactForm.guestCount || ""} onChange={(e) => setContactForm({...contactForm, guestCount: e.target.value})} placeholder="Misal: 500" className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-100" />
-                      </div>
-                    </div>
+
+                    {/* Phone */}
                     <div>
-                      <label className="text-xs font-semibold text-slate-600 block mb-1">Pesan / Pertanyaan</label>
-                      <textarea value={contactForm.message} onChange={(e) => setContactForm({...contactForm, message: e.target.value})} placeholder="Tuliskan pertanyaan atau inquire Anda..." rows={4} className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-100 resize-none" />
+                      <label className="text-xs font-semibold text-slate-700 block mb-1.5">
+                        No. HP <span className="text-red-500">*</span>
+                      </label>
+                      <input 
+                        type="tel" 
+                        value={contactForm.phone} 
+                        onChange={(e) => {
+                          setContactForm({...contactForm, phone: e.target.value});
+                          if (contactErrors.phone) setContactErrors({...contactErrors, phone: ""});
+                        }} 
+                        placeholder="08123456789 atau +628123456789" 
+                        disabled={contactLoading}
+                        className={`w-full px-3 py-2.5 border rounded-lg text-sm transition focus:outline-none focus:ring-2 ${
+                          contactErrors.phone 
+                            ? "border-red-300 bg-red-50 focus:ring-red-200 focus:border-red-500" 
+                            : "border-slate-200 bg-white focus:ring-emerald-200 focus:border-emerald-500"
+                        } disabled:opacity-50 disabled:cursor-not-allowed`} 
+                      />
+                      {contactErrors.phone && <p className="text-xs text-red-600 mt-1">{contactErrors.phone}</p>}
                     </div>
-                    <button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-lg transition text-sm">
-                      Kirim Pesan
+
+                    {/* Date & Location */}
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <label className="text-xs font-semibold text-slate-700 block mb-1.5">Tanggal Acara</label>
+                        <input 
+                          type="date" 
+                          value={contactForm.eventDate || ""} 
+                          onChange={(e) => setContactForm({...contactForm, eventDate: e.target.value})} 
+                          disabled={contactLoading}
+                          className="w-full px-3 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed" 
+                        />
+                      </div>
+                      <div>
+                        <label className="text-xs font-semibold text-slate-700 block mb-1.5">Lokasi/Kota</label>
+                        <input 
+                          type="text" 
+                          value={contactForm.location || ""} 
+                          onChange={(e) => setContactForm({...contactForm, location: e.target.value})} 
+                          placeholder="Misal: Bandung" 
+                          disabled={contactLoading}
+                          className="w-full px-3 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed" 
+                        />
+                      </div>
+                    </div>
+
+                    {/* Guest Count */}
+                    <div>
+                      <label className="text-xs font-semibold text-slate-700 block mb-1.5">Jumlah Tamu</label>
+                      <input 
+                        type="number" 
+                        value={contactForm.guestCount || ""} 
+                        onChange={(e) => setContactForm({...contactForm, guestCount: e.target.value})} 
+                        placeholder="Misal: 500" 
+                        disabled={contactLoading}
+                        className="w-full px-3 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed" 
+                      />
+                    </div>
+
+                    {/* Message */}
+                    <div>
+                      <label className="text-xs font-semibold text-slate-700 block mb-1.5">
+                        Pesan / Pertanyaan <span className="text-red-500">*</span>
+                      </label>
+                      <textarea 
+                        value={contactForm.message} 
+                        onChange={(e) => {
+                          setContactForm({...contactForm, message: e.target.value});
+                          if (contactErrors.message) setContactErrors({...contactErrors, message: ""});
+                        }} 
+                        placeholder="Tuliskan pertanyaan atau inquire Anda..." 
+                        rows={3} 
+                        disabled={contactLoading}
+                        className={`w-full px-3 py-2.5 border rounded-lg text-sm transition focus:outline-none focus:ring-2 resize-none ${
+                          contactErrors.message 
+                            ? "border-red-300 bg-red-50 focus:ring-red-200 focus:border-red-500" 
+                            : "border-slate-200 bg-white focus:ring-emerald-200 focus:border-emerald-500"
+                        } disabled:opacity-50 disabled:cursor-not-allowed`} 
+                      />
+                      {contactErrors.message && <p className="text-xs text-red-600 mt-1">{contactErrors.message}</p>}
+                    </div>
+
+                    {/* Submit Button */}
+                    <button 
+                      type="submit" 
+                      disabled={contactLoading || contactSubmitted}
+                      className="w-full bg-emerald-600 hover:bg-emerald-700 disabled:bg-emerald-400 disabled:cursor-not-allowed text-white font-semibold py-2.5 rounded-lg transition text-sm flex items-center justify-center gap-2"
+                    >
+                      {contactLoading ? (
+                        <>
+                          <svg className="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                          </svg>
+                          Mengirim...
+                        </>
+                      ) : (
+                        "Kirim Pesan"
+                      )}
                     </button>
                   </form>
                 </div>
