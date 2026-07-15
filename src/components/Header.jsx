@@ -35,8 +35,8 @@ export default function Header() {
             <h1 className="text-xl font-semibold text-emerald-600">{title}</h1>
 
             <div className="flex items-center gap-6">
-                <a href="/guest" target="_blank" rel="noreferrer" className="hidden sm:inline-flex items-center justify-center rounded-full border border-emerald-300 bg-emerald-100 px-5 py-2 text-xs font-bold text-emerald-800 transition hover:bg-emerald-200 shadow-sm">
-                  Buka Halaman Guest
+                <a href="/" target="_blank" rel="noreferrer" className="hidden sm:inline-flex items-center justify-center rounded-full border border-emerald-300 bg-emerald-100 px-5 py-2 text-xs font-bold text-emerald-800 transition hover:bg-emerald-200 shadow-sm">
+                  Buka Halaman Utama
                 </a>
                 <SearchInput />
                 <NotificationMenu />

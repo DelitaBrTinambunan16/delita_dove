@@ -48,7 +48,7 @@ export default function GuestRegister() {
             const result = await usersAPI.register(newUser)
             localStorage.setItem("member", JSON.stringify(result[0]))
             loginGuestUser(dataForm.email)
-            navigate("/guest")
+            navigate("/member")
 
         } catch (err) {
             setError("Terjadi kesalahan, coba lagi!")

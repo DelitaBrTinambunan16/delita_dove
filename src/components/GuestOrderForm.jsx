@@ -151,7 +151,7 @@ export default function GuestOrderForm({ show, onClose, prefillPackage, selected
       setTimeout(() => {
         setSubmitted(false);
         onClose();
-        navigate("/guest");
+        navigate("/");
       }, 2500);
     } catch (err) {
       console.error("Gagal mengirim pesanan:", err);
@@ -177,7 +177,7 @@ export default function GuestOrderForm({ show, onClose, prefillPackage, selected
               onClick={() => {
                 setSubmitted(false);
                 onClose();
-                navigate("/guest");
+                navigate("/");
               }}
               className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 px-3 py-1.5 text-xs text-slate-500 hover:bg-slate-100 transition"
             >
@@ -377,7 +377,7 @@ export default function GuestOrderForm({ show, onClose, prefillPackage, selected
                   setErrors({});
                   setSubmitError("");
                   onClose();
-                  navigate("/guest");
+                  navigate("/");
                 }}
                 disabled={loading}
                 className="flex-1 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-100 transition disabled:opacity-50 disabled:cursor-not-allowed"

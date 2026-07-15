@@ -31,7 +31,7 @@ export default function GuestLogin() {
 
             localStorage.setItem("member", JSON.stringify(result[0]))
             loginGuestUser(dataForm.email)
-            navigate("/guest")
+            navigate("/member")
 
         } catch (err) {
             setError("Terjadi kesalahan, coba lagi!")

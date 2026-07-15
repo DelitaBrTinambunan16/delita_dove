@@ -162,7 +162,7 @@ export default function GuestMember() {
   }, []);
 
   if (!isLogged) {
-    return <Navigate to="/guest" replace />;
+    return <Navigate to="/member/login" replace />;
   }
 
   if (!memberData) return null;
@@ -488,7 +488,7 @@ export default function GuestMember() {
                       }[memberData.campaignDiikuti] || memberData.campaignDiikuti
                     }</p>
                   </div>
-                  <Link to="/guest#paket" className="text-xs bg-emerald-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-emerald-700 transition">Gunakan</Link>
+                  <Link to="/#paket" className="text-xs bg-emerald-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-emerald-700 transition">Gunakan</Link>
                 </li>
               ) : (
                 <li className="p-4 rounded-2xl border border-slate-100 bg-slate-50 flex justify-between items-center">

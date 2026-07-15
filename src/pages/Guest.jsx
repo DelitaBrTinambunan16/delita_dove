@@ -469,7 +469,9 @@ export default function Guest() {
         <div className="absolute -bottom-24 left-48 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-4000" />
         <div className="relative mx-auto flex max-w-7xl flex-col gap-10 px-6 py-16 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-2xl space-y-6 relative z-10">
-            <span className="inline-flex rounded-full bg-white/90 px-5 py-2.5 text-xs uppercase tracking-[.24em] text-emerald-700 shadow-sm shadow-emerald-100 ring-1 ring-emerald-100 backdrop-blur-md">SayYes Wedding Guest</span>
+            <span className="inline-flex rounded-full bg-white/90 px-5 py-2.5 text-xs uppercase tracking-[.24em] text-emerald-700 shadow-sm shadow-emerald-100 ring-1 ring-emerald-100 backdrop-blur-md">
+              {guestLoggedIn ? "SayYes Wedding Member" : "SayYes Wedding Guest"}
+            </span>
             <h1 className="text-5xl font-black tracking-tight text-slate-900 sm:text-6xl drop-shadow-sm leading-tight">Temukan paket <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-sky-600">wedding terbaik</span> untuk tamu dan pasangan.</h1>
             <p className="max-w-xl text-lg leading-8 text-slate-600 drop-shadow-sm">Lihat semua promo di bagian "Promo" — setiap penawaran menampilkan kode, masa berlaku, dan syarat pemakaian. Untuk menggunakan promo saat pemesanan, daftar sebagai Member atau langsung hubungi admin lewat tombol pada produk.</p>
             {guestLoggedIn && (

@@ -25,12 +25,12 @@ export default function GuestLayout() {
     <div className="min-h-screen bg-[#F9F7F5] font-poppins text-slate-800">
       <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/95 backdrop-blur-xl shadow-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <a href="/guest#home" className="text-xl font-black text-emerald-600">SayYes WeddingDay</a>
+          <a href="/#home" className="text-xl font-black text-emerald-600">SayYes WeddingDay</a>
           <nav className="hidden items-center gap-6 text-sm font-semibold text-slate-700 md:flex">
-            <a href="/guest#home" className="transition hover:text-emerald-600">Home</a>
-            <a href="/guest#produk" className="transition hover:text-emerald-600">Produk</a>
-            <a href="/guest#promo" className="transition hover:text-emerald-600">Promo</a>
-            <a href="/guest#kontak" className="transition hover:text-emerald-600">Kontak</a>
+            <a href="/#home" className="transition hover:text-emerald-600">Home</a>
+            <a href="/#produk" className="transition hover:text-emerald-600">Produk</a>
+            <a href="/#promo" className="transition hover:text-emerald-600">Promo</a>
+            <a href="/#kontak" className="transition hover:text-emerald-600">Kontak</a>
           </nav>
           <div className="flex items-center gap-4">
             {/* Prominent member CTA (moved into Login dropdown to avoid duplicates) */}
