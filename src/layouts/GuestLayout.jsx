@@ -38,7 +38,7 @@ export default function GuestLayout() {
             {guestLoggedIn ? (
               <div className="flex items-center gap-3">
                 <span className="hidden rounded-full bg-emerald-50 px-3 py-2 text-sm font-semibold text-emerald-700 sm:inline-flex">Hi, {guestEmail.split("@")[0]}</span>
-                <Link to="/guest/member" className="rounded-full bg-emerald-100 px-4 py-2 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-200">Profil Member</Link>
+                <Link to="/member" className="rounded-full bg-emerald-100 px-4 py-2 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-200">Profil Member</Link>
                 <button onClick={handleLogout} className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">Logout</button>
               </div>
             ) : (

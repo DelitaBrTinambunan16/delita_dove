@@ -7,12 +7,9 @@ export default function Message() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
+  //Inisialisasi state untuk menampung data messages dan loading state
   const [messages, setMessages] = useState([]);
   const [messagesLoading, setMessagesLoading] = useState(true);
-  // Catatan follow-up di schema kamu kemungkinan tidak pakai kolom `notes`
-  // (schema SQL kamu: admin_reply/admin_reply_date). State notes dibuat dinonaktifkan.
-  const [notes, setNotes] = useState({});
-
 
   const [replyModal, setReplyModal] = useState({ open: false, messageId: null });
   const [replyText, setReplyText] = useState("");
@@ -34,39 +31,11 @@ export default function Message() {
           .select("*")
           .order("created_at", { ascending: false });
 
-        const userResult = await supabase.auth.getUser();
-        const sessionResult = await supabase.auth.getSession();
-
-        console.log("[Message] session/user debug:", {
-          supabaseUrl: import.meta.env.VITE_SUPABASE_URL,
-          session: sessionResult.data?.session || null,
-          user: userResult.data?.user || null
-        });
-
-        // Cek hard count via select agar kelihatan apakah query benar-benar membaca data
-        // (tanpa mengubah UI, hanya log)
-        try {
-          const { data: allRows, error: countErr } = await supabase
-            .from("messages")
-            .select("id");
-          console.log("[Message] debug select(id) count:", allRows?.length ?? 0);
-          if (countErr) console.log("[Message] debug select(id) error:", countErr);
-        } catch (e) {
-          console.log("[Message] debug select(id) exception:", e);
-        }
-
         if (error) throw error;
-        console.log("[Message] fetch messages data count:", (data || []).length);
-        console.log("[Message] fetch messages data sample:", (data || []).slice(0, 3));
-        setMessages(data || []);
+
+        setMessages(data || []); //Simpan data ke state
 
 
-        // Initialize notes from existing notes in database
-        const initialNotes = {};
-        (data || []).forEach((msg) => {
-          initialNotes[msg.id] = msg.notes || "";
-        });
-        setNotes(initialNotes);
       } catch (error) {
         console.error("Gagal memuat messages:", error);
         setMessages([]);
@@ -102,10 +71,6 @@ export default function Message() {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
-
-  // Notes (notes) tidak dipakai pada schema kamu.
-  // Catatan follow-up memakai kolom admin_reply/admin_reply_date.
-
 
   const openReplyModal = (messageId, adminReply = "") => {
     setReplyModal({ open: true, messageId });

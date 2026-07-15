@@ -40,7 +40,7 @@ export default function App() {
         <Route element={<GuestLayout />}>
           <Route path="/" element={<Navigate to="/guest" replace />} />
           <Route path="/guest" element={<Guest />} />
-          <Route path="/guest/member" element={<GuestMember />} />
+          <Route path="/member" element={<GuestMember />} />
         </Route>
 
         {/* ADMIN LAYOUT */}

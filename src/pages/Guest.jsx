@@ -247,7 +247,7 @@ export default function Guest() {
         console.error(e);
       }
 
-      // Ambil data terbaru dari Supabase (sinkronisasi background)
+      // Ambil data terbaru dari Supabase 
       if (loggedIn && (currentMember?.id || email)) {
         try {
           let freshUser = null;
@@ -307,7 +307,7 @@ export default function Guest() {
 
   const guestName = memberData?.name || guestEmail.split("@")[0] || "Tamu";
 
-  // ✅ Validation function untuk contact form
+  // Validation function untuk contact form
   const validateContactForm = (form) => {
     const errors = {};
     
@@ -395,7 +395,7 @@ export default function Guest() {
   const [promoCode, setPromoCode] = useState("");
   const [promoMessage, setPromoMessage] = useState("");
 
-  // ✅ Handle promo - simpan ke Supabase kalau login
+  // Handle promo - simpan ke Supabase kalau login
   const handlePromoSubmit = async (e) => {
     e.preventDefault();
     if (!guestLoggedIn) {
@@ -425,7 +425,7 @@ export default function Guest() {
     }
   };
 
-  // ✅ Email subscription - tampil email otomatis dari akun login, bukan input manual
+  // Email subscription - tampil email otomatis dari akun login, bukan input manual
   const subscriptionEmail = memberData?.email_subscription || memberData?.email || guestEmail;
 
   const getProductImage = (category) => {
@@ -632,7 +632,7 @@ export default function Guest() {
             <div className="flex-1">
               <h3 className="text-lg font-bold text-emerald-900">Punya Kode Promo?</h3>
               <p className="text-sm text-emerald-700 mt-1">Masukkan kode promo untuk mendapatkan diskon tambahan.</p>
-              {/* ✅ Tampilkan promo aktif kalau sudah punya */}
+              {/* Tampilkan promo aktif kalau sudah punya */}
               {memberData?.promo_code && (
                 <p className="text-xs text-emerald-600 font-bold mt-2">
                   Promo aktif: <span className="bg-emerald-100 px-2 py-0.5 rounded">{memberData.promo_code}</span>
@@ -995,7 +995,7 @@ export default function Guest() {
             </a>
 
             {/* Phone/WhatsApp Card */}
-            <a href="https://wa.me/6281234567890" target="_blank" rel="noreferrer" className="group flex flex-col items-center text-center p-6 bg-slate-50 border border-slate-200 rounded-3xl hover:bg-emerald-50 hover:border-emerald-300 transition-all duration-300 hover:-translate-y-1">
+            <a href="https://wa.me/682387398764" target="_blank" rel="noreferrer" className="group flex flex-col items-center text-center p-6 bg-slate-50 border border-slate-200 rounded-3xl hover:bg-emerald-50 hover:border-emerald-300 transition-all duration-300 hover:-translate-y-1">
               <div className="h-12 w-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-emerald-600 mb-4 transition-transform group-hover:scale-110">
                 <FaPhone size={20} />
               </div>
@@ -1026,7 +1026,7 @@ export default function Guest() {
           </div>
         </section>
 
-        {/* ✅ Section Newsletter - Email Subscription tampil otomatis kalau login */}
+        {/*  Section Newsletter - Email Subscription tampil otomatis kalau login */}
         <section className="mt-12 rounded-[2rem] bg-gradient-to-r from-slate-900 to-slate-800 p-8 shadow-sm ring-1 ring-slate-800 text-center">
           <div className="flex items-center justify-center gap-2 mb-3">
             <FaEnvelope className="text-emerald-400" size={20} />
@@ -1036,7 +1036,7 @@ export default function Guest() {
             Dapatkan update terbaru seputar paket promo, giveaway, dan tips persiapan pernikahan langsung ke email Anda.
           </p>
 
-          {/* ✅ Kalau sudah login tampil email langsung, bukan input */}
+          {/*  Kalau sudah login tampil email langsung, bukan input */}
           {guestLoggedIn && subscriptionEmail ? (
             <div className="mt-8 inline-flex items-center gap-3 bg-emerald-500/20 border border-emerald-500/30 rounded-full px-8 py-4">
               <FaCheckCircle className="text-emerald-400" size={16} />
