@@ -134,7 +134,7 @@ export default function GuestRegister() {
 
                     <p className="text-center text-[10px] text-gray-400 mt-5 font-medium">
                         Sudah punya akun?{" "}
-                        <Link to="/guest/login" className="text-[#10B981] font-bold hover:underline">
+                        <Link to="/member/login" className="text-[#10B981] font-bold hover:underline">
                             Login di sini
                         </Link>
                     </p>

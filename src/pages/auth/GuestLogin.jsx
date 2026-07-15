@@ -124,7 +124,7 @@ export default function GuestLogin() {
                     <p className="text-center text-[10px] text-gray-400 mt-5 font-medium">
                         Belum punya akun?{" "}
                         {/* ✅ Path diperbaiki */}
-                        <Link to="/guest/register" className="text-[#10B981] font-bold hover:underline">
+                        <Link to="/member/register" className="text-[#10B981] font-bold hover:underline">
                             Daftar di sini
                         </Link>
                     </p>

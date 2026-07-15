@@ -62,8 +62,8 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           {/* Guest login route intentionally removed from header; registration remains. */}
-          <Route path="/guest/register" element={<GuestRegister />} />
-            <Route path="/guest/login" element={<GuestLogin />} />
+          <Route path="/member/register" element={<GuestRegister />} />
+          <Route path="/member/login" element={<GuestLogin />} />
           <Route path="/forgot" element={<Forgot />} />
         </Route>
 

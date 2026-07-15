@@ -1048,7 +1048,7 @@ export default function Guest() {
             <div className="mt-8 flex flex-col items-center gap-3">
               <p className="text-slate-400 text-sm">Login terlebih dahulu untuk berlangganan newsletter.</p>
               <Link
-                to="/guest/login"
+                to="/member/login"
                 className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 px-8 rounded-full transition text-sm"
               >
                 Login Sekarang
